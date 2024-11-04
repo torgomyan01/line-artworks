@@ -1,0 +1,24 @@
+$names: [
+'CapturaNow-Black.otf',
+'CapturaNow-BlackItalic.otf',
+'CapturaNow-Bold.otf',
+'CapturaNow-BoldItalic.otf',
+'CapturaNow-ExtraBold.otf',
+'CapturaNow-ExtraBoldItalic.otf',
+'CapturaNow-ExtraLight.otf',
+'CapturaNow-ExtraLightItalic.otf',
+'CapturaNow-Light.otf',
+'CapturaNow-LightItalic.otf',
+'CapturaNow-Medium.otf',
+'CapturaNow-MediumItalic.otf',
+'CapturaNow-Regular.otf',
+'CapturaNow-RegularItalic.otf',
+];
+
+@each $name in $names {
+  @font-face {
+    font-family: CapturaNow;
+    src: url(#{$name}) format("opentype");
+  }
+}
+

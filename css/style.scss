@@ -1,0 +1,217 @@
+@import "helper";
+@import "../fonts/fonts";
+@import url('https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&display=swap');
+
+::-webkit-scrollbar {
+  width: 3px;
+  height: 8px;
+  border-radius: 5px;
+}
+
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #ffff;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background: #3089FF;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #3383ee;
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+  text-decoration: none;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  font-family: "Schibsted Grotesk", sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+@media (max-width: 1024px) {
+  html {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 992px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 576px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.hidden {
+  overflow: hidden;
+}
+
+.preloader{
+  width: 100%;
+  height: 100vh;
+  background: #fff;
+  @include flex('c', 'c');
+  position: fixed;
+  left: 0;
+  top: 0;
+
+  &-line{
+    transition: 0.3s;
+    width: 64px;
+    height: 2px;
+    position: absolute;
+    left: 20%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    animation: anim-line infinite 4s;
+    animation-iteration-count: 1;
+    animation-fill-mode: both;
+    background: #000 url("../images/logo-site.svg") no-repeat center;
+    background-size: contain;
+
+    @media (max-width: 567px){
+      animation: anim-line-576 infinite 4s;
+      animation-iteration-count: 1;
+      animation-fill-mode: both;
+    }
+  }
+
+
+  @keyframes anim-line {
+    0%{
+      left: 20%;
+      width: 64px;
+      height: 2px;
+      background-color: #000;
+      transform: translate(-50%, -50%);
+    }
+    25%{
+      left: 50%;
+      width: 64px;
+      height: 2px;
+      background-color: #000;
+      transform: translate(-50%, -50%);
+    }
+    50%{
+      left: 50%;
+      width: 36.875rem;
+      height: 2px;
+      background-color: #000;
+      transform: translate(-50%, -50%);
+    }
+    75%{
+      left: 50%;
+      width: 36.875rem;
+      height: 4rem;
+      background-color: #000;
+      transform: translate(-50%, -50%);
+    }
+    100%{
+      left: 50%;
+      width: 36.875rem;
+      height: 4rem;
+      background-color: transparent;
+      transform: translate(-50%,-100%);
+    }
+  }
+
+  @keyframes anim-line-576 {
+    0%{
+      left: 20%;
+      width: 64px;
+      height: 2px;
+      background-color: #000;
+      transform: translate(-50%, -50%);
+    }
+    25%{
+      left: 50%;
+      width: 64px;
+      height: 2px;
+      background-color: #000;
+      transform: translate(-50%, -50%);
+    }
+    50%{
+      left: 50%;
+      width: 18.125rem;
+      height: 2px;
+      background-color: #000;
+      transform: translate(-50%, -50%);
+    }
+    75%{
+      left: 50%;
+      width: 18.125rem;
+      height: 4rem;
+      background-color: #000;
+      transform: translate(-50%, -50%);
+    }
+    100%{
+      left: 50%;
+      width: 18.125rem;
+      height: 4rem;
+      background-color: transparent;
+      transform: translate(-50%,-100%);
+    }
+  }
+  &-subtitle{
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    transform: translate(-50%, 0);
+    width: 1180px;
+    color: #00B140;
+    font-weight: 200;
+    font-size: 6rem;
+    line-height: 1.16;
+    text-align: center;
+    animation: preloader-subtitle infinite 4s;
+    animation-iteration-count: 1;
+    animation-fill-mode: both;
+
+    @media (max-width: 992px){
+      font-size: 5rem;
+    }
+    @media (max-width: 812px){
+      font-size: 3rem;
+    }
+    @media (max-width: 576px){
+      font-weight: 200;
+      font-size: 40px;
+      line-height: 40px;
+      text-transform: uppercase;
+      width: 100%;
+    }
+  }
+
+  @keyframes preloader-subtitle {
+    0%{
+      top: 100%;
+      transform: translate(-50%, 0);
+    }
+    75%{
+      top: 90%;
+      transform: translate(-50%, 0);
+    }
+    100%{
+      top: 50%;
+      transform: translate(-50%, 0);
+    }
+  }
+}
+
