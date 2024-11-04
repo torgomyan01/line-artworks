@@ -1,18 +1,11 @@
 $names: [
-'CapturaNow-Black.otf',
-'CapturaNow-BlackItalic.otf',
-'CapturaNow-Bold.otf',
-'CapturaNow-BoldItalic.otf',
-'CapturaNow-ExtraBold.otf',
-'CapturaNow-ExtraBoldItalic.otf',
-'CapturaNow-ExtraLight.otf',
-'CapturaNow-ExtraLightItalic.otf',
 'CapturaNow-Light.otf',
-'CapturaNow-LightItalic.otf',
 'CapturaNow-Medium.otf',
-'CapturaNow-MediumItalic.otf',
 'CapturaNow-Regular.otf',
-'CapturaNow-RegularItalic.otf',
+'CapturaNow-Bold.otf',
+'CapturaNow-ExtraLight.otf',
+'CapturaNow-ExtraBold.otf',
+'CapturaNow-Black.otf',
 ];
 
 @each $name in $names {

@@ -1,43 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&display=swap");
 @font-face {
   font-family: CapturaNow;
-  src: url(CapturaNow-Black.otf) format("opentype");
-}
-@font-face {
-  font-family: CapturaNow;
-  src: url(CapturaNow-BlackItalic.otf) format("opentype");
-}
-@font-face {
-  font-family: CapturaNow;
-  src: url(CapturaNow-Bold.otf) format("opentype");
-}
-@font-face {
-  font-family: CapturaNow;
-  src: url(CapturaNow-BoldItalic.otf) format("opentype");
-}
-@font-face {
-  font-family: CapturaNow;
-  src: url(CapturaNow-ExtraBold.otf) format("opentype");
-}
-@font-face {
-  font-family: CapturaNow;
-  src: url(CapturaNow-ExtraBoldItalic.otf) format("opentype");
-}
-@font-face {
-  font-family: CapturaNow;
-  src: url(CapturaNow-ExtraLight.otf) format("opentype");
-}
-@font-face {
-  font-family: CapturaNow;
-  src: url(CapturaNow-ExtraLightItalic.otf) format("opentype");
-}
-@font-face {
-  font-family: CapturaNow;
   src: url(CapturaNow-Light.otf) format("opentype");
-}
-@font-face {
-  font-family: CapturaNow;
-  src: url(CapturaNow-LightItalic.otf) format("opentype");
 }
 @font-face {
   font-family: CapturaNow;
@@ -45,15 +9,23 @@
 }
 @font-face {
   font-family: CapturaNow;
-  src: url(CapturaNow-MediumItalic.otf) format("opentype");
-}
-@font-face {
-  font-family: CapturaNow;
   src: url(CapturaNow-Regular.otf) format("opentype");
 }
 @font-face {
   font-family: CapturaNow;
-  src: url(CapturaNow-RegularItalic.otf) format("opentype");
+  src: url(CapturaNow-Bold.otf) format("opentype");
+}
+@font-face {
+  font-family: CapturaNow;
+  src: url(CapturaNow-ExtraLight.otf) format("opentype");
+}
+@font-face {
+  font-family: CapturaNow;
+  src: url(CapturaNow-ExtraBold.otf) format("opentype");
+}
+@font-face {
+  font-family: CapturaNow;
+  src: url(CapturaNow-Black.otf) format("opentype");
 }
 ::-webkit-scrollbar {
   width: 3px;
@@ -130,7 +102,7 @@ a {
   left: 20%;
   top: 50%;
   transform: translate(-50%, -50%);
-  animation: anim-line infinite 4s;
+  animation: anim-line infinite 5s;
   animation-iteration-count: 1;
   animation-fill-mode: both;
   background: #000 url("../images/logo-site.svg") no-repeat center;
@@ -138,7 +110,7 @@ a {
 }
 @media (max-width: 567px) {
   .preloader-line {
-    animation: anim-line-576 infinite 4s;
+    animation: anim-line-576 infinite 5s;
     animation-iteration-count: 1;
     animation-fill-mode: both;
   }
@@ -151,7 +123,7 @@ a {
     background-color: #000;
     transform: translate(-50%, -50%);
   }
-  25% {
+  35% {
     left: 50%;
     width: 64px;
     height: 2px;
@@ -188,7 +160,7 @@ a {
     background-color: #000;
     transform: translate(-50%, -50%);
   }
-  25% {
+  35% {
     left: 50%;
     width: 64px;
     height: 2px;
@@ -228,9 +200,10 @@ a {
   font-size: 6rem;
   line-height: 1.16;
   text-align: center;
-  animation: preloader-subtitle infinite 4s;
+  animation: preloader-subtitle infinite 5s;
   animation-iteration-count: 1;
   animation-fill-mode: both;
+  opacity: 0;
 }
 @media (max-width: 992px) {
   .preloader-subtitle {
@@ -255,14 +228,17 @@ a {
   0% {
     top: 100%;
     transform: translate(-50%, 0);
+    opacity: 0;
   }
   75% {
     top: 90%;
     transform: translate(-50%, 0);
+    opacity: 1;
   }
   100% {
     top: 50%;
     transform: translate(-50%, 0);
+    opacity: 1;
   }
 }
 

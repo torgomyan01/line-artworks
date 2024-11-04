@@ -80,14 +80,14 @@ a {
     left: 20%;
     top: 50%;
     transform: translate(-50%, -50%);
-    animation: anim-line infinite 4s;
+    animation: anim-line infinite 5s;
     animation-iteration-count: 1;
     animation-fill-mode: both;
     background: #000 url("../images/logo-site.svg") no-repeat center;
     background-size: contain;
 
     @media (max-width: 567px){
-      animation: anim-line-576 infinite 4s;
+      animation: anim-line-576 infinite 5s;
       animation-iteration-count: 1;
       animation-fill-mode: both;
     }
@@ -102,7 +102,7 @@ a {
       background-color: #000;
       transform: translate(-50%, -50%);
     }
-    25%{
+    35%{
       left: 50%;
       width: 64px;
       height: 2px;
@@ -140,7 +140,7 @@ a {
       background-color: #000;
       transform: translate(-50%, -50%);
     }
-    25%{
+   35%{
       left: 50%;
       width: 64px;
       height: 2px;
@@ -180,9 +180,10 @@ a {
     font-size: 6rem;
     line-height: 1.16;
     text-align: center;
-    animation: preloader-subtitle infinite 4s;
+    animation: preloader-subtitle infinite 5s;
     animation-iteration-count: 1;
     animation-fill-mode: both;
+    opacity: 0;
 
     @media (max-width: 992px){
       font-size: 5rem;
@@ -203,14 +204,17 @@ a {
     0%{
       top: 100%;
       transform: translate(-50%, 0);
+      opacity: 0;
     }
     75%{
       top: 90%;
       transform: translate(-50%, 0);
+      opacity: 1;
     }
     100%{
       top: 50%;
       transform: translate(-50%, 0);
+      opacity: 1;
     }
   }
 }
