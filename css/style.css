@@ -135,14 +135,12 @@ a {
   animation-fill-mode: both;
   background: #000 url("../images/logo-site.svg") no-repeat center;
   background-size: contain;
-  animation-delay: 2s;
 }
 @media (max-width: 567px) {
   .preloader-line {
     animation: anim-line-576 infinite 4s;
     animation-iteration-count: 1;
     animation-fill-mode: both;
-    animation-delay: 2s;
   }
 }
 @keyframes anim-line {
@@ -233,7 +231,6 @@ a {
   animation: preloader-subtitle infinite 4s;
   animation-iteration-count: 1;
   animation-fill-mode: both;
-  animation-delay: 2s;
 }
 @media (max-width: 992px) {
   .preloader-subtitle {
