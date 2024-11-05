@@ -102,15 +102,15 @@ a {
   left: 20%;
   top: 50%;
   transform: translate(-50%, -50%);
-  animation: anim-line infinite 5s;
+  animation: anim-line infinite 6s;
   animation-iteration-count: 1;
   animation-fill-mode: both;
   background: #000 url("../images/logo-site.svg") no-repeat center;
-  background-size: contain;
+  background-size: 100% auto;
 }
 @media (max-width: 567px) {
   .preloader-line {
-    animation: anim-line-576 infinite 5s;
+    animation: anim-line-576 infinite 6s;
     animation-iteration-count: 1;
     animation-fill-mode: both;
   }
@@ -123,9 +123,16 @@ a {
     background-color: #000;
     transform: translate(-50%, -50%);
   }
-  35% {
+  20% {
     left: 50%;
     width: 64px;
+    height: 2px;
+    background-color: #000;
+    transform: translate(-50%, -50%);
+  }
+  40% {
+    left: 50%;
+    width: 36.875rem;
     height: 2px;
     background-color: #000;
     transform: translate(-50%, -50%);
@@ -133,15 +140,22 @@ a {
   50% {
     left: 50%;
     width: 36.875rem;
-    height: 2px;
+    height: 4rem;
     background-color: #000;
     transform: translate(-50%, -50%);
   }
-  75% {
+  60% {
     left: 50%;
     width: 36.875rem;
     height: 4rem;
-    background-color: #000;
+    background-color: transparent;
+    transform: translate(-50%, -50%);
+  }
+  80% {
+    left: 50%;
+    width: 36.875rem;
+    height: 4rem;
+    background-color: transparent;
     transform: translate(-50%, -50%);
   }
   100% {
@@ -160,9 +174,16 @@ a {
     background-color: #000;
     transform: translate(-50%, -50%);
   }
-  35% {
+  20% {
     left: 50%;
     width: 64px;
+    height: 2px;
+    background-color: #000;
+    transform: translate(-50%, -50%);
+  }
+  40% {
+    left: 50%;
+    width: 18.125rem;
     height: 2px;
     background-color: #000;
     transform: translate(-50%, -50%);
@@ -170,15 +191,22 @@ a {
   50% {
     left: 50%;
     width: 18.125rem;
-    height: 2px;
+    height: 4rem;
     background-color: #000;
     transform: translate(-50%, -50%);
   }
-  75% {
+  60% {
     left: 50%;
     width: 18.125rem;
     height: 4rem;
-    background-color: #000;
+    background-color: transparent;
+    transform: translate(-50%, -50%);
+  }
+  80% {
+    left: 50%;
+    width: 18.125rem;
+    height: 4rem;
+    background-color: transparent;
     transform: translate(-50%, -50%);
   }
   100% {
@@ -200,7 +228,7 @@ a {
   font-size: 6rem;
   line-height: 1.16;
   text-align: center;
-  animation: preloader-subtitle infinite 5s;
+  animation: preloader-subtitle infinite 6s;
   animation-iteration-count: 1;
   animation-fill-mode: both;
   opacity: 0;
@@ -230,10 +258,9 @@ a {
     transform: translate(-50%, 0);
     opacity: 0;
   }
-  75% {
-    top: 90%;
+  80% {
+    top: 100%;
     transform: translate(-50%, 0);
-    opacity: 1;
   }
   100% {
     top: 50%;
