@@ -111,6 +111,7 @@ a {
   animation-iteration-count: 1;
   opacity: 1;
   visibility: visible;
+  z-index: 100;
 }
 @keyframes close-preloader {
   0% {
