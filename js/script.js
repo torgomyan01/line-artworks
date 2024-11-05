@@ -102,6 +102,8 @@ setTimeout(() => {
 
 const playPause = $el('#play-pause path');
 const sliderContentButtonsPlay = $el('.slider-content-buttons-play');
+const sliderContentButtonsPrev = $el('.slider-content-buttons-prev');
+const sliderContentButtonsNext = $el('.slider-content-buttons-next');
 const progressBar = $el('.progress-bar');
 
 const playPauseIcons = {
@@ -156,5 +158,29 @@ sliderContentButtonsPlay.addEventListener('click', function (){
   }
 
   status = !status;
+})
+
+// PREV SLIDER FUNCTION
+sliderContentButtonsPrev.addEventListener('click', function (){
+  if(sliderActiveIndex > 0){
+    sliderActiveIndex -= 1;
+  }
+  percent = 0;
+
+  if(sliderActiveIndex === sliderInfo.length - 1){
+    sliderActiveIndex = 0;
+  }
+  nextSlider()
+})
+
+// NEXT SLIDER FUNCTION
+sliderContentButtonsNext.addEventListener('click', function (){
+  sliderActiveIndex += 1;
+  percent = 0;
+
+  if(sliderActiveIndex === sliderInfo.length - 1){
+    sliderActiveIndex = 0;
+  }
+  nextSlider()
 })
 
