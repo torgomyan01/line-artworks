@@ -1,31 +1,31 @@
 @import url("https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&display=swap");
 @font-face {
   font-family: "CapturaNow";
-  src: url(CapturaNow-Light.otf) format("opentype");
+  src: url(../fonts/CapturaNow-Light.otf) format("opentype");
 }
 @font-face {
   font-family: "CapturaNow";
-  src: url(CapturaNow-Medium.otf) format("opentype");
+  src: url(../fonts/CapturaNow-Medium.otf) format("opentype");
 }
 @font-face {
   font-family: "CapturaNow";
-  src: url(CapturaNow-Regular.otf) format("opentype");
+  src: url(../fonts/CapturaNow-Regular.otf) format("opentype");
 }
 @font-face {
   font-family: "CapturaNow";
-  src: url(CapturaNow-Bold.otf) format("opentype");
+  src: url(../fonts/CapturaNow-Bold.otf) format("opentype");
 }
 @font-face {
   font-family: "CapturaNow";
-  src: url(CapturaNow-ExtraLight.otf) format("opentype");
+  src: url(../fonts/CapturaNow-ExtraLight.otf) format("opentype");
 }
 @font-face {
   font-family: "CapturaNow";
-  src: url(CapturaNow-ExtraBold.otf) format("opentype");
+  src: url(../fonts/CapturaNow-ExtraBold.otf) format("opentype");
 }
 @font-face {
   font-family: "CapturaNow";
-  src: url(CapturaNow-Black.otf) format("opentype");
+  src: url(../fonts/CapturaNow-Black.otf) format("opentype");
 }
 ::-webkit-scrollbar {
   width: 3px;
@@ -92,6 +92,7 @@ a {
 
 .hidden {
   overflow: hidden;
+  height: 100vh;
 }
 
 .preloader {
@@ -306,6 +307,8 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  z-index: 1;
+  position: relative;
 }
 @media (max-width: 576px) {
   .nav {
@@ -385,12 +388,21 @@ a {
 }
 .slider-content-info {
   width: 16.875rem;
+  padding-bottom: 0.25rem;
+  position: relative;
+  z-index: 1;
 }
 .slider-content-info-type {
   color: rgba(0, 0, 0, 0.81);
   font-size: 1.25rem;
   font-weight: 200;
   margin-bottom: 10px;
+  transition: 1s;
+  transition-delay: 1s;
+  opacity: 0;
+}
+.slider-content-info-type.active {
+  opacity: 1;
 }
 .slider-content-info-title {
   position: relative;
@@ -403,14 +415,23 @@ a {
   background-color: #00B140;
   white-space: nowrap;
   padding: 0 20px;
-  font-family: "CapturaNow", sans-serif;
+  font-family: "CapturaNow";
   font-weight: 800;
   font-size: 64px;
   text-transform: uppercase;
+  transform: translateX(-200px);
+  opacity: 0;
+  transition: 0.8s;
+}
+.slider-content-info-title span.active {
+  transform: translateX(0);
+  opacity: 1;
 }
 .slider-content-image {
   width: calc(100% - 29.375rem);
   height: 100%;
+  position: relative;
+  transition: 0.8s;
 }
 .slider-content-image img {
   width: 100%;
@@ -456,6 +477,8 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 1;
+  position: relative;
 }
 .footer .container {
   display: flex;

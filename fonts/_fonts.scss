@@ -11,7 +11,7 @@ $names: [
 @each $name in $names {
   @font-face {
     font-family: 'CapturaNow';
-    src: url(#{$name}) format("opentype");
+    src: url(../fonts/#{$name}) format("opentype");
   }
 }
 

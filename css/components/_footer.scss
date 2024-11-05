@@ -2,6 +2,9 @@
   width: 100%;
   height: 200px;
   @include flex('c', 'c');
+  z-index: 1;
+  position: relative;
+
   .container{
     @include flex('sb', 'c');
   }

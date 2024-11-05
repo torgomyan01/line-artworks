@@ -40,9 +40,9 @@ sliderContentButtonsPlay.addEventListener('click', function (){
 const progressBar = $el('.progress-bar');
 
 let percent = 0;
-startProgress()
+startProgress();
 function startProgress(){
-  let int = setInterval(() => {
+  setInterval(() => {
     percent += 1;
     progressBar.setAttribute('style', `--percent: ${percent}%`);
 
@@ -51,3 +51,80 @@ function startProgress(){
     }
   }, 50)
 }
+
+
+
+const sliderInfo = [
+  {
+    type: 'Emirates <br> Global Aluminium',
+    title: 'Women|in Heavy|Industry',
+    img: 'images/slider-image-1.png',
+    hashtag: 'Video'
+  },
+  {
+    type: 'Air Samarkand',
+    title: 'New Airline|of Uzbekistan',
+    img: 'images/slider-image-2.png',
+    hashtag: 'Production'
+  },
+  {
+    type: 'AGC Glass',
+    title: 'Industrial|photoshop|for Agc Glass',
+    img: 'images/slider-image-3.png',
+    hashtag: 'Aviation'
+  },
+  {
+    type: 'EuroChem Group AG',
+    title: 'Image|photoshoot ',
+    img: 'images/slider-image-3.png',
+    hashtag: 'Construction'
+  },
+  {
+    type: 'EMCO',
+    title: 'Industrial|Photography|at Emco',
+    img: 'images/slider-image-3.png',
+    hashtag: 'People'
+  },
+];
+
+
+const footerHashtags = $el('.footer-hashtags');
+const sliderContentImage = $el('.slider-content-image');
+const sliderContentInfoType = $el('.slider-content-info-type');
+const sliderContentInfoTitle = $('.slider-content-info-title span');
+
+sliderInfo.forEach((item, index) => {
+  footerHashtags.insertAdjacentHTML('beforeend', `
+    <span class="footer-hashtags-item ${index === 0 ? 'active' : ''}">#${item.hashtag}</span>
+  `)
+});
+
+const sliderContentImageInfo = sliderContentImage.getBoundingClientRect();
+
+const imageInfo = {
+  width: sliderContentImageInfo.width,
+  height: sliderContentImageInfo.height
+}
+
+
+sliderContentImage.style.left = `-${sliderContentImageInfo.left}px`;
+sliderContentImage.style.top = `${sliderContentImageInfo.top * 2}px`;
+sliderContentImage.style.minWidth = `${window.innerWidth}px`;
+sliderContentImage.style.minHeight = `${window.innerHeight}px`;
+sliderContentImage.style.transform = `scale(1.05)`;
+
+
+setTimeout(() => {
+  sliderContentImage.style.left = `0px`;
+  sliderContentImage.style.top = `0px`;
+  sliderContentImage.style.minWidth = `${imageInfo.width}px`;
+  sliderContentImage.style.minHeight = `${imageInfo.height}px`;
+  sliderContentImage.style.transform = `scale(1)`;
+
+  sliderContentInfoTitle.forEach((item) => {
+    item.classList.add(active)
+  });
+  sliderContentInfoType.classList.add(active)
+}, 9000)
+
+console.log(sliderContentImageInfo)
