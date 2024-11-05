@@ -34,3 +34,20 @@ sliderContentButtonsPlay.addEventListener('click', function (){
 
   status = !status;
 })
+
+
+
+const progressBar = $el('.progress-bar');
+
+let percent = 0;
+startProgress()
+function startProgress(){
+  let int = setInterval(() => {
+    percent += 1;
+    progressBar.setAttribute('style', `--percent: ${percent}%`);
+
+    if(percent === 100){
+      percent = 0;
+    }
+  }, 50)
+}

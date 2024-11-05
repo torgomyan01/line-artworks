@@ -426,6 +426,17 @@ a {
   position: relative;
   right: -5rem;
 }
+.slider-content-buttons-next {
+  font-size: 21px !important;
+}
+.slider-content-buttons-next .progress-bar {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, white 90%, transparent 80%), conic-gradient(#00B140 var(--percent), #fff 0);
+  z-index: -1;
+}
 .slider-content-buttons .btn-slider {
   width: 40px;
   height: 40px;
@@ -437,6 +448,52 @@ a {
   margin-right: 1rem;
   cursor: pointer;
   font-size: 20px;
+}
+
+.footer {
+  width: 100%;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.footer .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-hashtags {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+.footer-hashtags-item {
+  color: #000000;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  margin-right: 1rem;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.footer-hashtags-item.active {
+  font-weight: 700;
+}
+.footer-hashtags-item:hover {
+  color: #00B140;
+}
+.footer-contact {
+  color: #000000;
+  font-size: 1.25rem;
+  line-height: 2.5rem;
+  text-transform: uppercase;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.footer-contact i {
+  margin-left: 1.125rem;
+}
+.footer-contact:hover {
+  color: #00B140;
 }
 
 /*# sourceMappingURL=style.css.map */
