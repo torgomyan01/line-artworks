@@ -10,7 +10,7 @@ $names: [
 
 @each $name in $names {
   @font-face {
-    font-family: CapturaNow;
+    font-family: 'CapturaNow';
     src: url(#{$name}) format("opentype");
   }
 }

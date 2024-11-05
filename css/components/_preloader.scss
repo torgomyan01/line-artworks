@@ -8,7 +8,7 @@
   position: fixed;
   left: 0;
   top: 0;
-  animation: close-preloader infinite 2s;
+  animation: close-preloader infinite 1s;
   animation-delay: 8s;
   animation-fill-mode: both;
   animation-iteration-count: 1;
@@ -42,7 +42,7 @@
     animation: anim-line infinite $animTime;
     animation-iteration-count: 1;
     animation-fill-mode: both;
-    background: #000 url("../images/logo-site.svg") no-repeat center;
+    background: #000 url("../../images/logo-site.svg") no-repeat center;
     background-size: 100% auto;
 
     @media (max-width: 567px) {
