@@ -121,10 +121,16 @@ setTimeout(() => {
   sliderContentImage.style.minHeight = `${imageInfo.height}px`;
   sliderContentImage.style.transform = `scale(1)`;
 
+
+  setTimeout(() => {
+    sliderContentImage.style.minWidth = null;
+    sliderContentImage.style.minHeight = null;
+  }, 900)
+
   sliderContentInfoTitle.forEach((item) => {
     item.classList.add(active)
   });
-  sliderContentInfoType.classList.add(active)
+  sliderContentInfoType.classList.add(active);
 }, 9000)
 
 console.log(sliderContentImageInfo)

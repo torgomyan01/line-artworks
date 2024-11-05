@@ -398,7 +398,7 @@ a {
   font-weight: 200;
   margin-bottom: 10px;
   transition: 1s;
-  transition-delay: 1s;
+  transition-delay: 1.5s;
   opacity: 0;
 }
 .slider-content-info-type.active {
