@@ -22,7 +22,6 @@ function $(name){
 }
 
 
-
 const sliderInfo = [
   {
     type: 'Emirates <br> Global Aluminium',
@@ -55,8 +54,6 @@ const sliderInfo = [
     hashtag: 'People'
   },
 ];
-
-
 const footerHashtags = $el('.footer-hashtags');
 const sliderContentInfoBody = $el('.slider-content-info-body');
 const sliderContentImage = $el('.slider-content-image');
@@ -75,6 +72,7 @@ sliderInfo.forEach((item, index) => {
 
   sliderContentInfoBody.insertAdjacentHTML('beforeend', PrintSliderBody(titlesItem, index))
 
+  changeSliderActive();
 });
 
 const sliderContentImageInfo = sliderContentImage.getBoundingClientRect();
@@ -158,6 +156,7 @@ function startAutoLoadingSlider(){
 function nextSlider(){
   const obj = sliderInfo[sliderActiveIndex];
   const AllTitles = $('.slider-content-info-title');
+  const footerHashtagsItem = $('.footer-hashtags-item');
 
   AllTitles.forEach((titleElem, index) => {
     const spans = titleElem.querySelectorAll('span');
@@ -192,7 +191,27 @@ function nextSlider(){
   }, 1000)
 
 
+
+  footerHashtagsItem.forEach((hashtag) => hashtag.classList.remove(active))
+
+  footerHashtagsItem[sliderActiveIndex].classList.add(active)
+
+
   sliderContentImage.style.backgroundImage = `url(${obj.img})`;
+}
+
+
+function changeSliderActive(){
+  const footerHashtagsItem = $('.footer-hashtags-item');
+
+  footerHashtagsItem.forEach((item, index) => {
+    item.addEventListener('click', function (){
+      percent = 0;
+      sliderActiveIndex = index;
+
+      nextSlider()
+    })
+  })
 }
 
 
@@ -236,4 +255,9 @@ sliderContentButtonsNext.addEventListener('click', function (){
   }
   nextSlider()
 })
+
+
+
+
+
 
