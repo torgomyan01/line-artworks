@@ -208,7 +208,6 @@ function changeSliderActive(){
     item.addEventListener('click', function (){
       percent = 0;
       sliderActiveIndex = index;
-
       nextSlider()
     })
   })
@@ -258,6 +257,13 @@ sliderContentButtonsNext.addEventListener('click', function (){
 
 
 
+// ------------------------------
+// ----------- MENU--------------
+// ------------------------------
 
+const navMenu = $el('.nav-menu');
 
+navMenu.addEventListener('click', function (){
+  navMenu.classList.toggle(active)
+})
 

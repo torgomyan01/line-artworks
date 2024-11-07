@@ -43,6 +43,33 @@
         background-color: #00B140;
       }
     }
+
+    &-opened{
+      display: none;
+    }
+
+    &.active{
+      .nav-menu-icon{
+        &:after{
+          transform: rotate(45deg);
+          width: 17px;
+          top: 17px;
+        }
+        &:before{
+          transform: rotate(-45deg);
+          width: 17px;
+          left: 0;
+          top: 17px;
+        }
+      }
+      .nav-menu-opened{
+        display: block;
+      }
+      .nav-menu-closed{
+        display: none;
+      }
+    }
+
     &-icon{
       width: 30px;
       height: 30px;
@@ -57,6 +84,7 @@
         height: 1px;
         background-color: #000;
         transition: 0.3s;
+        transform: rotate(0);
       }
       &:after{
         content: "";
@@ -67,6 +95,7 @@
         height: 1px;
         background-color: #000;
         transition: 0.3s;
+        transform: rotate(0);
       }
     }
   }

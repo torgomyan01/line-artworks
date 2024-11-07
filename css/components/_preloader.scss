@@ -42,7 +42,7 @@
     animation: anim-line infinite $animTime;
     animation-iteration-count: 1;
     animation-fill-mode: both;
-    background: #000 url("../../images/logo-site.svg") no-repeat center;
+    background: #000 url("../images/logo-site.svg") no-repeat center;
     background-size: 100% auto;
 
     @media (max-width: 567px) {

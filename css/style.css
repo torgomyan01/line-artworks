@@ -137,7 +137,7 @@ a {
   animation: anim-line infinite 6s;
   animation-iteration-count: 1;
   animation-fill-mode: both;
-  background: #000 url("../../images/logo-site.svg") no-repeat center;
+  background: #000 url("../images/logo-site.svg") no-repeat center;
   background-size: 100% auto;
 }
 @media (max-width: 567px) {
@@ -353,6 +353,26 @@ a {
 .nav-menu:hover .nav-menu-icon:after {
   background-color: #00B140;
 }
+.nav-menu-opened {
+  display: none;
+}
+.nav-menu.active .nav-menu-icon:after {
+  transform: rotate(45deg);
+  width: 17px;
+  top: 17px;
+}
+.nav-menu.active .nav-menu-icon:before {
+  transform: rotate(-45deg);
+  width: 17px;
+  left: 0;
+  top: 17px;
+}
+.nav-menu.active .nav-menu-opened {
+  display: block;
+}
+.nav-menu.active .nav-menu-closed {
+  display: none;
+}
 .nav-menu-icon {
   width: 30px;
   height: 30px;
@@ -368,6 +388,7 @@ a {
   height: 1px;
   background-color: #000;
   transition: 0.3s;
+  transform: rotate(0);
 }
 .nav-menu-icon:after {
   content: "";
@@ -378,6 +399,7 @@ a {
   height: 1px;
   background-color: #000;
   transition: 0.3s;
+  transform: rotate(0);
 }
 
 .slider-content .container {
