@@ -1,11 +1,16 @@
 const {
   active,
   none,
-  show
+  show,
+  closed,
+  preparing
+
 } = {
   active: 'active',
   none: 'd-none',
-  show: 'show'
+  show: 'show',
+  closed: 'closed',
+  preparing: 'preparing',
 }
 
 function $el(name){
@@ -53,14 +58,23 @@ const sliderInfo = [
 
 
 const footerHashtags = $el('.footer-hashtags');
+const sliderContentInfoBody = $el('.slider-content-info-body');
 const sliderContentImage = $el('.slider-content-image');
 const sliderContentInfoType = $el('.slider-content-info-type');
-const sliderContentInfoTitle = $('.slider-content-info-title span');
+
+const PrintSliderItem = (item,_index) => `<span style="transition-delay: 1.${_index * 2}s">${item}</span>`;
+const PrintSliderBody = (titlesItem, index) => `<h2 class="slider-content-info-title ${index === 0 ? 'active' : ''}">${titlesItem}</h2>`;
+const PrintHashtagItem = (item, index) => `<span class="footer-hashtags-item ${index === 0 ? 'active' : ''}">#${item.hashtag}</span>`;
+
+const getTitlesItems = (str) => str.split('|');
 
 sliderInfo.forEach((item, index) => {
-  footerHashtags.insertAdjacentHTML('beforeend', `
-    <span class="footer-hashtags-item ${index === 0 ? 'active' : ''}">#${item.hashtag}</span>
-  `)
+  const titlesItem = getTitlesItems(item.title).map((item, _index) => PrintSliderItem(item, _index)).join('');
+
+  footerHashtags.insertAdjacentHTML('beforeend', PrintHashtagItem(item, index))
+
+  sliderContentInfoBody.insertAdjacentHTML('beforeend', PrintSliderBody(titlesItem, index))
+
 });
 
 const sliderContentImageInfo = sliderContentImage.getBoundingClientRect();
@@ -91,9 +105,13 @@ setTimeout(() => {
     sliderContentImage.style.minHeight = null;
   }, 900)
 
-  sliderContentInfoTitle.forEach((item) => {
+  const title = $('.slider-content-info-title')[0];
+  const spans = title.querySelectorAll('span');
+
+  spans.forEach((item) => {
     item.classList.add(active)
-  });
+  })
+
   sliderContentInfoType.classList.add(active);
   startProgress();
 }, 9000)
@@ -138,8 +156,33 @@ function startAutoLoadingSlider(){
 }
 
 function nextSlider(){
-  console.log(sliderActiveIndex)
-  sliderContentImage.style.backgroundImage = `url(${sliderInfo[sliderActiveIndex].img})`;
+  const obj = sliderInfo[sliderActiveIndex];
+  const AllTitles = $('.slider-content-info-title');
+
+  AllTitles.forEach((titleElem, index) => {
+    const spans = titleElem.querySelectorAll('span');
+    spans.forEach((spanElem) => {
+      spanElem.classList.remove(active)
+    })
+
+    titleElem.classList.remove(active);
+    titleElem.classList.remove(closed);
+    titleElem.classList.remove(preparing);
+
+    if(sliderActiveIndex > index){
+      titleElem.classList.add(preparing);
+    } else if(sliderActiveIndex < index) {
+      titleElem.classList.add(closed);
+    } else {
+      titleElem.classList.add(active);
+      spans.forEach((spanElem) => {
+        spanElem.classList.add(active)
+      })
+    }
+
+  })
+
+  sliderContentImage.style.backgroundImage = `url(${obj.img})`;
 }
 
 
