@@ -403,7 +403,7 @@ a {
   opacity: 1;
 }
 .slider-content-info-title.closed {
-  top: 100px;
+  transform: translateY(100px);
   opacity: 0;
 }
 .slider-content-info-title.preparing {

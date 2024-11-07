@@ -170,9 +170,9 @@ function nextSlider(){
     titleElem.classList.remove(preparing);
 
     if(sliderActiveIndex > index){
-      titleElem.classList.add(preparing);
-    } else if(sliderActiveIndex < index) {
       titleElem.classList.add(closed);
+    } else if(sliderActiveIndex < index) {
+      titleElem.classList.add(preparing);
     } else {
       titleElem.classList.add(active);
       spans.forEach((spanElem) => {
@@ -181,6 +181,16 @@ function nextSlider(){
     }
 
   })
+
+  sliderContentInfoType.style.opacity = '0';
+  sliderContentInfoType.style.transitionDelay = '0s';
+
+  setTimeout(() => {
+    sliderContentInfoType.innerText = '';
+    sliderContentInfoType.insertAdjacentHTML('beforeend', obj.type);
+    sliderContentInfoType.style.opacity = '1';
+  }, 1000)
+
 
   sliderContentImage.style.backgroundImage = `url(${obj.img})`;
 }
