@@ -13,11 +13,16 @@ const {
   preparing: 'preparing',
 }
 
-function $el(name){
+document.addEventListener("DOMContentLoaded", (event) => {
+  gsap.registerPlugin(ScrollTrigger);
+});
+
+
+function $el(name) {
   return document.querySelector(name);
 }
 
-function $(name){
+function $(name) {
   return document.querySelectorAll(name);
 }
 
@@ -54,12 +59,10 @@ const sliderInfo = [
     hashtag: 'People'
   },
 ];
-const footerHashtags = $el('.footer-hashtags');
-const sliderContentInfoBody = $el('.slider-content-info-body');
-const sliderContentImage = $el('.slider-content-image');
-const sliderContentInfoType = $el('.slider-content-info-type');
 
-const PrintSliderItem = (item,_index) => `<span style="transition-delay: 1.${_index * 2}s">${item}</span>`;
+const footerHashtags = $el('.footer-hashtags');
+
+const PrintSliderItem = (item, _index) => `<span style="transition-delay: 1.${_index * 2}s">${item}</span>`;
 const PrintSliderBody = (titlesItem, index) => `<h2 class="slider-content-info-title ${index === 0 ? 'active' : ''}">${titlesItem}</h2>`;
 const PrintHashtagItem = (item, index) => `<span class="footer-hashtags-item ${index === 0 ? 'active' : ''}">#${item.hashtag}</span>`;
 
@@ -70,62 +73,20 @@ sliderInfo.forEach((item, index) => {
 
   footerHashtags.insertAdjacentHTML('beforeend', PrintHashtagItem(item, index))
 
-  sliderContentInfoBody.insertAdjacentHTML('beforeend', PrintSliderBody(titlesItem, index))
+  // sliderContentInfoBody.insertAdjacentHTML('beforeend', PrintSliderBody(titlesItem, index))
 
-  changeSliderActive();
+  // changeSliderActive();
 });
+//
 
-const sliderContentImageInfo = sliderContentImage.getBoundingClientRect();
-
-const imageInfo = {
-  width: sliderContentImageInfo.width,
-  height: sliderContentImageInfo.height
-}
-
-
-sliderContentImage.style.left = `-${sliderContentImageInfo.left}px`;
-sliderContentImage.style.top = `${sliderContentImageInfo.top * 2}px`;
-sliderContentImage.style.minWidth = `${window.innerWidth}px`;
-sliderContentImage.style.minHeight = `${window.innerHeight}px`;
-sliderContentImage.style.transform = `scale(1.05)`;
-
-
-setTimeout(() => {
-  sliderContentImage.style.left = `0px`;
-  sliderContentImage.style.top = `0px`;
-  sliderContentImage.style.minWidth = `${imageInfo.width}px`;
-  sliderContentImage.style.minHeight = `${imageInfo.height}px`;
-  sliderContentImage.style.transform = `scale(1)`;
-
-
-  setTimeout(() => {
-    sliderContentImage.style.minWidth = null;
-    sliderContentImage.style.minHeight = null;
-  }, 900)
-
-  const title = $('.slider-content-info-title')[0];
-  const spans = title.querySelectorAll('span');
-
-  spans.forEach((item) => {
-    item.classList.add(active)
-  })
-
-  sliderContentInfoType.classList.add(active);
-  startProgress();
-}, 9000)
-
-
-
+//
+//
+//
 const playPause = $el('#play-pause path');
 const sliderContentButtonsPlay = $el('.slider-content-buttons-play');
 const sliderContentButtonsPrev = $el('.slider-content-buttons-prev');
 const sliderContentButtonsNext = $el('.slider-content-buttons-next');
 const progressBar = $el('.progress-bar');
-
-const playPauseIcons = {
-  play: 'M13.25 8.16065V8.30252C13.25 8.76333 12.9965 9.18676 12.5903 9.40437L2.59028 14.7615C1.75757 15.2076 0.75 14.6043 0.75 13.6597L0.75 2.44636C0.75 1.48658 1.78685 0.884872 2.62017 1.36106L12.6202 7.07534C13.0096 7.29789 13.25 7.71207 13.25 8.16065Z',
-  pause: 'M16.75 2V16C16.75 16.6904 16.1904 17.25 15.5 17.25H2C1.30964 17.25 0.75 16.6904 0.75 16V2C0.75 1.30964 1.30964 0.75 2 0.75L15.5 0.75C16.1904 0.75 16.75 1.30964 16.75 2Z'
-}
 
 let sliderActiveIndex = 0;
 let percent = 0;
@@ -135,7 +96,9 @@ function startProgress(){
   int = startAutoLoadingSlider();
 }
 
+startProgress();
 
+//
 function startAutoLoadingSlider(){
   return setInterval(() => {
     percent += 1;
@@ -148,113 +111,127 @@ function startAutoLoadingSlider(){
       if(sliderActiveIndex === sliderInfo.length - 1){
         sliderActiveIndex = 0;
       }
-      nextSlider()
     }
   }, 50)
 }
 
-function nextSlider(){
-  const obj = sliderInfo[sliderActiveIndex];
-  const AllTitles = $('.slider-content-info-title');
-  const footerHashtagsItem = $('.footer-hashtags-item');
-
-  AllTitles.forEach((titleElem, index) => {
-    const spans = titleElem.querySelectorAll('span');
-    spans.forEach((spanElem) => {
-      spanElem.classList.remove(active)
-    })
-
-    titleElem.classList.remove(active);
-    titleElem.classList.remove(closed);
-    titleElem.classList.remove(preparing);
-
-    if(sliderActiveIndex > index){
-      titleElem.classList.add(closed);
-    } else if(sliderActiveIndex < index) {
-      titleElem.classList.add(preparing);
-    } else {
-      titleElem.classList.add(active);
-      spans.forEach((spanElem) => {
-        spanElem.classList.add(active)
-      })
-    }
-
-  })
-
-  sliderContentInfoType.style.opacity = '0';
-  sliderContentInfoType.style.transitionDelay = '0s';
-
-  setTimeout(() => {
-    sliderContentInfoType.innerText = '';
-    sliderContentInfoType.insertAdjacentHTML('beforeend', obj.type);
-    sliderContentInfoType.style.opacity = '1';
-  }, 1000)
-
-
-
-  footerHashtagsItem.forEach((hashtag) => hashtag.classList.remove(active))
-
-  footerHashtagsItem[sliderActiveIndex].classList.add(active)
-
-
-  sliderContentImage.style.backgroundImage = `url(${obj.img})`;
-}
-
-
-function changeSliderActive(){
-  const footerHashtagsItem = $('.footer-hashtags-item');
-
-  footerHashtagsItem.forEach((item, index) => {
-    item.addEventListener('click', function (){
-      percent = 0;
-      sliderActiveIndex = index;
-      nextSlider()
-    })
-  })
-}
 
 
 
 let status = false;
 sliderContentButtonsPlay.addEventListener('click', function (){
   if(status){
-    playPause.setAttribute('d', playPauseIcons.pause);
     int = startAutoLoadingSlider();
-    playPause.parentElement.style.marginLeft = '0px';
+    sliderContentButtonsPlay.classList.remove(active)
   } else {
-    playPause.setAttribute('d', playPauseIcons.play);
     clearInterval(int);
+    sliderContentButtonsPlay.classList.add(active)
     int = undefined;
-    playPause.parentElement.style.marginLeft = '6px';
   }
 
   status = !status;
 })
+//
+// // PREV SLIDER FUNCTION
+// sliderContentButtonsPrev.addEventListener('click', function (){
+//   if(sliderActiveIndex > 0){
+//     sliderActiveIndex -= 1;
+//   }
+//   percent = 0;
+//
+//   if(sliderActiveIndex === sliderInfo.length - 1){
+//     sliderActiveIndex = 0;
+//   }
+//   nextSlider()
+// })
+//
+// // NEXT SLIDER FUNCTION
+// sliderContentButtonsNext.addEventListener('click', function (){
+//   sliderActiveIndex += 1;
+//   percent = 0;
+//
+//   if(sliderActiveIndex === sliderInfo.length - 1){
+//     sliderActiveIndex = 0;
+//   }
+//   nextSlider()
+// })
+//
+//
+//
 
-// PREV SLIDER FUNCTION
-sliderContentButtonsPrev.addEventListener('click', function (){
-  if(sliderActiveIndex > 0){
-    sliderActiveIndex -= 1;
-  }
-  percent = 0;
 
-  if(sliderActiveIndex === sliderInfo.length - 1){
-    sliderActiveIndex = 0;
-  }
-  nextSlider()
+const sliderItems = gsap.utils.toArray(".slider-content-item");
+const sliderContentInfoContent = $el('.slider-content-info-content');
+
+
+sliderItems.forEach((item) => {
+  gsap.fromTo(item,
+    {scale: 1}, // Սկսում ենք փոքր չափից
+    {
+      scrollTrigger: {
+        trigger: item,
+        scroller: sliderContentInfoContent, // օգտագործում ենք ծնողի սքրոլը
+        start: 'top top-=-60%',    // երբ էլեմենտը հայտնվի 80% դիրքում
+        end: 'top top-=-10%',      // մինչև այն հասնի 20% դիրքի
+        scrub: true,         // սահուն մեծացում սքրոլի հետ
+        markers: false,        // ցուցադրում ենք սկիզբն ու վերջը, որ տեսնենք սահմանները
+        onUpdate: function (e) {
+          const percent = e.progress * 100;
+
+          const img = item.querySelector('img');
+          const title = item.querySelector('.slider-content-item-title');
+          const type = item.querySelector('.slider-content-item-type');
+
+          const obj = {
+            imgScale: 0.7,
+            textLeftPercent: 16
+          }
+
+
+          const calc = obj.imgScale + 0.3 * percent / 100;
+          const titleLeft = 7 * percent / 100;
+          const top = 10 - 10 * percent / 100;
+          const topType = 26 - 26 * percent / 100;
+
+          img.style.transform = `scale(${calc})`;
+
+          title.style.transform = `scale(${calc})`;
+          title.style.left = `${obj.textLeftPercent + titleLeft}%`;
+          // title.style.top = `${30 + top}%`;
+
+          type.style.transform = `scale(${calc})`;
+          type.style.left = `${obj.textLeftPercent + titleLeft}%`;
+          // type.style.top = `${16 + topType}%`;
+        }
+      }
+    }
+  );
 })
 
-// NEXT SLIDER FUNCTION
-sliderContentButtonsNext.addEventListener('click', function (){
-  sliderActiveIndex += 1;
-  percent = 0;
+const sliderContentItemImg = $('.slider-content-item img');
+const sliderContentInfo = $el('.slider-content-info')
+const sliderContent = $el('.slider-content');
+const footer = $el('.footer');
 
-  if(sliderActiveIndex === sliderInfo.length - 1){
-    sliderActiveIndex = 0;
-  }
-  nextSlider()
+
+sliderContentItemImg.forEach((item) => {
+  item.addEventListener('click', function (){
+    sliderContentItemImg.forEach((elem) => {
+      elem.parentElement.classList.remove(active);
+    })
+    sliderContentInfo.classList.add(active);
+    sliderContent.classList.remove(active)
+    footer.classList.remove(active)
+    item.parentElement.classList.add(active);
+
+
+    sliderContentItemImg.forEach((elem) => {
+      if(!elem.parentElement.classList.contains(active)){
+        elem.parentElement.style.opacity = '0';
+      }
+    })
+  })
 })
-
 
 
 // ------------------------------
@@ -263,7 +240,7 @@ sliderContentButtonsNext.addEventListener('click', function (){
 
 const navMenu = $el('.nav-menu');
 
-navMenu.addEventListener('click', function (){
+navMenu.addEventListener('click', function () {
   navMenu.classList.toggle(active)
 })
 

@@ -65,6 +65,11 @@ a {
   margin: 0 auto;
   @media (max-width: 1180px) {
     padding: 0 15px;
+    max-width: calc(100% - 150px);
+  }
+  @media (max-width: 1024px) {
+    padding: 0 15px;
+    max-width: calc(100% - 60px);
   }
 }
 

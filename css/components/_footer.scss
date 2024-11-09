@@ -1,9 +1,16 @@
 .footer{
   width: 100%;
-  height: 200px;
+  height: 230px;
   @include flex('c', 'c');
   z-index: 1;
   position: relative;
+  background-color: #fff;
+  transition: 0.3s;
+  &.active{
+    height: 90px;
+    padding-bottom: 25px;
+  }
+
 
   .container{
     @include flex('sb', 'c');
