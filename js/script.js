@@ -62,14 +62,9 @@ const sliderInfo = [
 
 const footerHashtags = $el('.footer-hashtags');
 
-const PrintSliderItem = (item, _index) => `<span style="transition-delay: 1.${_index * 2}s">${item}</span>`;
-const PrintSliderBody = (titlesItem, index) => `<h2 class="slider-content-info-title ${index === 0 ? 'active' : ''}">${titlesItem}</h2>`;
 const PrintHashtagItem = (item, index) => `<span class="footer-hashtags-item ${index === 0 ? 'active' : ''}">#${item.hashtag}</span>`;
 
-const getTitlesItems = (str) => str.split('|');
-
 sliderInfo.forEach((item, index) => {
-  const titlesItem = getTitlesItems(item.title).map((item, _index) => PrintSliderItem(item, _index)).join('');
 
   footerHashtags.insertAdjacentHTML('beforeend', PrintHashtagItem(item, index))
 
@@ -92,40 +87,47 @@ let sliderActiveIndex = 0;
 let percent = 0;
 let int;
 
-function startProgress(){
+function startProgress() {
   int = startAutoLoadingSlider();
 }
 
 startProgress();
 
 //
-function startAutoLoadingSlider(){
+function startAutoLoadingSlider() {
   return setInterval(() => {
     percent += 1;
     progressBar.setAttribute('style', `--percent: ${percent}%`);
 
-    if(percent === 100){
+    if(percent === 1){
+      startNextAnimation()
+    }
+
+    if (percent === 100) {
       percent = 0;
       sliderActiveIndex += 1;
 
-      if(sliderActiveIndex === sliderInfo.length - 1){
+
+      if (sliderActiveIndex === sliderInfo.length - 1) {
         sliderActiveIndex = 0;
       }
     }
-  }, 50)
+  }, 100)
 }
 
 
-
-
 let status = false;
-sliderContentButtonsPlay.addEventListener('click', function (){
-  if(status){
+sliderContentButtonsPlay.addEventListener('click', function () {
+  if (status) {
     int = startAutoLoadingSlider();
-    sliderContentButtonsPlay.classList.remove(active)
+    sliderContentButtonsPlay.classList.remove(active);
+    sliderContentButtonsPrev.querySelector('i').style.transform = 'rotate(-90deg)';
+    sliderContentButtonsNext.querySelector('i').style.transform = 'rotate(-90deg)';
   } else {
     clearInterval(int);
-    sliderContentButtonsPlay.classList.add(active)
+    sliderContentButtonsPlay.classList.add(active);
+    sliderContentButtonsPrev.querySelector('i').style.transform = 'rotate(90deg)';
+    sliderContentButtonsNext.querySelector('i').style.transform = 'rotate(90deg)';
     int = undefined;
   }
 
@@ -215,21 +217,39 @@ const footer = $el('.footer');
 
 
 sliderContentItemImg.forEach((item) => {
-  item.addEventListener('click', function (){
-    sliderContentItemImg.forEach((elem) => {
-      elem.parentElement.classList.remove(active);
-    })
-    sliderContentInfo.classList.add(active);
-    sliderContent.classList.remove(active)
-    footer.classList.remove(active)
-    item.parentElement.classList.add(active);
-
+  item.addEventListener('click', function () {
+    // sliderContentItemImg.forEach((elem) => {
+    //   elem.parentElement.classList.remove(active);
+    // });
+    item.parentElement.classList.add(show);
 
     sliderContentItemImg.forEach((elem) => {
-      if(!elem.parentElement.classList.contains(active)){
+      if (!elem.parentElement.classList.contains(show)) {
         elem.parentElement.style.opacity = '0';
       }
     })
+
+    setTimeout(() => {
+      item.parentElement.style.position = 'absolute';
+    }, 700)
+
+    setTimeout(() => {
+      sliderContentItemImg.forEach((elem) => {
+        if (elem.parentElement.classList.contains(show)) {
+          elem.parentElement.style.opacity = '0';
+        }
+      })
+    }, 600)
+
+    setTimeout(() => {
+      sliderContentInfo.classList.add(active);
+      sliderContent.classList.remove(active)
+      footer.classList.remove(active)
+      item.parentElement.classList.add(active);
+      item.parentElement.style.opacity = '1';
+    }, 1000)
+
+
   })
 })
 
@@ -243,4 +263,109 @@ const navMenu = $el('.nav-menu');
 navMenu.addEventListener('click', function () {
   navMenu.classList.toggle(active)
 })
+
+
+const animationContent = $el('.animation-content');
+
+
+function startNextAnimation(){
+  const getActiveInfo = sliderInfo[sliderActiveIndex];
+  const randomId = `and_project_${Math.floor(Math.random() * 1000)}`;
+  console.log(getActiveInfo)
+
+
+    animationContent.insertAdjacentHTML('beforeend', `
+      <div class="slider-content-max" id="${randomId}">
+         <img src="images/slider-image-1.png" class="slider-content-img" alt="slider" width="1560" height="884">
+         <h2 class="slider-content-max-title">
+           <b class="type">Emirates <br> Global Aluminium</b>
+           <span style="transition-delay: 1s;">Women</span>
+           <span style="transition-delay: 1.3s;">in Heavy</span>
+           <span style="transition-delay: 1.6s;">ndustry</span>
+         </h2>
+      </div>
+    `);
+
+  const sliderContentMax = $el(`#${randomId}`);
+  const sliderContentMaxOffset = sliderContentMax.getBoundingClientRect();
+
+
+    sliderContentMax.style.left = `-${sliderContentMaxOffset.left}px`;
+    sliderContentMax.style.width = `${window.innerWidth}px`;
+    sliderContentMax.style.height = `${window.innerHeight}px`;
+
+    setTimeout(() => {
+      sliderContentMax.style.top = `-7.625rem`;
+
+      setTimeout(() => {
+        sliderContentMax.style.left = `0`;
+        sliderContentMax.style.top = `0`;
+        sliderContentMax.style.width = `calc(100% - 12.5rem)`;
+        sliderContentMax.style.height = `${sliderContentMaxOffset.height}px`;
+        sliderContentMax.classList.add(show)
+
+        // NEXT
+
+        setTimeout(() => {
+          sliderContentMax.style.transform = 'scale(0.8)';
+
+          setTimeout(() => {
+            sliderContentMax.style.top = '-100vh';
+
+            setTimeout(() => {
+              $el(`#${randomId}`).outerHTML = '';
+            }, 1000)
+          }, 1000)
+        }, 3000)
+
+        // NEXT
+
+      }, 2000)
+
+    }, 2000)
+}
+
+
+
+//
+// setTimeout(() => {
+//   const elem = $el('.slider-content-item');
+//   const info = $el('.slider-content-info');
+//   const infoOffset = info.getBoundingClientRect();
+//   elem.classList.add('preparing');
+//
+//
+//
+//
+//   setTimeout(() => {
+//     elem.classList.add('active-max')
+//
+//     setTimeout(() => {
+//       // info.style.overflow = null;
+//       info.querySelector('img').style.right = `375px`;
+//       info.querySelector('img').style.height = `${infoOffset.height}px`;
+//       info.querySelector('img').style.top = `120px`;
+//       // elem.style.transform = 'scale(0.8)';
+//
+//       setTimeout(() => {
+//         $el('.slider-content-info').style.position = null;
+//         elem.classList.remove('preparing')
+//         elem.classList.remove('active-max')
+//         elem.classList.add('active')
+//         info.querySelector('img').style.right = '0';
+//         info.querySelector('img').style.width = '80% !important';
+//         // elem.style.transform = 'scale(1)';
+//       }, 800)
+//
+//
+//     }, 2000)
+//
+//   }, 2000)
+//
+//
+//
+//
+// }, 1000)
+
+
 

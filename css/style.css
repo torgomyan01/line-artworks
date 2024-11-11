@@ -79,6 +79,10 @@ a {
     font-size: 16px;
   }
 }
+body {
+  overflow: hidden;
+}
+
 .container {
   width: 100%;
   max-width: calc(100% - 260px);
@@ -314,7 +318,7 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index: 1;
+  z-index: 2;
   position: relative;
 }
 @media (max-width: 576px) {
@@ -415,9 +419,76 @@ a {
   align-items: end;
   height: calc(100vh - 350px);
   transition: 0.3s;
+  position: relative;
 }
 .slider-content.active .container {
   height: calc(100vh - 190px);
+}
+.slider-content-max {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  transition: 0.8s;
+  left: 0;
+  top: 100vh;
+}
+.slider-content-max img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  object-fit: cover;
+  transition: 0.8s;
+}
+.slider-content-max-title {
+  z-index: 1;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 20%;
+}
+.slider-content-max-title span {
+  color: #FFF;
+  font-family: "CapturaNow", serif;
+  font-size: 4rem;
+  font-style: normal;
+  font-weight: 800;
+  padding: 0 10px;
+  line-height: 116%;
+  text-transform: uppercase;
+  background: #00B140;
+  display: inline-block;
+  opacity: 0;
+  transition: 0.8s;
+  transform: translateX(-100px);
+  margin-bottom: -10px;
+}
+.slider-content-max-title span:last-child {
+  margin-bottom: 0;
+}
+.slider-content-max-title .type {
+  color: rgba(0, 0, 0, 0.81);
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  position: absolute;
+  bottom: calc(100% + 10px);
+  opacity: 0;
+  transition: 0.8s;
+  transition-delay: 1s;
+}
+.slider-content-max.show img {
+  width: 90%;
+}
+.slider-content-max.show .slider-content-max-title span {
+  opacity: 1;
+  transform: translateX(0);
+}
+.slider-content-max.show .slider-content-max-title .type {
+  opacity: 1;
 }
 .slider-content-info {
   width: calc(100% - 12.5rem);
@@ -444,7 +515,7 @@ a {
   height: 43.4782608696%;
   padding-bottom: 1.5rem;
   border-bottom: 1px solid #E7E7E7;
-  transition: 0.8s height, opacity;
+  transition: 0.8s;
   background-color: #fff;
 }
 .slider-content-item:last-child {
@@ -453,7 +524,6 @@ a {
 .slider-content-item.active {
   height: 100%;
   border-color: transparent;
-  position: absolute;
   z-index: 1;
   top: 0;
   left: 0;
@@ -506,7 +576,6 @@ a {
   transform-origin: left top;
   transform: scale(0.7);
   cursor: pointer;
-  transition: 0.8s right;
 }
 .slider-content-item-type {
   position: absolute;
@@ -551,6 +620,9 @@ a {
   height: 100%;
   position: relative;
   right: -5rem;
+}
+.slider-content-buttons i {
+  transition: 0.3s;
 }
 .slider-content-buttons-next {
   font-size: 21px !important;
@@ -619,7 +691,7 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1;
+  z-index: 2;
   position: relative;
   background-color: #fff;
   transition: 0.3s;
