@@ -334,7 +334,7 @@ function startNextAnimation() {
 
 
 function printHeight(height){
-  if(window.innerHeight < 700){
+  if(window.innerHeight < 1000){
     return height + 100
   } else {
     return height
