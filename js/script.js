@@ -61,6 +61,7 @@ const sliderInfo = [
 ];
 
 const footerHashtags = $el('.footer-hashtags');
+const sliderContentInfoContent = $el('.slider-content-info-content');
 
 const PrintHashtagItem = (item, index) => `<span class="footer-hashtags-item ${index === 0 ? 'active' : ''}">#${item.hashtag}</span>`;
 
@@ -68,14 +69,21 @@ sliderInfo.forEach((item, index) => {
 
   footerHashtags.insertAdjacentHTML('beforeend', PrintHashtagItem(item, index))
 
-  // sliderContentInfoBody.insertAdjacentHTML('beforeend', PrintSliderBody(titlesItem, index))
+  const title = item.title.split('|').map((titleItem) => `<span>${titleItem}</span> <br />`).join('')
 
-  // changeSliderActive();
+  sliderContentInfoContent.insertAdjacentHTML('beforeend', `
+  
+    <div class="slider-content-item">
+       <img src="${item.img}" class="slider-content-item-img" alt="slider" width="1560" height="884">
+       <h4 class="slider-content-item-type">${item.type}</h4>
+       <h2 class="slider-content-item-title">${title}</h2>
+    </div>
+  
+  `)
+
 });
 //
 
-//
-//
 //
 const playPause = $el('#play-pause path');
 const sliderContentButtonsPlay = $el('.slider-content-buttons-play');
@@ -94,27 +102,6 @@ function startProgress() {
 startProgress();
 
 //
-function startAutoLoadingSlider() {
-  return setInterval(() => {
-    percent += 1;
-    progressBar.setAttribute('style', `--percent: ${percent}%`);
-
-    if(percent === 1){
-      startNextAnimation()
-    }
-
-    if (percent === 100) {
-      percent = 0;
-      sliderActiveIndex += 1;
-
-
-      if (sliderActiveIndex === sliderInfo.length - 1) {
-        sliderActiveIndex = 0;
-      }
-    }
-  }, 100)
-}
-
 
 let status = false;
 sliderContentButtonsPlay.addEventListener('click', function () {
@@ -146,37 +133,42 @@ sliderContentButtonsPlay.addEventListener('click', function () {
 //   }
 //   nextSlider()
 // })
-//
-// // NEXT SLIDER FUNCTION
-// sliderContentButtonsNext.addEventListener('click', function (){
-//   sliderActiveIndex += 1;
-//   percent = 0;
-//
-//   if(sliderActiveIndex === sliderInfo.length - 1){
-//     sliderActiveIndex = 0;
-//   }
-//   nextSlider()
-// })
-//
+
+
+// NEXT SLIDER FUNCTION
+sliderContentButtonsNext.addEventListener('click', function () {
+  sliderActiveIndex += 1;
+  percent = 0;
+
+  if (sliderActiveIndex === sliderInfo.length - 1) {
+    sliderActiveIndex = 0;
+  }
+
+  nextAnimation()
+
+  // setTimeout(() => {
+  //   startNextAnimation();
+  // }, 4000)
+})
+
 //
 //
 
 
 const sliderItems = gsap.utils.toArray(".slider-content-item");
-const sliderContentInfoContent = $el('.slider-content-info-content');
 
 
 sliderItems.forEach((item) => {
   gsap.fromTo(item,
-    {scale: 1}, // Սկսում ենք փոքր չափից
+    {scale: 1},
     {
       scrollTrigger: {
         trigger: item,
-        scroller: sliderContentInfoContent, // օգտագործում ենք ծնողի սքրոլը
-        start: 'top top-=-60%',    // երբ էլեմենտը հայտնվի 80% դիրքում
-        end: 'top top-=-10%',      // մինչև այն հասնի 20% դիրքի
-        scrub: true,         // սահուն մեծացում սքրոլի հետ
-        markers: false,        // ցուցադրում ենք սկիզբն ու վերջը, որ տեսնենք սահմանները
+        scroller: sliderContentInfoContent,
+        start: 'top top-=-60%',
+        end: 'top top-=-10%',
+        scrub: true,
+        markers: false,
         onUpdate: function (e) {
           const percent = e.progress * 100;
 
@@ -264,24 +256,54 @@ navMenu.addEventListener('click', function () {
   navMenu.classList.toggle(active)
 })
 
+function startAutoLoadingSlider() {
+  return setInterval(() => {
+    percent += 1;
+    progressBar.setAttribute('style', `--percent: ${percent}%`);
+
+    if (percent === 7) {
+      startNextAnimation()
+    }
+
+    if (percent === 99) {
+      nextAnimation()
+    }
+
+    if (percent === 100) {
+      percent = 0;
+      sliderActiveIndex += 1;
+
+
+      if (sliderActiveIndex === sliderInfo.length - 1) {
+        sliderActiveIndex = 0;
+      }
+    }
+  }, 100)
+}
+
 
 const animationContent = $el('.animation-content');
+const footerHashtagsItem = $('.footer-hashtags-item ');
 
 
-function startNextAnimation(){
+function startNextAnimation() {
   const getActiveInfo = sliderInfo[sliderActiveIndex];
   const randomId = `and_project_${Math.floor(Math.random() * 1000)}`;
-  console.log(getActiveInfo)
+
+  const title = getActiveInfo.title.split('|').map((item, index) => `<span style="transition-delay: 1.${index * 3}s;">${item}</span> <br />`).join('')
+
+  setTimeout(() => {
+    footerHashtagsItem.forEach((item) => item.classList.remove(active))
+    footerHashtagsItem[sliderActiveIndex].classList.add(active)
+  }, 1000)
 
 
-    animationContent.insertAdjacentHTML('beforeend', `
+  animationContent.insertAdjacentHTML('beforeend', `
       <div class="slider-content-max" id="${randomId}">
-         <img src="images/slider-image-1.png" class="slider-content-img" alt="slider" width="1560" height="884">
+         <img src="${getActiveInfo.img}" class="slider-content-img" alt="slider" width="1560" height="884">
          <h2 class="slider-content-max-title">
-           <b class="type">Emirates <br> Global Aluminium</b>
-           <span style="transition-delay: 1s;">Women</span>
-           <span style="transition-delay: 1.3s;">in Heavy</span>
-           <span style="transition-delay: 1.6s;">ndustry</span>
+           <b class="type">${getActiveInfo.type}</b>
+           ${title}
          </h2>
       </div>
     `);
@@ -290,82 +312,49 @@ function startNextAnimation(){
   const sliderContentMaxOffset = sliderContentMax.getBoundingClientRect();
 
 
-    sliderContentMax.style.left = `-${sliderContentMaxOffset.left}px`;
-    sliderContentMax.style.width = `${window.innerWidth}px`;
-    sliderContentMax.style.height = `${window.innerHeight}px`;
+  sliderContentMax.style.left = `-${sliderContentMaxOffset.left}px`;
+  sliderContentMax.style.width = `${window.innerWidth}px`;
+  sliderContentMax.style.height = `${window.innerHeight}px`;
+
+  setTimeout(() => {
+    sliderContentMax.style.top = `-7.625rem`;
 
     setTimeout(() => {
-      sliderContentMax.style.top = `-7.625rem`;
-
-      setTimeout(() => {
-        sliderContentMax.style.left = `0`;
-        sliderContentMax.style.top = `0`;
-        sliderContentMax.style.width = `calc(100% - 12.5rem)`;
-        sliderContentMax.style.height = `${sliderContentMaxOffset.height}px`;
-        sliderContentMax.classList.add(show)
-
-        // NEXT
-
-        setTimeout(() => {
-          sliderContentMax.style.transform = 'scale(0.8)';
-
-          setTimeout(() => {
-            sliderContentMax.style.top = '-100vh';
-
-            setTimeout(() => {
-              $el(`#${randomId}`).outerHTML = '';
-            }, 1000)
-          }, 1000)
-        }, 3000)
-
-        // NEXT
-
-      }, 2000)
+      sliderContentMax.style.left = `0`;
+      sliderContentMax.style.top = `0`;
+      sliderContentMax.style.width = `calc(100% - 12.5rem)`;
+      sliderContentMax.style.height = `${printHeight(sliderContentMaxOffset.height)}px`;
+      sliderContentMax.classList.add(show)
 
     }, 2000)
+
+  }, 500)
 }
 
 
 
-//
-// setTimeout(() => {
-//   const elem = $el('.slider-content-item');
-//   const info = $el('.slider-content-info');
-//   const infoOffset = info.getBoundingClientRect();
-//   elem.classList.add('preparing');
-//
-//
-//
-//
-//   setTimeout(() => {
-//     elem.classList.add('active-max')
-//
-//     setTimeout(() => {
-//       // info.style.overflow = null;
-//       info.querySelector('img').style.right = `375px`;
-//       info.querySelector('img').style.height = `${infoOffset.height}px`;
-//       info.querySelector('img').style.top = `120px`;
-//       // elem.style.transform = 'scale(0.8)';
-//
-//       setTimeout(() => {
-//         $el('.slider-content-info').style.position = null;
-//         elem.classList.remove('preparing')
-//         elem.classList.remove('active-max')
-//         elem.classList.add('active')
-//         info.querySelector('img').style.right = '0';
-//         info.querySelector('img').style.width = '80% !important';
-//         // elem.style.transform = 'scale(1)';
-//       }, 800)
-//
-//
-//     }, 2000)
-//
-//   }, 2000)
-//
-//
-//
-//
-// }, 1000)
+function printHeight(height){
+  if(window.innerHeight < 700){
+    return height + 100
+  } else {
+    return height
+  }
+}
 
+function nextAnimation() {
+  const elem = $el('.slider-content-max');
 
+  elem.style.transform = 'scale(0.8)';
+
+  setTimeout(() => {
+    elem.style.top = '-100vh';
+    elem.style.opacity = '0';
+
+    setTimeout(() => {
+      elem.outerHTML = '';
+    }, 1000)
+
+  }, 1000)
+
+}
 
