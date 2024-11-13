@@ -92,7 +92,7 @@ body{
 
     &.show{
       img{
-        width: 90%;
+        width: calc(100% - 250px);
       }
       .slider-content-max-title{
         span{

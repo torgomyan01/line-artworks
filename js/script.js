@@ -120,19 +120,25 @@ sliderContentButtonsPlay.addEventListener('click', function () {
 
   status = !status;
 })
-//
-// // PREV SLIDER FUNCTION
-// sliderContentButtonsPrev.addEventListener('click', function (){
-//   if(sliderActiveIndex > 0){
-//     sliderActiveIndex -= 1;
-//   }
-//   percent = 0;
-//
-//   if(sliderActiveIndex === sliderInfo.length - 1){
-//     sliderActiveIndex = 0;
-//   }
-//   nextSlider()
-// })
+
+
+// PREV SLIDER FUNCTION
+sliderContentButtonsPrev.addEventListener('click', function (){
+  sliderActiveIndex -= 1;
+
+  if(sliderActiveIndex < 0){
+    sliderActiveIndex = sliderInfo.length - 1;
+  }
+  percent = 0;
+  progressBar.setAttribute('style', `--percent: 0%`);
+  clearInterval(int);
+
+  nextAnimation(false)
+
+  setTimeout(() => {
+    startNextAnimation(false)
+  }, 500)
+})
 
 
 // NEXT SLIDER FUNCTION
@@ -144,15 +150,18 @@ sliderContentButtonsNext.addEventListener('click', function () {
     sliderActiveIndex = 0;
   }
 
-  nextAnimation()
+  percent = 0;
+  progressBar.setAttribute('style', `--percent: 0%`);
+  clearInterval(int);
 
-  // setTimeout(() => {
-  //   startNextAnimation();
-  // }, 4000)
+  nextAnimation(true)
+
+  setTimeout(() => {
+    startNextAnimation(true)
+  }, 500)
+
 })
 
-//
-//
 
 
 const sliderItems = gsap.utils.toArray(".slider-content-item");
@@ -251,9 +260,29 @@ sliderContentItemImg.forEach((item) => {
 // ------------------------------
 
 const navMenu = $el('.nav-menu');
+const menu = $el('.menu');
+const nav = $el('.nav');
 
 navMenu.addEventListener('click', function () {
-  navMenu.classList.toggle(active)
+
+  if (navMenu.classList.contains(active)) {
+    navMenu.classList.remove(active);
+    menu.classList.remove(active);
+    nav.style.backgroundColor = 'transparent';
+
+    setTimeout(() => {
+      menu.style.width = '0';
+    }, 1000)
+  } else {
+    navMenu.classList.add(active);
+    menu.style.width = '100%';
+    nav.style.backgroundColor = '#fff';
+
+    setTimeout(() => {
+      menu.classList.add(active)
+    }, 1000)
+  }
+
 })
 
 function startAutoLoadingSlider() {
@@ -261,12 +290,12 @@ function startAutoLoadingSlider() {
     percent += 1;
     progressBar.setAttribute('style', `--percent: ${percent}%`);
 
-    if (percent === 7) {
-      startNextAnimation()
+    if (percent === 5) {
+      startNextAnimation(true)
     }
 
     if (percent === 99) {
-      nextAnimation()
+      nextAnimation(true)
     }
 
     if (percent === 100) {
@@ -286,7 +315,7 @@ const animationContent = $el('.animation-content');
 const footerHashtagsItem = $('.footer-hashtags-item ');
 
 
-function startNextAnimation() {
+function startNextAnimation(status) {
   const getActiveInfo = sliderInfo[sliderActiveIndex];
   const randomId = `and_project_${Math.floor(Math.random() * 1000)}`;
 
@@ -294,12 +323,14 @@ function startNextAnimation() {
 
   setTimeout(() => {
     footerHashtagsItem.forEach((item) => item.classList.remove(active))
-    footerHashtagsItem[sliderActiveIndex].classList.add(active)
+    footerHashtagsItem[sliderActiveIndex].classList.add(active);
   }, 1000)
 
+  sliderContentButtonsPrev.setAttribute('data-active', randomId);
 
-  animationContent.insertAdjacentHTML('beforeend', `
-      <div class="slider-content-max" id="${randomId}">
+
+  animationContent.insertAdjacentHTML(status ? 'beforebegin' : 'beforeend', `
+      <div class="slider-content-max" id="${randomId}" style="top: ${status ? '100vh' : 'calc(-100vh - 130px)'}">
          <img src="${getActiveInfo.img}" class="slider-content-img" alt="slider" width="1560" height="884">
          <h2 class="slider-content-max-title">
            <b class="type">${getActiveInfo.type}</b>
@@ -308,10 +339,46 @@ function startNextAnimation() {
       </div>
     `);
 
+  getCenterActiveElem(randomId);
+}
+
+
+
+
+function printHeight(height) {
+  if (window.innerHeight < 1000) {
+    return height + 100
+  } else {
+    return height
+  }
+}
+
+function nextAnimation(status) {
+  const getActiveSlider = sliderContentButtonsPrev.getAttribute('data-active');
+  const elem = $el(`#${getActiveSlider}`);
+
+  elem.style.transform = 'scale(0.8)';
+
+  setTimeout(() => {
+    elem.style.top = status ? '-100vh' : '100vh';
+    elem.style.opacity = '0';
+
+    setTimeout(() => {
+      elem.outerHTML = '';
+    }, 1000)
+
+  }, 1000)
+
+}
+
+
+
+function getCenterActiveElem(randomId){
   const sliderContentMax = $el(`#${randomId}`);
   const sliderContentMaxOffset = sliderContentMax.getBoundingClientRect();
 
 
+  sliderContentMax.style.transition = `0.3s`;
   sliderContentMax.style.left = `-${sliderContentMaxOffset.left}px`;
   sliderContentMax.style.width = `${window.innerWidth}px`;
   sliderContentMax.style.height = `${window.innerHeight}px`;
@@ -326,35 +393,9 @@ function startNextAnimation() {
       sliderContentMax.style.height = `${printHeight(sliderContentMaxOffset.height)}px`;
       sliderContentMax.classList.add(show)
 
-    }, 2000)
+    }, 1500)
 
+    sliderContentMax.style.transition = `0.8s`;
   }, 500)
-}
-
-
-
-function printHeight(height){
-  if(window.innerHeight < 1000){
-    return height + 100
-  } else {
-    return height
-  }
-}
-
-function nextAnimation() {
-  const elem = $el('.slider-content-max');
-
-  elem.style.transform = 'scale(0.8)';
-
-  setTimeout(() => {
-    elem.style.top = '-100vh';
-    elem.style.opacity = '0';
-
-    setTimeout(() => {
-      elem.outerHTML = '';
-    }, 1000)
-
-  }, 1000)
-
 }
 
