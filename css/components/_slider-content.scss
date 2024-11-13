@@ -41,6 +41,32 @@ body{
     left: 0;
     top: 100vh;
 
+    &.active{
+      height: calc((100% / 2.3) - 3rem) !important;
+      top: 1.5rem !important;
+      opacity: 0;
+      visibility: hidden;
+
+      .slider-content-img{
+        width: 20%;
+        right: calc(100% - 20%);
+      }
+      .slider-content-max-title{
+        left: 23%;
+        bottom: 22%;
+        span{
+          transition-delay: 0s !important;
+          margin-top: 0;
+          background-color: transparent;
+          color: #00B140;
+        }
+        .type{
+          bottom: 100%;
+          transition-delay: 0s !important;
+        }
+      }
+    }
+
     img{
       width: 100%;
       height: 100%;
@@ -57,6 +83,7 @@ body{
       left: 0;
       bottom: 0;
       width: 40rem;
+      transition: 0.8s;
       span{
         color: #FFF;
         font-family: "CapturaNow", serif;

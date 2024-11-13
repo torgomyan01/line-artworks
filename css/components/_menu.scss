@@ -69,6 +69,7 @@
         transition: 0.3s;
         margin-right: 1rem;
         cursor: pointer;
+        border-bottom: 2px solid transparent;
         &:hover{
           color: #00B140;
         }
@@ -81,6 +82,11 @@
 
     &-content{
       margin-bottom: 8rem;
+      display: none;
+
+      &.active{
+        display: block;
+      }
       ul{
         list-style: none;
         li{

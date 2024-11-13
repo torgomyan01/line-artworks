@@ -101,71 +101,107 @@ function startProgress() {
 
 startProgress();
 
-//
 
 let status = false;
 sliderContentButtonsPlay.addEventListener('click', function () {
+  const items = $('.slider-content-item')[sliderActiveIndex];
+  const id = sliderContentButtonsPrev.dataset.active;
+
+  const getActiveItem = $el(`#${id}`);
+
   if (status) {
-    int = startAutoLoadingSlider();
+    if(percent){
+      int = startAutoLoadingSlider();
+    }
     sliderContentButtonsPlay.classList.remove(active);
-    sliderContentButtonsPrev.querySelector('i').style.transform = 'rotate(-90deg)';
-    sliderContentButtonsNext.querySelector('i').style.transform = 'rotate(-90deg)';
+    sliderContentButtonsPrev.querySelector('i').style.transform = 'rotate(0deg)';
+    sliderContentButtonsNext.querySelector('i').style.transform = 'rotate(0deg)';
+    getActiveItem.classList.remove(active);
+    document.body.classList.add('active-slider')
   } else {
     clearInterval(int);
+
     sliderContentButtonsPlay.classList.add(active);
     sliderContentButtonsPrev.querySelector('i').style.transform = 'rotate(90deg)';
     sliderContentButtonsNext.querySelector('i').style.transform = 'rotate(90deg)';
     int = undefined;
+
+    getActiveItem.classList.add(active);
+
+    sliderContentInfoContent.scrollTo({
+      top: items.offsetTop,
+      left: 0,
+      behavior: "smooth",
+    })
+
+    document.body.classList.remove('active-slider')
+
   }
 
   status = !status;
 })
 
+let successClickNextPrev = 1;
 
 // PREV SLIDER FUNCTION
-sliderContentButtonsPrev.addEventListener('click', function (){
-  sliderActiveIndex -= 1;
+sliderContentButtonsPrev.addEventListener('click', function () {
 
-  if(sliderActiveIndex < 0){
-    sliderActiveIndex = sliderInfo.length - 1;
+
+  if(successClickNextPrev > 1){
+    console.warn('user click fast prev button')
+  } else if(successClickNextPrev === 1) {
+    sliderActiveIndex -= 1;
+
+    if (sliderActiveIndex < 0) {
+      sliderActiveIndex = sliderInfo.length - 1;
+    }
+
+    percent = 0;
+    progressBar.setAttribute('style', `--percent: 0%`);
+    clearInterval(int);
+
+    nextAnimation(false)
+
+    setTimeout(() => {
+      startNextAnimation(false)
+    }, 500)
   }
-  percent = 0;
-  progressBar.setAttribute('style', `--percent: 0%`);
-  clearInterval(int);
 
-  nextAnimation(false)
+  successClickNextPrev += 1;
 
-  setTimeout(() => {
-    startNextAnimation(false)
-  }, 500)
 })
 
 
 // NEXT SLIDER FUNCTION
 sliderContentButtonsNext.addEventListener('click', function () {
-  sliderActiveIndex += 1;
-  percent = 0;
 
-  if (sliderActiveIndex === sliderInfo.length - 1) {
-    sliderActiveIndex = 0;
+  if(successClickNextPrev > 1){
+    console.warn('user click fast next button')
+  } else if(successClickNextPrev === 1) {
+    sliderActiveIndex += 1;
+
+    if (sliderActiveIndex > sliderInfo.length - 1) {
+      sliderActiveIndex = 0;
+    }
+
+    percent = 0;
+    progressBar.setAttribute('style', `--percent: 0%`);
+    clearInterval(int);
+
+    nextAnimation(true)
+
+    setTimeout(() => {
+      startNextAnimation(true)
+    }, 500)
   }
 
-  percent = 0;
-  progressBar.setAttribute('style', `--percent: 0%`);
-  clearInterval(int);
+  successClickNextPrev += 1;
 
-  nextAnimation(true)
-
-  setTimeout(() => {
-    startNextAnimation(true)
-  }, 500)
 
 })
 
 
-
 const sliderItems = gsap.utils.toArray(".slider-content-item");
-
 
 sliderItems.forEach((item) => {
   gsap.fromTo(item,
@@ -190,6 +226,7 @@ sliderItems.forEach((item) => {
             textLeftPercent: 16
           }
 
+          item.setAttribute('data-percent', percent)
 
           const calc = obj.imgScale + 0.3 * percent / 100;
           const titleLeft = 7 * percent / 100;
@@ -205,6 +242,19 @@ sliderItems.forEach((item) => {
           type.style.transform = `scale(${calc})`;
           type.style.left = `${obj.textLeftPercent + titleLeft}%`;
           // type.style.top = `${16 + topType}%`;
+
+
+          // sliderItems.forEach((_elem) => {
+          //   const getDontActiveElem = +_elem.dataset.percent;
+          //
+          //
+          //   if (getDontActiveElem === 100){
+          //     console.log(getDontActiveElem)
+          //   } else {
+          //
+          //   }
+          // })
+
         }
       }
     }
@@ -219,9 +269,6 @@ const footer = $el('.footer');
 
 sliderContentItemImg.forEach((item) => {
   item.addEventListener('click', function () {
-    // sliderContentItemImg.forEach((elem) => {
-    //   elem.parentElement.classList.remove(active);
-    // });
     item.parentElement.classList.add(show);
 
     sliderContentItemImg.forEach((elem) => {
@@ -262,9 +309,10 @@ sliderContentItemImg.forEach((item) => {
 const navMenu = $el('.nav-menu');
 const menu = $el('.menu');
 const nav = $el('.nav');
+const menuRightLanguageItem = $('.menu-right-language-item');
+const menuRightContent = $('.menu-right-content');
 
 navMenu.addEventListener('click', function () {
-
   if (navMenu.classList.contains(active)) {
     navMenu.classList.remove(active);
     menu.classList.remove(active);
@@ -272,7 +320,7 @@ navMenu.addEventListener('click', function () {
 
     setTimeout(() => {
       menu.style.width = '0';
-    }, 1000)
+    }, 1500)
   } else {
     navMenu.classList.add(active);
     menu.style.width = '100%';
@@ -284,6 +332,26 @@ navMenu.addEventListener('click', function () {
   }
 
 })
+
+
+menuRightLanguageItem.forEach((tab) => {
+  tab.addEventListener('click', function (){
+    const type = this.innerText;
+    const selectedTab = $el(`[data-lang="${type}"]`);
+
+    menuRightLanguageItem.forEach((item) => item.classList.remove(active));
+    menuRightContent.forEach((item) => item.classList.remove(active));
+
+    this.classList.add(active)
+    selectedTab.classList.add(active)
+  })
+})
+
+
+
+
+
+
 
 function startAutoLoadingSlider() {
   return setInterval(() => {
@@ -312,14 +380,43 @@ function startAutoLoadingSlider() {
 
 
 const animationContent = $el('.animation-content');
-const footerHashtagsItem = $('.footer-hashtags-item ');
+const footerHashtagsItem = $('.footer-hashtags-item');
 
+
+footerHashtagsItem.forEach((item, index) => {
+  item.addEventListener('click', function () {
+    percent = 0;
+    progressBar.setAttribute('style', `--percent: 0%`);
+    clearInterval(int);
+
+    if (index < sliderActiveIndex) {
+      sliderActiveIndex = index;
+
+      nextAnimation(false);
+
+      setTimeout(() => {
+        startNextAnimation(false)
+      }, 500)
+
+    } else {
+      sliderActiveIndex = index;
+
+      nextAnimation(true);
+
+      setTimeout(() => {
+        startNextAnimation(true)
+      }, 500)
+    }
+  })
+})
 
 function startNextAnimation(status) {
   const getActiveInfo = sliderInfo[sliderActiveIndex];
   const randomId = `and_project_${Math.floor(Math.random() * 1000)}`;
+  console.log(sliderActiveIndex)
 
   const title = getActiveInfo.title.split('|').map((item, index) => `<span style="transition-delay: 1.${index * 3}s;">${item}</span> <br />`).join('')
+
 
   setTimeout(() => {
     footerHashtagsItem.forEach((item) => item.classList.remove(active))
@@ -329,7 +426,7 @@ function startNextAnimation(status) {
   sliderContentButtonsPrev.setAttribute('data-active', randomId);
 
 
-  animationContent.insertAdjacentHTML(status ? 'beforebegin' : 'beforeend', `
+  animationContent.insertAdjacentHTML('beforeend', `
       <div class="slider-content-max" id="${randomId}" style="top: ${status ? '100vh' : 'calc(-100vh - 130px)'}">
          <img src="${getActiveInfo.img}" class="slider-content-img" alt="slider" width="1560" height="884">
          <h2 class="slider-content-max-title">
@@ -343,8 +440,6 @@ function startNextAnimation(status) {
 }
 
 
-
-
 function printHeight(height) {
   if (window.innerHeight < 1000) {
     return height + 100
@@ -354,6 +449,7 @@ function printHeight(height) {
 }
 
 function nextAnimation(status) {
+  console.log(sliderActiveIndex, successClickNextPrev)
   const getActiveSlider = sliderContentButtonsPrev.getAttribute('data-active');
   const elem = $el(`#${getActiveSlider}`);
 
@@ -372,8 +468,7 @@ function nextAnimation(status) {
 }
 
 
-
-function getCenterActiveElem(randomId){
+function getCenterActiveElem(randomId) {
   const sliderContentMax = $el(`#${randomId}`);
   const sliderContentMaxOffset = sliderContentMax.getBoundingClientRect();
 
@@ -393,9 +488,13 @@ function getCenterActiveElem(randomId){
       sliderContentMax.style.height = `${printHeight(sliderContentMaxOffset.height)}px`;
       sliderContentMax.classList.add(show)
 
+      successClickNextPrev = 1;
+
     }, 1500)
 
     sliderContentMax.style.transition = `0.8s`;
   }, 500)
 }
+
+
 
