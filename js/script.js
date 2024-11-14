@@ -1,13 +1,11 @@
 const {
   active,
-  none,
   show,
   closed,
   preparing
 
 } = {
   active: 'active',
-  none: 'd-none',
   show: 'show',
   closed: 'closed',
   preparing: 'preparing',
@@ -85,7 +83,6 @@ sliderInfo.forEach((item, index) => {
 //
 
 //
-const playPause = $el('#play-pause path');
 const sliderContentButtonsPlay = $el('.slider-content-buttons-play');
 const sliderContentButtonsPrev = $el('.slider-content-buttons-prev');
 const sliderContentButtonsNext = $el('.slider-content-buttons-next');
@@ -99,7 +96,9 @@ function startProgress() {
   int = startAutoLoadingSlider();
 }
 
-startProgress();
+setTimeout(() => {
+  startProgress();
+}, 6000)
 
 
 let status = false;
@@ -230,8 +229,6 @@ sliderItems.forEach((item) => {
 
           const calc = obj.imgScale + 0.3 * percent / 100;
           const titleLeft = 7 * percent / 100;
-          const top = 10 - 10 * percent / 100;
-          const topType = 26 - 26 * percent / 100;
 
           img.style.transform = `scale(${calc})`;
 
