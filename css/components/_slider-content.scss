@@ -237,6 +237,9 @@ body{
       top: 30px;
       transform-origin: left;
       transform: scale(0.7);
+      br{
+        display: none;
+      }
     }
     &-title{
       position: absolute;

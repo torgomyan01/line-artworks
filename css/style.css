@@ -917,6 +917,9 @@ body.active-slider .slider-content-info {
   transform-origin: left;
   transform: scale(0.7);
 }
+.slider-content-item-type br {
+  display: none;
+}
 .slider-content-item-title {
   position: absolute;
   left: 16%;
