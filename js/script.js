@@ -146,27 +146,46 @@ let successClickNextPrev = 1;
 sliderContentButtonsPrev.addEventListener('click', function () {
 
 
-  if (successClickNextPrev > 1) {
-    console.warn('user click fast prev button')
-  } else if (successClickNextPrev === 1) {
+  if (sliderContentButtonsPlay.classList.contains(active)) {
+
     sliderActiveIndex -= 1;
 
-    if (sliderActiveIndex < 0) {
+    if (sliderActiveIndex === 0) {
       sliderActiveIndex = sliderInfo.length - 1;
     }
+    const getItem = $el('.slider-content-item');
+    const info = getItem.getBoundingClientRect().height * sliderActiveIndex + 1;
+    sliderContentInfoContent.scrollTo({
+      top: info,
+      left: 0,
+      behavior: "smooth",
+    })
 
-    percent = 0;
-    progressBar.setAttribute('style', `--percent: 0%`);
-    clearInterval(int);
+  } else {
+    if (successClickNextPrev > 1) {
+      console.warn('user click fast prev button')
+    } else if (successClickNextPrev === 1) {
 
-    nextAnimation(false)
+      sliderActiveIndex -= 1;
 
-    setTimeout(() => {
-      startNextAnimation(false)
-    }, 500)
+      if (sliderActiveIndex < 0) {
+        sliderActiveIndex = sliderInfo.length - 1;
+      }
+
+      percent = 0;
+      progressBar.setAttribute('style', `--percent: 0%`);
+      clearInterval(int);
+
+      nextAnimation(false)
+
+      setTimeout(() => {
+        startNextAnimation(false)
+      }, 500)
+
+      successClickNextPrev += 1;
+    }
   }
 
-  successClickNextPrev += 1;
 
 })
 
@@ -174,27 +193,46 @@ sliderContentButtonsPrev.addEventListener('click', function () {
 // NEXT SLIDER FUNCTION
 sliderContentButtonsNext.addEventListener('click', function () {
 
-  if (successClickNextPrev > 1) {
-    console.warn('user click fast next button')
-  } else if (successClickNextPrev === 1) {
+  if (sliderContentButtonsPlay.classList.contains(active)) {
     sliderActiveIndex += 1;
 
-    if (sliderActiveIndex > sliderInfo.length - 1) {
+    if (sliderActiveIndex === sliderInfo.length) {
       sliderActiveIndex = 0;
     }
+    const getItem = $el('.slider-content-item');
+    const info = getItem.getBoundingClientRect().height * sliderActiveIndex + 1;
+    sliderContentInfoContent.scrollTo({
+      top: info,
+      left: 0,
+      behavior: "smooth",
+    })
 
-    percent = 0;
-    progressBar.setAttribute('style', `--percent: 0%`);
-    clearInterval(int);
+  } else {
+    if (successClickNextPrev > 1) {
+      console.warn('user click fast next button')
+    } else if (successClickNextPrev === 1) {
 
-    nextAnimation(true)
+      sliderActiveIndex += 1;
 
-    setTimeout(() => {
-      startNextAnimation(true)
-    }, 500)
+      if (sliderActiveIndex > sliderInfo.length - 1) {
+        sliderActiveIndex = 0;
+      }
+
+      percent = 0;
+      progressBar.setAttribute('style', `--percent: 0%`);
+      clearInterval(int);
+
+      nextAnimation(true)
+
+      setTimeout(() => {
+        startNextAnimation(true)
+      }, 500)
+      successClickNextPrev += 1;
+
+    }
   }
 
-  successClickNextPrev += 1;
+
 
 
 })
@@ -261,7 +299,7 @@ sliderItems.forEach((item) => {
 const sliderContentItemImg = $('.slider-content-item');
 
 sliderContentItemImg.forEach((item, index) => {
-  item.addEventListener('click', function (){
+  item.addEventListener('click', function () {
     sliderActiveIndex = index;
     percent = 0;
     progressBar.setAttribute('style', `--percent: 0%`);
@@ -272,8 +310,6 @@ sliderContentItemImg.forEach((item, index) => {
     startNextAnimation(true)
   })
 })
-
-
 
 
 // ------------------------------
@@ -317,7 +353,7 @@ navMenu.addEventListener('click', function () {
 
 })
 
-footerContact.addEventListener('click', function (){
+footerContact.addEventListener('click', function () {
   navMenu.classList.add(active);
   menu.style.width = '100%';
   nav.style.backgroundColor = '#fff';
@@ -329,7 +365,7 @@ footerContact.addEventListener('click', function (){
 })
 
 
-menuItemContact.addEventListener('click', function (){
+menuItemContact.addEventListener('click', function () {
   menu.querySelector('.menu-items').classList.remove(active);
   setTimeout(() => {
     menu.querySelector('.menu-contact').classList.add(active);
@@ -337,7 +373,7 @@ menuItemContact.addEventListener('click', function (){
   }, 1000)
 })
 
-menuBackContact.addEventListener('click', function (){
+menuBackContact.addEventListener('click', function () {
   menu.querySelector('.menu-contact').classList.remove(active);
   menu.querySelector('.menu-back-contact').classList.remove(active);
 
