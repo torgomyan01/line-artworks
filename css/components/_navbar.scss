@@ -20,7 +20,7 @@
       left: 50%;
       top: calc(50vh - 27px);
       transform: translateX(-50%);
-      animation: anim-logo infinite 5s;
+      animation: anim-logo infinite 9s;
       animation-delay: 3s;
       animation-iteration-count: 1;
       animation-fill-mode: both;
@@ -34,33 +34,47 @@
           transform: translateX(-50%);
           width: $logoWidth;
         }
-        40%{
+        15%{
+          opacity: 0;
+          top: calc(50vh - #{$topCalc});
+          left: 50%;
+          transform: translateX(-50%);
+          width: $logoWidth;
+        }
+        30%{
           opacity: 1;
           top: calc(50vh - #{$topCalc});
           left: 50%;
           transform: translateX(-50%);
           width: $logoWidth;
         }
-        65%{
+        31%{
           opacity: 1;
-          top: calc(50vh - 80px);
+          top: calc(50vh - #{$topCalc});
           left: 50%;
           transform: translateX(-50%);
           width: $logoWidth;
         }
-        85%{
+        45%{
           opacity: 1;
-          top: calc(50vh - 80px);
+          top: calc(50vh - 90px);
           left: 50%;
           transform: translateX(-50%);
           width: $logoWidth;
         }
-        99%{
+        55%{
           opacity: 1;
-          top: $top;
-          left: $logoLeft;
-          transform: translateX(0);
-          width: 12.5rem;
+          top: calc(50vh - 90px);
+          left: 50%;
+          transform: translateX(-50%);
+          width: $logoWidth;
+        }
+        80%{
+          opacity: 1;
+          top: calc(50vh - 90px);
+          left: 50%;
+          transform: translateX(-50%);
+          width: $logoWidth;
         }
         100%{
           opacity: 1;
@@ -130,7 +144,7 @@
     transition: 0.3s;
     opacity: 0;
     animation: anim-nav-menu infinite 1s;
-    animation-delay: 8s;
+    animation-delay: 9s;
     animation-iteration-count: 1;
     animation-fill-mode: both;
 

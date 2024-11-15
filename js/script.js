@@ -98,7 +98,7 @@ function startProgress() {
 
 setTimeout(() => {
   startProgress();
-}, 6000)
+}, 9000)
 
 
 let status = false;
@@ -462,7 +462,6 @@ footerHashtagsItem.forEach((item, index) => {
 function startNextAnimation(status) {
   const getActiveInfo = sliderInfo[sliderActiveIndex];
   const randomId = `and_project_${Math.floor(Math.random() * 1000)}`;
-  console.log(sliderActiveIndex)
 
   const title = getActiveInfo.title.split('|').map((item, index) => `<span style="transition-delay: 1.${index * 3}s;">${item}</span> <br />`).join('')
 
@@ -515,6 +514,7 @@ function nextAnimation(status) {
 
 }
 
+let startedAnimationStatus = true;
 
 function getCenterActiveElem(randomId) {
   const sliderContentMax = $el(`#${randomId}`);
@@ -538,7 +538,8 @@ function getCenterActiveElem(randomId) {
 
       successClickNextPrev = 1;
 
-    }, 1500)
+      startedAnimationStatus = false;
+    }, startedAnimationStatus ? 3500 :1500)
 
     sliderContentMax.style.transition = `0.8s`;
   }, 500)

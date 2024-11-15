@@ -118,7 +118,7 @@ body {
   left: 0;
   top: 0;
   animation: close-preloader infinite 1s;
-  animation-delay: 8s;
+  animation-delay: 11s;
   animation-fill-mode: both;
   animation-iteration-count: 1;
   opacity: 1;
@@ -150,7 +150,7 @@ body {
   left: 20%;
   top: 50%;
   transform: translate(-50%, -50%);
-  animation: anim-line infinite 6s;
+  animation: anim-line infinite 9s;
   animation-iteration-count: 1;
   animation-fill-mode: both;
   background: #000;
@@ -158,7 +158,7 @@ body {
 }
 @media (max-width: 567px) {
   .preloader-line {
-    animation: anim-line-576 infinite 6s;
+    animation: anim-line-576 infinite 9s;
     animation-iteration-count: 1;
     animation-fill-mode: both;
   }
@@ -171,35 +171,35 @@ body {
     background-color: #000;
     transform: translate(-50%, -50%);
   }
-  20% {
+  15% {
     left: 50%;
     width: 64px;
     height: 2px;
     background-color: #000;
     transform: translate(-50%, -50%);
   }
-  40% {
+  35% {
     left: 50%;
     width: 36.875rem;
     height: 2px;
     background-color: #000;
     transform: translate(-50%, -50%);
   }
-  50% {
+  45% {
     left: 50%;
     width: 36.875rem;
     height: 4rem;
     background-color: #000;
     transform: translate(-50%, -50%);
   }
-  60% {
+  55% {
     left: 50%;
     width: 36.875rem;
     height: 4rem;
     background-color: transparent;
     transform: translate(-50%, -50%);
   }
-  80% {
+  90% {
     left: 50%;
     width: 36.875rem;
     height: 4rem;
@@ -222,35 +222,35 @@ body {
     background-color: #000;
     transform: translate(-50%, -50%);
   }
-  20% {
+  15% {
     left: 50%;
     width: 64px;
     height: 2px;
     background-color: #000;
     transform: translate(-50%, -50%);
   }
-  40% {
+  35% {
     left: 50%;
     width: 18.125rem;
     height: 2px;
     background-color: #000;
     transform: translate(-50%, -50%);
   }
-  50% {
+  45% {
     left: 50%;
     width: 18.125rem;
     height: 2.5rem;
     background-color: #000;
     transform: translate(-50%, -50%);
   }
-  60% {
+  55% {
     left: 50%;
     width: 18.125rem;
     height: 2.5rem;
     background-color: transparent;
     transform: translate(-50%, -50%);
   }
-  80% {
+  90% {
     left: 50%;
     width: 18.125rem;
     height: 2.5rem;
@@ -276,7 +276,7 @@ body {
   font-size: 6rem;
   line-height: 1.16;
   text-align: center;
-  animation: preloader-subtitle infinite 8s;
+  animation: preloader-subtitle infinite 9s;
   animation-iteration-count: 1;
   animation-fill-mode: both;
   opacity: 0;
@@ -306,9 +306,10 @@ body {
     transform: translate(-50%, 0);
     opacity: 0;
   }
-  60% {
+  45% {
     top: 100%;
     transform: translate(-50%, 0);
+    opacity: 1;
   }
   80% {
     top: 47%;
@@ -353,7 +354,7 @@ body {
   left: 50%;
   top: calc(50vh - 27px);
   transform: translateX(-50%);
-  animation: anim-logo infinite 5s;
+  animation: anim-logo infinite 9s;
   animation-delay: 3s;
   animation-iteration-count: 1;
   animation-fill-mode: both;
@@ -367,33 +368,47 @@ body {
     transform: translateX(-50%);
     width: 36.875rem;
   }
-  40% {
+  15% {
+    opacity: 0;
+    top: calc(50vh - 27px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 36.875rem;
+  }
+  30% {
     opacity: 1;
     top: calc(50vh - 27px);
     left: 50%;
     transform: translateX(-50%);
     width: 36.875rem;
   }
-  65% {
+  31% {
     opacity: 1;
-    top: calc(50vh - 80px);
+    top: calc(50vh - 27px);
     left: 50%;
     transform: translateX(-50%);
     width: 36.875rem;
   }
-  85% {
+  45% {
     opacity: 1;
-    top: calc(50vh - 80px);
+    top: calc(50vh - 90px);
     left: 50%;
     transform: translateX(-50%);
     width: 36.875rem;
   }
-  99% {
+  55% {
     opacity: 1;
-    top: 3.125rem;
-    left: 8.125rem;
-    transform: translateX(0);
-    width: 12.5rem;
+    top: calc(50vh - 90px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 36.875rem;
+  }
+  80% {
+    opacity: 1;
+    top: calc(50vh - 90px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 36.875rem;
   }
   100% {
     opacity: 1;
@@ -411,33 +426,47 @@ body {
     transform: translateX(-50%);
     width: 36.875rem;
   }
-  40% {
+  15% {
+    opacity: 0;
+    top: calc(50vh - 27px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 36.875rem;
+  }
+  30% {
     opacity: 1;
     top: calc(50vh - 27px);
     left: 50%;
     transform: translateX(-50%);
     width: 36.875rem;
   }
-  65% {
+  31% {
     opacity: 1;
-    top: calc(50vh - 80px);
+    top: calc(50vh - 27px);
     left: 50%;
     transform: translateX(-50%);
     width: 36.875rem;
   }
-  85% {
+  45% {
     opacity: 1;
-    top: calc(50vh - 80px);
+    top: calc(50vh - 90px);
     left: 50%;
     transform: translateX(-50%);
     width: 36.875rem;
   }
-  99% {
+  55% {
     opacity: 1;
-    top: 3.125rem;
-    left: 75px;
-    transform: translateX(0);
-    width: 12.5rem;
+    top: calc(50vh - 90px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 36.875rem;
+  }
+  80% {
+    opacity: 1;
+    top: calc(50vh - 90px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 36.875rem;
   }
   100% {
     opacity: 1;
@@ -455,33 +484,47 @@ body {
     transform: translateX(-50%);
     width: 36.875rem;
   }
-  40% {
+  15% {
+    opacity: 0;
+    top: calc(50vh - 27px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 36.875rem;
+  }
+  30% {
     opacity: 1;
     top: calc(50vh - 27px);
     left: 50%;
     transform: translateX(-50%);
     width: 36.875rem;
   }
-  65% {
+  31% {
     opacity: 1;
-    top: calc(50vh - 80px);
+    top: calc(50vh - 27px);
     left: 50%;
     transform: translateX(-50%);
     width: 36.875rem;
   }
-  85% {
+  45% {
     opacity: 1;
-    top: calc(50vh - 80px);
+    top: calc(50vh - 90px);
     left: 50%;
     transform: translateX(-50%);
     width: 36.875rem;
   }
-  99% {
+  55% {
     opacity: 1;
-    top: 3.125rem;
-    left: 30px;
-    transform: translateX(0);
-    width: 12.5rem;
+    top: calc(50vh - 90px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 36.875rem;
+  }
+  80% {
+    opacity: 1;
+    top: calc(50vh - 90px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 36.875rem;
   }
   100% {
     opacity: 1;
@@ -499,33 +542,47 @@ body {
     transform: translateX(-50%);
     width: 36.875rem;
   }
-  40% {
+  15% {
+    opacity: 0;
+    top: calc(50vh - 27px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 36.875rem;
+  }
+  30% {
     opacity: 1;
     top: calc(50vh - 27px);
     left: 50%;
     transform: translateX(-50%);
     width: 36.875rem;
   }
-  65% {
+  31% {
     opacity: 1;
-    top: calc(50vh - 80px);
+    top: calc(50vh - 27px);
     left: 50%;
     transform: translateX(-50%);
     width: 36.875rem;
   }
-  85% {
+  45% {
     opacity: 1;
-    top: calc(50vh - 80px);
+    top: calc(50vh - 90px);
     left: 50%;
     transform: translateX(-50%);
     width: 36.875rem;
   }
-  99% {
+  55% {
     opacity: 1;
-    top: 45px;
-    left: 30px;
-    transform: translateX(0);
-    width: 12.5rem;
+    top: calc(50vh - 90px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 36.875rem;
+  }
+  80% {
+    opacity: 1;
+    top: calc(50vh - 90px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 36.875rem;
   }
   100% {
     opacity: 1;
@@ -543,33 +600,47 @@ body {
     transform: translateX(-50%);
     width: 18.125rem;
   }
-  40% {
+  15% {
+    opacity: 0;
+    top: calc(50vh - 17px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 18.125rem;
+  }
+  30% {
     opacity: 1;
     top: calc(50vh - 17px);
     left: 50%;
     transform: translateX(-50%);
     width: 18.125rem;
   }
-  65% {
+  31% {
     opacity: 1;
-    top: calc(50vh - 80px);
+    top: calc(50vh - 17px);
     left: 50%;
     transform: translateX(-50%);
     width: 18.125rem;
   }
-  85% {
+  45% {
     opacity: 1;
-    top: calc(50vh - 80px);
+    top: calc(50vh - 90px);
     left: 50%;
     transform: translateX(-50%);
     width: 18.125rem;
   }
-  99% {
+  55% {
     opacity: 1;
-    top: 30px;
-    left: 30px;
-    transform: translateX(0);
-    width: 12.5rem;
+    top: calc(50vh - 90px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 18.125rem;
+  }
+  80% {
+    opacity: 1;
+    top: calc(50vh - 90px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 18.125rem;
   }
   100% {
     opacity: 1;
@@ -627,7 +698,7 @@ body {
   transition: 0.3s;
   opacity: 0;
   animation: anim-nav-menu infinite 1s;
-  animation-delay: 8s;
+  animation-delay: 9s;
   animation-iteration-count: 1;
   animation-fill-mode: both;
 }
