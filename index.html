@@ -91,16 +91,55 @@
 
 <div class="menu">
   <div class="container">
+    <span class="menu-back-contact">
+      <i class="icon-back"></i>
+    </span>
     <div class="menu-left">
-      <a href="#" class="menu-left-item" style="transition-delay: 0.2s">
-        Home
-      </a>
-      <a href="#" class="menu-left-item" style="transition-delay: 0.4s">
-        Studio
-      </a>
-      <a href="#" class="menu-left-item" style="transition-delay: 0.6s">
-        Contact
-      </a>
+      <div class="menu-items">
+        <a href="#" class="menu-left-item" style="transition-delay: 0.2s">
+          Home
+        </a>
+        <a href="#" class="menu-left-item" style="transition-delay: 0.4s">
+          Studio
+        </a>
+        <span class="menu-left-item menu-item-contact" style="transition-delay: 0.6s">
+          Contact
+        </span>
+      </div>
+
+      <form action="#" method="post" class="menu-contact">
+        <div class="menu-contact-left">
+          <label class="def-input" style="transition-delay: 0.3s">
+            <span>Name *</span>
+            <input type="text" name="subject" required data-validation="textMin-3">
+          </label>
+          <label class="def-input" style="transition-delay: 0.6s">
+            <span>Phone *</span>
+            <input type="text" name="subject" required data-validation="phone">
+          </label>
+          <label class="def-input" style="transition-delay: 0.9s">
+            <span>Email *</span>
+            <input type="text" name="subject" required data-validation="email">
+          </label>
+          <button class="btn-submit">
+            Submit
+          </button>
+          <label class="def-checkbox">
+            <input type="checkbox">
+            <span></span>
+            I agree to processing of my personal data
+          </label>
+        </div>
+        <div class="menu-contact-right">
+          <label class="def-input" style="transition-delay: 1s">
+            <span>You question and comment</span>
+            <input type="text" name="subject">
+          </label>
+          <label class="def-input" style="transition-delay: 1.1s">
+            <textarea name="subject" placeholder="Type here..."></textarea>
+          </label>
+        </div>
+      </form>
     </div>
     <div class="menu-right">
       <div class="menu-right-language">
@@ -115,10 +154,10 @@
       <div class="menu-right-content active" data-lang="EN">
         <ul>
           <li>
-            <span>Phone</span> <b>+ 971 52 622 9235</b>
+            <span>Phone</span> <a href="tel:+971526229235"><b>+ 971 52 622 9235</b></a>
           </li>
           <li>
-            <span>Email</span> <b>mail@line-artworks.com</b>
+            <span>Email</span> <a href="mailto:mail@line-artworks.com"><b>mail@line-artworks.com</b></a>
           </li>
           <li>
             <span>Address</span> <b>Dubai, Al Satwa, Q1 Residence</b>
@@ -129,10 +168,10 @@
       <div class="menu-right-content" data-lang="RU">
         <ul>
           <li>
-            <span>Телефон</span> <b>+ 971 52 622 9235</b>
+            <span>Телефон</span> <a href="tel:+971526229235"><b>+ 971 52 622 9235</b></a>
           </li>
           <li>
-            <span>Email</span> <b>mail@line-artworks.com</b>
+            <span>Email</span> <a href="mailto:mail@line-artworks.com"><b>mail@line-artworks.com</b></a>
           </li>
           <li>
             <span>Адрес</span> <b>Dubai, Al Satwa, Q1 Residence</b>

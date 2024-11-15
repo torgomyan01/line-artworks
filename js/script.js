@@ -109,7 +109,7 @@ sliderContentButtonsPlay.addEventListener('click', function () {
   const getActiveItem = $el(`#${id}`);
 
   if (status) {
-    if(percent){
+    if (percent) {
       int = startAutoLoadingSlider();
     }
     sliderContentButtonsPlay.classList.remove(active);
@@ -146,9 +146,9 @@ let successClickNextPrev = 1;
 sliderContentButtonsPrev.addEventListener('click', function () {
 
 
-  if(successClickNextPrev > 1){
+  if (successClickNextPrev > 1) {
     console.warn('user click fast prev button')
-  } else if(successClickNextPrev === 1) {
+  } else if (successClickNextPrev === 1) {
     sliderActiveIndex -= 1;
 
     if (sliderActiveIndex < 0) {
@@ -174,9 +174,9 @@ sliderContentButtonsPrev.addEventListener('click', function () {
 // NEXT SLIDER FUNCTION
 sliderContentButtonsNext.addEventListener('click', function () {
 
-  if(successClickNextPrev > 1){
+  if (successClickNextPrev > 1) {
     console.warn('user click fast next button')
-  } else if(successClickNextPrev === 1) {
+  } else if (successClickNextPrev === 1) {
     sliderActiveIndex += 1;
 
     if (sliderActiveIndex > sliderInfo.length - 1) {
@@ -304,6 +304,9 @@ sliderContentItemImg.forEach((item) => {
 // ------------------------------
 
 const navMenu = $el('.nav-menu');
+const footerContact = $el('.footer-contact');
+const menuItemContact = $el('.menu-item-contact');
+const menuBackContact = $el('.menu-back-contact');
 const menu = $el('.menu');
 const nav = $el('.nav');
 const menuRightLanguageItem = $('.menu-right-language-item');
@@ -311,43 +314,79 @@ const menuRightContent = $('.menu-right-content');
 
 navMenu.addEventListener('click', function () {
   if (navMenu.classList.contains(active)) {
+
     navMenu.classList.remove(active);
     menu.classList.remove(active);
+    menu.querySelector('.menu-items').classList.remove(active);
+    menu.querySelector('.menu-contact').classList.remove(active);
+    menu.querySelector('.menu-back-contact').classList.remove(active);
     nav.style.backgroundColor = 'transparent';
 
     setTimeout(() => {
       menu.style.width = '0';
-    }, 1500)
+    }, 1500);
+
   } else {
     navMenu.classList.add(active);
     menu.style.width = '100%';
     nav.style.backgroundColor = '#fff';
+    menu.querySelector('.menu-back-contact').classList.remove(active);
 
     setTimeout(() => {
-      menu.classList.add(active)
+      menu.classList.add(active);
+      menu.querySelector('.menu-items').classList.add(active);
     }, 1000)
   }
 
 })
 
+footerContact.addEventListener('click', function (){
+  navMenu.classList.add(active);
+  menu.style.width = '100%';
+  nav.style.backgroundColor = '#fff';
+
+  setTimeout(() => {
+    menu.classList.add(active);
+    menu.querySelector('.menu-contact').classList.add(active);
+  }, 1000)
+})
+
+
+menuItemContact.addEventListener('click', function (){
+  menu.querySelector('.menu-items').classList.remove(active);
+  setTimeout(() => {
+    menu.querySelector('.menu-contact').classList.add(active);
+    menu.querySelector('.menu-back-contact').classList.add(active);
+  }, 1000)
+})
+
+menuBackContact.addEventListener('click', function (){
+  menu.querySelector('.menu-contact').classList.remove(active);
+  menu.querySelector('.menu-back-contact').classList.remove(active);
+
+  setTimeout(() => {
+    menu.querySelector('.menu-items').classList.add(active);
+  }, 1000)
+})
+
 
 menuRightLanguageItem.forEach((tab) => {
-  tab.addEventListener('click', function (){
+  tab.addEventListener('click', function () {
     const type = this.innerText;
-    const selectedTab = $el(`[data-lang="${type}"]`);
+    const selectedTab = $(`[data-lang="${type}"]`);
 
     menuRightLanguageItem.forEach((item) => item.classList.remove(active));
     menuRightContent.forEach((item) => item.classList.remove(active));
 
     this.classList.add(active)
+
+
+    selectedTab.forEach((item) => {
+      item.classList.add(active);
+    })
     selectedTab.classList.add(active)
   })
 })
-
-
-
-
-
 
 
 function startAutoLoadingSlider() {
@@ -494,4 +533,76 @@ function getCenterActiveElem(randomId) {
 }
 
 
+// DEFAULT INPUT
+const inpLabel = $('.def-input');
 
+startWorkingTextFields($('.def-input input'), inpLabel); // FOR INPUTS
+startWorkingTextFields($('.def-input textarea'), inpLabel); // FOR LABELS
+
+function startWorkingTextFields(inputs, parents) {
+  inputs.forEach((item) => {
+    item.addEventListener('blur', function () {
+      parents.forEach((inp) => {
+        if (inp.querySelector('input')?.value === '' || inp.querySelector('textarea')?.value === '') {
+          inp.classList.remove(active)
+        }
+      })
+    })
+
+    item.addEventListener('input', function () {
+      validateInput(item)
+    })
+  })
+
+  inputs.forEach((item) => {
+    item.addEventListener('focus', function () {
+      item.parentElement.classList.add(active)
+    })
+  })
+}
+
+
+function validateInput(input) {
+  const validations = input.getAttribute('data-validation')?.split(',');
+  const value = input.value.trim();
+  let errorMessage = '';
+
+  validations.forEach(validation => {
+    if (errorMessage) return;
+
+    if (validation === 'required' && value === '') {
+      errorMessage = 'This field is required';
+    } else if (validation === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+      errorMessage = 'Please enter a valid email address';
+    } else if (validation.startsWith('textMin-')) {
+      const minLength = parseInt(validation.split('-')[1], 10);
+      if (value.length < minLength) {
+        errorMessage = `Text must be at least ${minLength} characters long`;
+      }
+    } else if (validation.startsWith('textMax-')) {
+      const maxLength = parseInt(validation.split('-')[1], 10);
+      if (value.length > maxLength) {
+        errorMessage = `Text must have a maximum of ${maxLength} characters`;
+      }
+    } else if (validation === 'phone' && !/^\+?\d{3,30}$/.test(value)) {
+      errorMessage = 'Enter a valid phone number';
+    }
+  });
+
+  const errorSpan = input.parentElement;
+  errorSpan.querySelectorAll('b').forEach((item) => {
+    item.outerHTML = '';
+    console.log(222)
+  })
+
+
+  if (errorMessage) {
+    errorSpan.insertAdjacentHTML('beforeend', `
+      <b class="def-input-error">
+        <i class="icon-warning"></i>
+        ${errorMessage}
+      </b>
+    `)
+  }
+
+}

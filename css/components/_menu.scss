@@ -20,23 +20,55 @@
   .container{
     @include flex('sb','c');
     height: 40%;
+    position: relative;
   }
 
   &.active{
-    .menu-left-item{
-      opacity: 1;
-      transform: translateY(0);
-    }
     .menu-right{
       opacity: 1;
     }
   }
 
+
+  .btn-submit{
+    margin-top: -10px;
+  }
+
+  &-back-contact{
+    position: absolute;
+    left: 0;
+    top: -10rem;
+    opacity: 0;
+    transition-delay: 0.5s;
+    transition: 0.8s;
+    visibility: hidden;
+    cursor: pointer;
+
+    &.active{
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
   &-left{
-    width: 50%;
+    width: 60%;
     height: 100%;
     @include flex('sb', 's');
     flex-direction: column;
+    position: relative;
+
+
+    .def-input{
+      height: 10vh;
+      transform: translateY(100px);
+      transition: 0.8s;
+      opacity: 0;
+      textarea{
+        margin-top: -2vh;
+        min-height: 18.5vh;
+      }
+    }
+
     &-item{
       color: #000;
       text-align: center;
@@ -46,17 +78,68 @@
       transition: 0.8s;
       opacity: 0;
       transform: translateY(-100px);
+      cursor: pointer;
       &:hover{
-        transition: 0.3s;
+        transition: 0.3s !important;
         transition-delay: 0s !important;
         color: #00B140;
       }
     }
   }
+
+  &-contact{
+    width: 100%;
+    @include flex('s', 's');
+    position: absolute;
+    left: 0;
+    top: 0;
+    visibility: hidden;
+
+    &-left{
+      width: 40%;
+      padding-right: 2rem;
+    }
+    &-right{
+      width: 60%;
+      padding-right: 5rem;
+    }
+    &.active{
+      visibility: visible;
+      .def-input{
+        transform: translateY(0);
+        opacity: 1;
+      }
+      .contact-body-right{
+        opacity: 1;
+      }
+      .contact-title, .def-checkbox, .btn-submit{
+        opacity: 1;
+      }
+    }
+  }
+
+  &-items{
+    @include flex('sb', 's');
+    flex-direction: column;
+    height: 100%;
+    min-height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    &.active{
+      .menu-left-item{
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  }
+
   &-right{
-    width: 50%;
+    width: 40%;
     height: 100%;
     transition: 0.8s;
+    transition-delay: 0.5s;
     opacity: 0;
 
     &-language{
@@ -97,6 +180,9 @@
           margin-bottom: 8px;
           span{
             width: 6rem;
+          }
+          a{
+            color: #000;
           }
         }
       }
