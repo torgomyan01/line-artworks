@@ -263,40 +263,40 @@ const sliderContentInfo = $el('.slider-content-info')
 const sliderContent = $el('.slider-content');
 const footer = $el('.footer');
 
-
-sliderContentItemImg.forEach((item) => {
-  item.addEventListener('click', function () {
-    item.parentElement.classList.add(show);
-
-    sliderContentItemImg.forEach((elem) => {
-      if (!elem.parentElement.classList.contains(show)) {
-        elem.parentElement.style.opacity = '0';
-      }
-    })
-
-    setTimeout(() => {
-      item.parentElement.style.position = 'absolute';
-    }, 700)
-
-    setTimeout(() => {
-      sliderContentItemImg.forEach((elem) => {
-        if (elem.parentElement.classList.contains(show)) {
-          elem.parentElement.style.opacity = '0';
-        }
-      })
-    }, 600)
-
-    setTimeout(() => {
-      sliderContentInfo.classList.add(active);
-      sliderContent.classList.remove(active)
-      footer.classList.remove(active)
-      item.parentElement.classList.add(active);
-      item.parentElement.style.opacity = '1';
-    }, 1000)
-
-
-  })
-})
+//
+// sliderContentItemImg.forEach((item) => {
+//   item.addEventListener('click', function () {
+//     item.parentElement.classList.add(show);
+//
+//     sliderContentItemImg.forEach((elem) => {
+//       if (!elem.parentElement.classList.contains(show)) {
+//         elem.parentElement.style.opacity = '0';
+//       }
+//     })
+//
+//     setTimeout(() => {
+//       item.parentElement.style.position = 'absolute';
+//     }, 700)
+//
+//     setTimeout(() => {
+//       sliderContentItemImg.forEach((elem) => {
+//         if (elem.parentElement.classList.contains(show)) {
+//           elem.parentElement.style.opacity = '0';
+//         }
+//       })
+//     }, 600)
+//
+//     setTimeout(() => {
+//       sliderContentInfo.classList.add(active);
+//       sliderContent.classList.remove(active)
+//       footer.classList.remove(active)
+//       item.parentElement.classList.add(active);
+//       item.parentElement.style.opacity = '1';
+//     }, 1000)
+//
+//
+//   })
+// })
 
 
 // ------------------------------
