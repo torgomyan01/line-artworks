@@ -233,8 +233,6 @@ sliderContentButtonsNext.addEventListener('click', function () {
   }
 
 
-
-
 })
 
 
@@ -539,7 +537,7 @@ function getCenterActiveElem(randomId) {
       successClickNextPrev = 1;
 
       startedAnimationStatus = false;
-    }, startedAnimationStatus ? 3500 :1500)
+    }, startedAnimationStatus ? 3500 : 1500)
 
     sliderContentMax.style.transition = `0.8s`;
   }, 500)
@@ -619,3 +617,16 @@ function validateInput(input) {
   }
 
 }
+
+
+const sliderContentMaxTitle = $('.slider-content-item-title');
+
+sliderContentMaxTitle.forEach((item) => {
+  const getBr = item.querySelectorAll('br');
+
+
+  if(getBr.length === 3){
+    getBr[0].outerHTML = '&nbsp;&nbsp;';
+  }
+
+})
