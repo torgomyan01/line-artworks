@@ -294,18 +294,27 @@ sliderItems.forEach((item) => {
   );
 })
 
-const sliderContentItemImg = $('.slider-content-item');
+let successClickImage = true;
+const sliderContentItemImg = $('.slider-content-item img');
 
 sliderContentItemImg.forEach((item, index) => {
   item.addEventListener('click', function () {
-    sliderActiveIndex = index;
-    percent = 0;
-    progressBar.setAttribute('style', `--percent: 0%`);
-    sliderContentButtonsPlay.classList.remove(active);
-    sliderContentButtonsPrev.querySelector('i').style.transform = 'rotate(0deg)';
-    sliderContentButtonsNext.querySelector('i').style.transform = 'rotate(0deg)';
-    document.body.classList.add('active-slider')
-    startNextAnimation(true)
+    if(successClickImage){
+      successClickImage = false;
+
+      sliderActiveIndex = index;
+      percent = 0;
+      progressBar.setAttribute('style', `--percent: 0%`);
+      sliderContentButtonsPlay.classList.remove(active);
+      sliderContentButtonsPrev.querySelector('i').style.transform = 'rotate(0deg)';
+      sliderContentButtonsNext.querySelector('i').style.transform = 'rotate(0deg)';
+      document.body.classList.add('active-slider')
+      startNextAnimation(true)
+
+      setTimeout(() => {
+        successClickImage = true;
+      }, 3000)
+    }
   })
 })
 
