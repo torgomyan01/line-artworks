@@ -115,8 +115,8 @@ sliderContentButtonsPlay.addEventListener('click', function () {
     sliderContentButtonsPlay.classList.remove(active);
     sliderContentButtonsPrev.querySelector('i').style.transform = 'rotate(0deg)';
     sliderContentButtonsNext.querySelector('i').style.transform = 'rotate(0deg)';
-    getActiveItem.classList.remove(active);
     document.body.classList.add('active-slider')
+    getActiveItem.classList.remove(active);
   } else {
     clearInterval(int);
 
@@ -258,45 +258,22 @@ sliderItems.forEach((item) => {
   );
 })
 
-const sliderContentItemImg = $('.slider-content-item img');
-const sliderContentInfo = $el('.slider-content-info')
-const sliderContent = $el('.slider-content');
-const footer = $el('.footer');
+const sliderContentItemImg = $('.slider-content-item');
 
-//
-// sliderContentItemImg.forEach((item) => {
-//   item.addEventListener('click', function () {
-//     item.parentElement.classList.add(show);
-//
-//     sliderContentItemImg.forEach((elem) => {
-//       if (!elem.parentElement.classList.contains(show)) {
-//         elem.parentElement.style.opacity = '0';
-//       }
-//     })
-//
-//     setTimeout(() => {
-//       item.parentElement.style.position = 'absolute';
-//     }, 700)
-//
-//     setTimeout(() => {
-//       sliderContentItemImg.forEach((elem) => {
-//         if (elem.parentElement.classList.contains(show)) {
-//           elem.parentElement.style.opacity = '0';
-//         }
-//       })
-//     }, 600)
-//
-//     setTimeout(() => {
-//       sliderContentInfo.classList.add(active);
-//       sliderContent.classList.remove(active)
-//       footer.classList.remove(active)
-//       item.parentElement.classList.add(active);
-//       item.parentElement.style.opacity = '1';
-//     }, 1000)
-//
-//
-//   })
-// })
+sliderContentItemImg.forEach((item, index) => {
+  item.addEventListener('click', function (){
+    sliderActiveIndex = index;
+    percent = 0;
+    progressBar.setAttribute('style', `--percent: 0%`);
+    sliderContentButtonsPlay.classList.remove(active);
+    sliderContentButtonsPrev.querySelector('i').style.transform = 'rotate(0deg)';
+    sliderContentButtonsNext.querySelector('i').style.transform = 'rotate(0deg)';
+    document.body.classList.add('active-slider')
+    startNextAnimation(true)
+  })
+})
+
+
 
 
 // ------------------------------
@@ -485,7 +462,6 @@ function printHeight(height) {
 }
 
 function nextAnimation(status) {
-  console.log(sliderActiveIndex, successClickNextPrev)
   const getActiveSlider = sliderContentButtonsPrev.getAttribute('data-active');
   const elem = $el(`#${getActiveSlider}`);
 
