@@ -741,8 +741,6 @@ function nextMobileSlider(){
     activeMobileSlider = 0;
   }
 
-  percentMobile = 0;
-  progressBarMobile.setAttribute('style', `--percentMobile: ${percentMobile}%`);
 
   changeActiveHashtagsMobile()
 
@@ -762,8 +760,6 @@ function prevMobileSlider(){
     activeMobileSlider = 0;
   }
 
-  percentMobile = 0;
-  progressBarMobile.setAttribute('style', `--percentMobile: ${percentMobile}%`);
 
   changeActiveHashtagsMobile();
 
@@ -778,6 +774,9 @@ function AnimationSliderMobile(){
     mobileSliderBody.style.transform = `translateX(${sliderX}px)`;
 
     setTimeout(() => {
+      percentMobile = 0;
+      progressBarMobile.setAttribute('style', `--percentMobile: ${percentMobile}%`);
+
       mobileSliderBody.style.transform = `translateX(${sliderX}px)`;
 
       mobileSlider.classList.remove('scale')
@@ -791,10 +790,7 @@ function changeActiveHashtagsMobile(){
     item.classList.remove(active);
   })
 
-  setTimeout(() => {
-    mobileSliderHashtagsItem[activeMobileSlider].classList.add(active);
-  }, 1300)
-
+  mobileSliderHashtagsItem[activeMobileSlider].classList.add(active);
 }
 
 mobileSliderHashtagsItem.forEach((item, index) => {
