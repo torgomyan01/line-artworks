@@ -986,6 +986,7 @@ body.active-slider .slider-content-info {
   right: 0;
   top: 0;
   object-fit: cover;
+  object-position: bottom right;
   transition: 0.8s;
 }
 .slider-content-max-title {
