@@ -1329,10 +1329,11 @@ body.active-slider .slider-content-info {
     height: 90%;
   }
 }
-@media (max-width: 7576px) {
+@media (max-width: 576px) {
   .menu .container {
     padding-left: 0;
     padding-right: 0;
+    max-width: calc(100% - 50px);
   }
 }
 .menu.active .menu-right {
@@ -1358,7 +1359,7 @@ body.active-slider .slider-content-info {
 }
 @media (max-width: 576px) {
   .menu-back-contact {
-    left: 1rem;
+    left: 0;
     top: -1rem;
   }
 }

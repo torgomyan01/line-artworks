@@ -29,9 +29,10 @@
       flex-direction: column;
       height: 90%;
     }
-    @media (max-width: 7576px){
+    @media (max-width: 576px){
       padding-left: 0;
       padding-right: 0;
+      max-width: calc(100% - 50px);
     }
   }
 
@@ -60,7 +61,7 @@
     cursor: pointer;
 
     @media (max-width: 576px){
-      left: 1rem;
+      left: 0;
       top: -1rem;
     }
 

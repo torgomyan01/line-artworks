@@ -357,10 +357,10 @@ navMenu.addEventListener('click', function () {
     menu.querySelector('.menu-items').classList.remove(active);
     menu.querySelector('.menu-contact').classList.remove(active);
     menu.querySelector('.menu-back-contact').classList.remove(active);
-    nav.style.backgroundColor = 'transparent';
 
     setTimeout(() => {
       menu.style.width = '0';
+      nav.style.backgroundColor = 'transparent';
     }, 1500);
 
   } else {
