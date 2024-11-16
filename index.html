@@ -50,6 +50,29 @@
       </div>
     </div>
   </nav>
+  
+  <div class="mobile">
+    <div class="mobile-slider">
+      <div class="mobile-slider-body"></div>
+    </div>
+    <div class="mobile-slider-hashtags"></div>
+    <div class="mobile-buttons">
+      <div class="btn-slider mobile-buttons-prev">
+        <i class="icon-left"></i>
+      </div>
+      <div class="btn-slider mobile-buttons-next">
+        <i class="icon-right"></i>
+        <div class="progress-bar-mobile" style="--percent: 0%">
+          <progress value="0" max="100" style="visibility:hidden;height:0;width:0;">0</progress>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-contact">
+      Contact for collaboration
+      <i class="icon-open"></i>
+    </div>
+  </div>
 
 
   <section class="slider-content">
@@ -138,10 +161,18 @@
           <label class="def-input" style="transition-delay: 1.1s">
             <textarea name="subject" placeholder="Type here..."></textarea>
           </label>
+          <button class="btn-submit">
+            Submit
+          </button>
+          <label class="def-checkbox">
+            <input type="checkbox">
+            <span></span>
+            I agree to processing of my personal data
+          </label>
         </div>
       </form>
     </div>
-    <div class="menu-right">
+    <div class="menu-right active">
       <div class="menu-right-language">
         <span class="menu-right-language-item active">
           EN

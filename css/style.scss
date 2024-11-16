@@ -55,7 +55,7 @@ a {
 
 @media (max-width: 576px) {
   html {
-    font-size: 16px;
+    font-size: 13px;
   }
 }
 
@@ -82,6 +82,9 @@ body{
   height: 100vh;
 }
 
+// COMPONENTS
+@import "components/components";
+
 // PRELOADER
 @import "components/preloader";
 
@@ -97,123 +100,9 @@ body{
 // MENU
 @import "components/menu";
 
-.def-checkbox{
-  color: rgba(0, 0, 0, 0.81);
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  margin-top: 15px;
-  @include flex('s', 'c');
-  transition: 1s;
-  transition-delay: 1s;
-  opacity: 0;
-  input{
-    display: none;
-  }
+// MOBILE SLIDER
+@import "components/mobile-slider";
 
-  input:checked ~ span{
-    background: #00B140;
-    border: 2px solid #00B140;
-    &:after{
-      opacity: 1;
-    }
-  }
-
-  span{
-    width: 22px;
-    height: 22px;
-    @include flex('c', 'c');
-    border-radius: 4px;
-    border: 2px solid #b2b2b2;
-    position: relative;
-    margin-right: 14px;
-    transition: 0.3s;
-    &:after{
-      content: "";
-      width: 10px;
-      height: 5px;
-      border-left: 2px solid #fff;
-      border-bottom: 2px solid #fff;
-      transform: rotate(-47deg);
-      position: absolute;
-      top: 4px;
-      opacity: 0;
-      transition: 0.3s;
-    }
-  }
-}
-
-.btn-submit{
-  @include flex('c', 'c');
-  width: 100%;
-  height: 2.75rem;
-  border-radius: 2.25rem;
-  background: #00B140;
-  color: #FFF;
-  font-size: 1.25rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: 0.3s;
-  transition-delay: 1.3s;
-  opacity: 0;
-
-  &:hover{
-    background: #00bd47;
-  }
-}
-
-.def-input{
-  width: 100%;
-  display: flex;
-  justify-content: start;
-  align-items: start;
-  flex-direction: column;
-  margin-bottom: 0.625rem;
-  &.active{
-    span{
-      transform: translateY(0);
-      opacity: 1;
-      font-size: 0.9rem;
-    }
-    input, textarea{
-      border-bottom: 2px solid #00B140;
-    }
-  }
-  span{
-    font-style: normal;
-    font-weight: 400;
-    font-size: 1.25rem;
-    line-height: 1.4375rem;
-    color: #000;
-    transform: translateY(2.1875rem);
-    transition: 0.3s;
-    cursor: text;
-    opacity: 0.9;
-  }
-  input, textarea{
-    width: 100% !important;
-    height: 3.125rem;
-    border: 0;
-    border-bottom: 2px solid #000;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 1.125rem;
-    line-height: 1.4375rem;
-    color: #000;
-    transition: 0.3s;
-    resize: none;
-  }
-
-  &-error{
-    color: #EA4001;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 19.6px;
-    letter-spacing: -0.1px;
-    margin-top: 5px;
-    //opacity: 0;
-  }
-}
 
 
 

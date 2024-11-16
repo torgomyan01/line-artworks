@@ -60,22 +60,39 @@ const sliderInfo = [
 
 const footerHashtags = $el('.footer-hashtags');
 const sliderContentInfoContent = $el('.slider-content-info-content');
+const _mobileSliderBody = $el('.mobile-slider-body');
+const mobileSliderHashtags = $el('.mobile-slider-hashtags');
 
 const PrintHashtagItem = (item, index) => `<span class="footer-hashtags-item ${index === 0 ? 'active' : ''}">#${item.hashtag}</span>`;
+const PrintHashtagItemMobile = (item, index) => `<span class="mobile-slider-hashtags-item ${index === 0 ? 'active' : ''}">#${item.hashtag}</span>`;
 
 sliderInfo.forEach((item, index) => {
 
   footerHashtags.insertAdjacentHTML('beforeend', PrintHashtagItem(item, index))
+  mobileSliderHashtags.insertAdjacentHTML('beforeend', PrintHashtagItemMobile(item, index))
 
   const title = item.title.split('|').map((titleItem) => `<span>${titleItem}</span> <br />`).join('')
 
   sliderContentInfoContent.insertAdjacentHTML('beforeend', `
   
     <div class="slider-content-item">
-       <img src="${item.img}" class="slider-content-item-img" alt="slider" width="1560" height="884">
+       <img src="${item.img}" class="${title}" alt="slider" width="1560" height="884">
        <h4 class="slider-content-item-type">${item.type}</h4>
        <h2 class="slider-content-item-title">${title}</h2>
     </div>
+  
+  `)
+
+
+  _mobileSliderBody.insertAdjacentHTML('beforeend', `
+  
+     <div class="mobile-slider-item">
+        <img src="${item.img}" alt="${title}">
+        <div class="mobile-slider-item-content">
+          <h4>${item.type}</h4>
+          <h2>${title}</h2>
+        </div>
+      </div>
   
   `)
 
@@ -639,3 +656,203 @@ sliderContentMaxTitle.forEach((item) => {
   }
 
 })
+
+
+
+// --------------------------------------------------------
+// ------------------- MOBILE VERSION ---------------------
+// --------------------------------------------------------
+
+let SBWidth = 0;
+const _sliderItems = $('.mobile-slider-item');
+
+window.addEventListener('resize', function (){
+  startCalcSliderWidth();
+  nextMobileSlider();
+})
+
+startCalcSliderWidth()
+
+
+function startCalcSliderWidth(){
+  const mobileSliderBody = $el('.mobile-slider-body');
+  const mobileSliderItem = _sliderItems;
+
+  SBWidth = (window.innerWidth * mobileSliderItem.length) + ((mobileSliderItem.length - 1) * 17) - window.innerWidth
+
+  mobileSliderBody.style.width = `${SBWidth}px`;
+}
+
+
+
+const mobileSlider = $el('.mobile-slider');
+const mobileSliderBody = $el('.mobile-slider-body');
+const mobileSliderHashtagsItem  = $('.mobile-slider-hashtags-item ');
+const progressBarMobile = $el('.progress-bar-mobile');
+let percentMobile = 0;
+let intMobile;
+
+let activeMobileSlider = 0;
+const _gap = 17;
+let sliderX = 0;
+let startX = 0;
+let startY = 0;
+let endX = 0;
+let endY = 0;
+
+
+mobileSlider.addEventListener('touchstart', (event) => {
+  const touch = event.touches[0];
+  startX = touch.clientX;
+  startY = touch.clientY;
+});
+
+mobileSlider.addEventListener('touchend', (event) => {
+  const touch = event.changedTouches[0];
+  endX = touch.clientX;
+  endY = touch.clientY;
+
+  handleSwipe();
+});
+
+function handleSwipe() {
+  const deltaX = endX - startX;
+  const deltaY = endY - startY;
+
+  if (Math.abs(deltaX) > Math.abs(deltaY)) {
+    if (deltaX > 50) {
+      prevMobileSlider()
+    } else if (deltaX < -50) {
+      nextMobileSlider()
+    }
+  }
+}
+
+
+function nextMobileSlider(){
+  activeMobileSlider += 1;
+  sliderX -= window.innerWidth + _gap;
+
+  if(sliderX < -SBWidth){
+    sliderX = 0;
+  }
+
+  if (activeMobileSlider > sliderInfo.length - 1) {
+    activeMobileSlider = 0;
+  }
+
+  changeActiveHashtagsMobile()
+
+  AnimationSliderMobile();
+}
+
+function prevMobileSlider(){
+  activeMobileSlider -= 1;
+  sliderX += window.innerWidth + _gap;
+
+
+  if(sliderX > -SBWidth){
+    sliderX = 0;
+  }
+
+  if (activeMobileSlider < 0) {
+    activeMobileSlider = 0;
+  }
+
+  changeActiveHashtagsMobile();
+
+  AnimationSliderMobile();
+}
+
+
+function AnimationSliderMobile(){
+  mobileSlider.classList.add('scale')
+
+  setTimeout(() => {
+    mobileSliderBody.style.transform = `translateX(${sliderX}px)`;
+
+    setTimeout(() => {
+      mobileSliderBody.style.transform = `translateX(${sliderX}px)`;
+
+      mobileSlider.classList.remove('scale')
+    }, 1000)
+  }, 300)
+}
+
+
+function changeActiveHashtagsMobile(){
+  mobileSliderHashtagsItem.forEach((item) => {
+    item.classList.remove(active);
+  })
+
+  setTimeout(() => {
+    mobileSliderHashtagsItem[activeMobileSlider].classList.add(active);
+  }, 1300)
+
+}
+
+mobileSliderHashtagsItem.forEach((item, index) => {
+  item.addEventListener('click', function (){
+    percentMobile = 0;
+    activeMobileSlider = index;
+
+    sliderX = -(window.innerWidth + _gap) * activeMobileSlider;
+
+    changeActiveHashtagsMobile();
+
+    AnimationSliderMobile();
+  })
+})
+
+
+setTimeout(() => {
+  startMobileSlidingProcess()
+}, 10000)
+
+function startMobileSlidingProcess(){
+  intMobile = startMobileAutoLoadingSlider();
+}
+
+function startMobileAutoLoadingSlider() {
+  return setInterval(() => {
+    percentMobile += 1;
+    progressBarMobile.setAttribute('style', `--percentMobile: ${percentMobile}%`);
+
+    if (percentMobile === 100) {
+      percentMobile = 0;
+      activeMobileSlider += 1;
+
+      if (activeMobileSlider === sliderInfo.length) {
+        console.log('chka ?')
+        activeMobileSlider = 0;
+      }
+
+      sliderX = -(window.innerWidth + _gap) * activeMobileSlider;
+
+      changeActiveHashtagsMobile();
+
+      AnimationSliderMobile();
+    }
+  }, 100)
+}
+
+
+const mobileButtonsNext = $el('.mobile-buttons-next');
+const mobileButtonsPrev = $el('.mobile-buttons-prev');
+
+mobileButtonsNext.addEventListener('click', function (){
+  progressBarMobile.setAttribute('style', `--percentMobile: 0%`);
+
+  clearInterval(intMobile)
+
+  nextMobileSlider();
+})
+
+mobileButtonsPrev.addEventListener('click', function (){
+  progressBarMobile.setAttribute('style', `--percentMobile: 0%`);
+  clearInterval(intMobile)
+
+  prevMobileSlider();
+})
+
+

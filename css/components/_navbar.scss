@@ -98,33 +98,43 @@
       }
 
       @keyframes anim-logo-768 {
-        @include navbarLogoAnim(36.875rem, 30px, 45px);
+        @include navbarLogoAnim(36.875rem, 37px, 45px);
       }
 
       @keyframes anim-logo-576 {
-        @include navbarLogoAnim(18.125rem, 30px, 30px, 17px);
+        @include navbarLogoAnim(18.125rem, 30px, 28px, 45px);
+      }
+
+      @keyframes anim-logo-375 {
+        @include navbarLogoAnim(18.125rem, 30px, 28px, 30px);
       }
 
       @media (max-width: 1180px){
-        animation: anim-logo-1180 infinite 5s;
+        animation: anim-logo-1180 infinite 9s;
         animation-delay: 3s;
         animation-iteration-count: 1;
         animation-fill-mode: both;
       }
       @media (max-width: 1024px){
-        animation: anim-logo-1024 infinite 5s;
+        animation: anim-logo-1024 infinite 9s;
         animation-delay: 3s;
         animation-iteration-count: 1;
         animation-fill-mode: both;
       }
       @media (max-width: 768px){
-        animation: anim-logo-768 infinite 5s;
+        animation: anim-logo-768 infinite 9s;
         animation-delay: 3s;
         animation-iteration-count: 1;
         animation-fill-mode: both;
       }
       @media (max-width: 576px){
-        animation: anim-logo-576 infinite 5s;
+        animation: anim-logo-576 infinite 9s;
+        animation-delay: 3s;
+        animation-iteration-count: 1;
+        animation-fill-mode: both;
+      }
+      @media (max-width: 375px){
+        animation: anim-logo-375 infinite 9s;
         animation-delay: 3s;
         animation-iteration-count: 1;
         animation-fill-mode: both;
@@ -142,7 +152,7 @@
     @include flex('s', 'c');
     cursor: pointer;
     transition: 0.3s;
-    opacity: 0;
+    opacity: 1;
     animation: anim-nav-menu infinite 1s;
     animation-delay: 9s;
     animation-iteration-count: 1;
