@@ -11,6 +11,11 @@
 
   .container{
     @include flex('sb','c');
+
+    @media (max-width: 576px){
+      padding-left: 0;
+      padding-right: 0;
+    }
   }
   &-logo{
     img{
@@ -102,7 +107,7 @@
       }
 
       @keyframes anim-logo-576 {
-        @include navbarLogoAnim(18.125rem, 1.875rem, 2.1rem, 1rem, 4rem);
+        @include navbarLogoAnim(18.125rem, 1.875rem, 2.15rem, 1rem, 4rem);
       }
 
       //@keyframes anim-logo-375 {
@@ -157,6 +162,10 @@
     animation-delay: 9s;
     animation-iteration-count: 1;
     animation-fill-mode: both;
+
+    @media (max-width: 576px){
+      margin-right: -5px;
+    }
 
     @keyframes anim-nav-menu {
       0%{
