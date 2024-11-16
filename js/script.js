@@ -741,6 +741,9 @@ function nextMobileSlider(){
     activeMobileSlider = 0;
   }
 
+  percentMobile = 0;
+  progressBarMobile.setAttribute('style', `--percentMobile: ${percentMobile}%`);
+
   changeActiveHashtagsMobile()
 
   AnimationSliderMobile();
@@ -758,6 +761,9 @@ function prevMobileSlider(){
   if (activeMobileSlider < 0) {
     activeMobileSlider = 0;
   }
+
+  percentMobile = 0;
+  progressBarMobile.setAttribute('style', `--percentMobile: ${percentMobile}%`);
 
   changeActiveHashtagsMobile();
 
@@ -823,7 +829,6 @@ function startMobileAutoLoadingSlider() {
       activeMobileSlider += 1;
 
       if (activeMobileSlider === sliderInfo.length) {
-        console.log('chka ?')
         activeMobileSlider = 0;
       }
 

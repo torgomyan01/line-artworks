@@ -26,7 +26,7 @@
       animation-fill-mode: both;
       opacity: 0;
 
-      @mixin navbarLogoAnim($logoWidth: 36.875rem, $logoLeft: 8.125rem, $top: 3.125rem, $topCalc: 27px) {
+      @mixin navbarLogoAnim($logoWidth: 36.875rem, $logoLeft: 8.125rem, $top: 3.125rem, $topCalc: 1.6875rem, $goTop: 5.625rem) {
         0%{
           opacity: 0;
           top: calc(50vh - #{$topCalc});
@@ -57,21 +57,21 @@
         }
         43%{
           opacity: 1;
-          top: calc(50vh - 90px);
+          top: calc(50vh - #{$goTop});
           left: 50%;
           transform: translateX(-50%);
           width: $logoWidth;
         }
         55%{
           opacity: 1;
-          top: calc(50vh - 90px);
+          top: calc(50vh - #{$goTop});
           left: 50%;
           transform: translateX(-50%);
           width: $logoWidth;
         }
         80%{
           opacity: 1;
-          top: calc(50vh - 90px);
+          top: calc(50vh - #{$goTop});
           left: 50%;
           transform: translateX(-50%);
           width: $logoWidth;
@@ -90,24 +90,24 @@
       }
 
       @keyframes anim-logo-1180 {
-        @include navbarLogoAnim(36.875rem, 75px);
+        @include navbarLogoAnim(36.875rem, 4.6875rem);
       }
 
       @keyframes anim-logo-1024 {
-        @include navbarLogoAnim(36.875rem, 30px);
+        @include navbarLogoAnim(36.875rem, 1.875rem);
       }
 
       @keyframes anim-logo-768 {
-        @include navbarLogoAnim(36.875rem, 37px, 45px);
+        @include navbarLogoAnim(36.875rem, 2.3125rem, 2.8125rem);
       }
 
       @keyframes anim-logo-576 {
-        @include navbarLogoAnim(18.125rem, 30px, 28px, 45px);
+        @include navbarLogoAnim(18.125rem, 1.875rem, 2.1rem, 1rem, 4rem);
       }
 
-      @keyframes anim-logo-375 {
-        @include navbarLogoAnim(18.125rem, 30px, 28px, 30px);
-      }
+      //@keyframes anim-logo-375 {
+      //  @include navbarLogoAnim(18.125rem, 1.875rem, 1.75rem, 1.875rem, 0);
+      //}
 
       @media (max-width: 1180px){
         animation: anim-logo-1180 infinite 9s;
@@ -133,12 +133,12 @@
         animation-iteration-count: 1;
         animation-fill-mode: both;
       }
-      @media (max-width: 375px){
-        animation: anim-logo-375 infinite 9s;
-        animation-delay: 3s;
-        animation-iteration-count: 1;
-        animation-fill-mode: both;
-      }
+      //@media (max-width: 375px){
+      //  animation: anim-logo-375 infinite 9s;
+      //  animation-delay: 3s;
+      //  animation-iteration-count: 1;
+      //  animation-fill-mode: both;
+      //}
 
       @media (max-width: 576px){
         width: 145px;
