@@ -1004,7 +1004,7 @@ if (document.body.dataset.page === 'studio'){
 
     const totalWidth = item.scrollWidth / 2; // Ընդհանուր թրեքի երկարությունը
 
-    const randomDuration = getRandomDuration(200, 300);
+    const randomDuration = getRandomDuration(200, 250);
 
     gsap.to(item, {
       x: -totalWidth, // Տանում ենք ձախ մինչև վերջ
