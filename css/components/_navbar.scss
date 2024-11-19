@@ -17,6 +17,23 @@
       padding-right: 0;
     }
   }
+
+  &.no-animation{
+    .nav-logo{
+      img{
+        animation: unset;
+        opacity: 1;
+        position: relative;
+        top: 0;
+        width: 200px;
+        height: auto;
+      }
+    }
+    .nav-menu{
+      opacity: 1;
+      animation: unset;
+    }
+  }
   &-logo{
     img{
       width: 36.875rem;

@@ -33,7 +33,7 @@
   outline: none;
   text-decoration: none;
   box-sizing: border-box;
-  scroll-behavior: smooth;
+  //scroll-behavior: smooth;
   font-family: "Schibsted Grotesk", sans-serif;
 }
 
@@ -102,6 +102,14 @@ body{
 
 // MOBILE SLIDER
 @import "components/mobile-slider";
+
+
+
+// ---------------------------------------
+// --------------- PAGES -----------------
+// ---------------------------------------
+
+@import "pages/studio";
 
 
 

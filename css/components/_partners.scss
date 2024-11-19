@@ -1,0 +1,55 @@
+.partners{
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  margin-top: 4rem;
+
+  &-item{
+    @include flex('s', 'c');
+    gap: 6.5625rem;
+    margin-bottom: 4rem;
+    transition: 0.3s;
+
+    img{
+      @media (max-width: 576px){
+        width: auto;
+        height: 40px;
+
+        &[src="images/partners/lukoil.svg"]{
+          height: 80px;
+        }
+        &[src="images/partners/wb.svg"]{
+          height: 30px;
+        }
+      }
+    }
+
+    @media (max-width: 768px){
+      margin-bottom: 2rem;
+    }
+  }
+
+  &-footer{
+    width: 100%;
+    @include flex('c', 'c');
+    height: 9rem;
+    span{
+      cursor: pointer;
+      color: #000;
+      font-size: 1.5rem;
+      font-weight: 400;
+      text-transform: uppercase;
+
+      @media (max-width: 576px) {
+        font-size: 16px;
+        i{
+          font-size: 14px;
+        }
+      }
+      i{
+        margin-left: 16px;
+        font-size: 18px;
+      }
+    }
+  }
+}
