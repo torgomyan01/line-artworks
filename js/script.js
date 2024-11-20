@@ -183,7 +183,7 @@ if (document.body.dataset.page === 'home'){
 
     sliderContentInfoContent?.insertAdjacentHTML('beforeend', `
     <div class="slider-content-item">
-       <img src="${item.img}" class="${title}" alt="slider" width="1560" height="884">
+       <img src="${item.img}" class="slider-content-item-img" alt="slider" width="1560" height="884">
        <h4 class="slider-content-item-type">${item.type}</h4>
        <h2 class="slider-content-item-title">${title}</h2>
     </div>
