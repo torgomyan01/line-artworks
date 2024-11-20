@@ -1,0 +1,457 @@
+body[data-page="projects"]{
+  overflow-y: auto;
+  .container{
+    max-width: 1180px;
+  }
+  scroll-behavior: unset;
+
+  .menu{
+    z-index: 100;
+  }
+
+  .nav .nav-logo img {
+    animation: unset;
+    opacity: 1;
+    position: relative;
+    top: 0;
+    left: 0;
+    transform: translateX(0);
+  }
+
+  .hidden{
+    height: auto;
+  }
+
+  .menu{
+    .container{
+      padding: 0 15px;
+    }
+  }
+  .nav .container {
+    padding: 0 15px;
+    img{
+      @media (max-width: 576px){
+        width: 145px;
+      }
+    }
+  }
+}
+
+.mt-64{
+  margin-top: 4rem;
+}
+
+.mb-64{
+  margin-bottom: 4rem;
+}
+
+.projects{
+  &-content{
+    width: 100%;
+    height: 100%;
+    .container{
+      @include flex('sb', 's');
+      $infoWidth: 15.4375rem;
+      height: 100%;
+      .info{
+        width: $infoWidth;
+        height: 100%;
+      }
+      .content{
+        width: calc(100% - #{$infoWidth});
+        padding-left: 4rem;
+        height: 100%;
+      }
+    }
+  }
+
+  &-header{
+    width: 100%;
+    height: calc(100vh - 7.625rem);
+    background: url("../images/projects/header.png") no-repeat center;
+    background-size: cover;
+
+    .content{
+      @include flex('s', 'e');
+      position: relative;
+    }
+    &-title{
+      align-self: stretch;
+      color: #fff;
+      font-family: "CapturaNow", serif;
+      font-size: 6rem;
+      font-style: normal;
+      font-weight: 800;
+      line-height: 100%;
+      text-transform: uppercase;
+      position: absolute;
+      left: 4rem;
+      bottom: -0.5rem;
+    }
+  }
+
+  &-slider{
+    width: 100%;
+    overflow: hidden;
+    height: auto;
+    margin-top: 2.5rem;
+    margin-bottom: 4rem;
+    &-body{
+      @include flex('s', 'c');
+      gap: 8px;
+      transition: 0.8s;
+      &-item{
+        height: 20.5rem;
+        transition: 0.3s;
+        opacity: 0.5;
+
+        &.active{
+          opacity: 1;
+        }
+
+        img{
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+    }
+  }
+
+  &-footer{
+    margin-bottom: 44px;
+    .container{
+      @include flex('sb', 'c');
+    }
+    &-hashtags{
+      @include flex('s', 'c');
+      gap: 1rem;
+    }
+    &-hashtag{
+      color: #7C7B7B;
+      font-size: 1.125rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 150%;
+      transition: 0.3s;
+      cursor: pointer;
+
+
+      &:hover{
+        color: #00B140;
+      }
+
+      &.active{
+        font-weight: 700;
+      }
+    }
+
+    &-contact{
+      color: #000;
+      font-size: 1.5rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      text-transform: uppercase;
+      cursor: pointer;
+      i{
+        font-size: 1.125rem;
+        margin-left: 16px;
+      }
+    }
+  }
+}
+
+.process-slider{
+  padding-top: 8rem;
+  height: 500px;
+  @include flex('c', 's');
+  .container{
+    @include flex('sb', 'c');
+  }
+
+  &-prev{
+    color: #000;
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 116%;
+    transition: 0.3s;
+    @include flex('s', 'c');
+    cursor: pointer;
+    position: relative;
+
+    i{
+      margin-right: 1.25rem;
+      font-size: 1.375rem;
+    }
+    &:hover{
+      color: #00B140;
+    }
+
+    &-info{
+      position: absolute;
+      left: calc(100% + 16px);
+      top: 0;
+      transform: translateY(-20%);
+      opacity: 0;
+      transition: 0.3s;
+
+      &.active{
+        opacity: 1;
+      }
+
+      img{
+        width: 22.5rem;
+        height: 10.375rem;
+        object-fit: cover;
+        margin-bottom: 1rem;
+      }
+      &-type{
+        align-self: stretch;
+        color: rgba(0, 0, 0, 0.81);
+        font-size: 1.25rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        margin-bottom: 1rem;
+      }
+      &-title{
+        align-self: stretch;
+        font-family: "CapturaNow", serif;
+        font-size: 2rem;
+        font-style: normal;
+        font-weight: 800;
+        line-height: 116%;
+        text-transform: uppercase;
+        color: #00B140;
+      }
+    }
+  }
+  &-next{
+    color: #000;
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 116%;
+    transition: 0.3s;
+    @include flex('e', 'c');
+    cursor: pointer;
+    position: relative;
+
+    i{
+      margin-left: 1.25rem;
+      font-size: 1.375rem;
+    }
+    &:hover{
+      color: #00B140;
+    }
+
+    &-info{
+      position: absolute;
+      right: calc(100% + 16px);
+      top: 0;
+      transform: translateY(-20%);
+      opacity: 0;
+      transition: 0.3s;
+
+      &.active{
+        opacity: 1;
+      }
+
+      img{
+        width: 22.5rem;
+        height: 10.375rem;
+        object-fit: cover;
+        margin-bottom: 1rem;
+      }
+      &-type{
+        align-self: stretch;
+        color: rgba(0, 0, 0, 0.81);
+        font-size: 1.25rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        margin-bottom: 1rem;
+      }
+      &-title{
+        align-self: stretch;
+        font-family: "CapturaNow", serif;
+        font-size: 2rem;
+        font-style: normal;
+        font-weight: 800;
+        line-height: 116%;
+        text-transform: uppercase;
+        color: #00B140;
+      }
+    }
+  }
+}
+
+
+.wrapper{
+  .info{
+    padding-top: 64px;
+  }
+  &-info{
+    color: rgba(0, 0, 0, 0.81);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 21px;
+    padding-top: 16px;
+    border-top: 1px solid #E7E7E7;
+
+    &:nth-of-type(1){
+      margin-bottom: 500px;
+    }
+  }
+
+  &-title{
+    align-self: stretch;
+    font-size: 6rem;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 100%;
+    text-transform: uppercase;
+    color: #00B140;
+    margin-top: 20px;
+    position: relative;
+    margin-bottom: 7.5rem;
+    img{
+      position: absolute;
+      left: 30%;
+      bottom: -3.5rem;
+    }
+  }
+
+  .section{
+    &-max-image{
+      width: 100%;
+      height: auto;
+      margin-bottom: 4rem;
+
+      &.amwaj-user{
+        width: 100%;
+        max-width: 556px;
+      }
+    }
+    &-text{
+      width: 100%;
+      max-width: 620px;
+      color: rgba(0, 0, 0, 0.81);
+      font-size: 1.125rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 150%;
+      margin-bottom: 4rem;
+      span{
+        color: #fff;
+        background-color: #00B140;
+      }
+    }
+    &-images{
+      width: 100%;
+      height: auto;
+      margin-bottom: 8rem;
+      @include flex('sb', 's');
+      gap: 4rem;
+      img{
+        width: calc((100% / 2) - 2rem);
+        height: auto;
+        &:nth-of-type(2){
+          position: relative;
+          top: 4rem;
+        }
+      }
+    }
+
+    &-title{
+      color: #00B140;
+      font-family: "CapturaNow", serif;
+      font-size: 3rem;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 116%;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 2.5rem;
+
+      &.one{
+        margin-bottom: 0.5rem;
+      }
+    }
+    &-subtitle{
+      color: #000;
+      font-size: 1.25rem;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 130%;
+      margin-bottom: 2rem;
+    }
+    &-selected-text{
+      width: 100%;
+      max-width: 496px;
+      color: rgba(0, 0, 0, 0.81);
+      font-size: 2rem;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 140%;
+      border-left: 1px solid #00B140;
+      margin-bottom: 4rem;
+      padding-left: 1.5rem;
+      i{
+        display: block;
+        color: #00B140;
+        font-size: 20px;
+        margin-bottom: 16px;
+      }
+    }
+    &-backstage{
+      @include flex('sb', 'c');
+      margin-top: 8rem;
+      color: #00B140;
+      font-size: 3rem;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 116%;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+
+      &-socials{
+        @include flex('e', 'c');
+        gap: 1.875rem;
+        a{
+          svg, path{
+            transition: 0.3s;
+          }
+
+          &:hover{
+            path{
+              stroke: #00B140;
+            }
+          }
+
+          &:nth-of-type(2){
+            transform: translateY(5px);
+          }
+
+          &:nth-of-type(3){
+            &:hover{
+              path{
+                fill: #00B140;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+
+
+
+

@@ -31,6 +31,26 @@
   background-position: center center;
   background-size: cover;
 }
+//
+//$sizes: 1;
+//
+//
+//@for $i from 2 through 100 {
+//  $sizes: append($sizes, $i)
+//}
+//
+//@each $size in $sizes {
+//  .fs-#{$size} {
+//    font-size: #{$size}px;
+//  }
+//}
+//
+//@each $size in $sizes {
+//  .mt-#{$size} {
+//    margin-top: #{$size}px;
+//  }
+//}
+
 
 // HELPER SECTION
 
