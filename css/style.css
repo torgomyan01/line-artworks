@@ -2619,6 +2619,11 @@ body[data-page=projects] .nav .container {
   position: relative;
   margin-bottom: 7.5rem;
 }
+@media (max-width: 768px) {
+  .wrapper-title {
+    margin-bottom: 10.5rem;
+  }
+}
 .wrapper-title span {
   display: none;
 }
@@ -2646,6 +2651,12 @@ body[data-page=projects] .nav .container {
   position: absolute;
   left: 30%;
   bottom: -3.5rem;
+}
+@media (max-width: 576px) {
+  .wrapper-title img {
+    width: 210px;
+    bottom: -4rem;
+  }
 }
 .wrapper .section-max-image {
   width: 100%;

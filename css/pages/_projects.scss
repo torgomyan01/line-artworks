@@ -416,6 +416,11 @@ body[data-page="projects"]{
     margin-top: 20px;
     position: relative;
     margin-bottom: 7.5rem;
+
+    @media (max-width: 768px){
+      margin-bottom: 10.5rem;
+    }
+
     span{
       display: none;
 
@@ -439,7 +444,8 @@ body[data-page="projects"]{
       bottom: -3.5rem;
 
       @media (max-width: 576px){
-
+        width: 210px;
+        bottom: -4rem;
       }
     }
   }
