@@ -506,7 +506,13 @@ if (document.body.dataset.page === 'home'){
 
     setTimeout(() => {
       footerHashtagsItem.forEach((item) => item.classList.remove(active))
-      footerHashtagsItem[sliderActiveIndex].classList.add(active);
+
+      const getHashtag = $(`[data-hashtag="${getActiveInfo.hashtag}"]`);
+
+      getHashtag.forEach((item) => {
+        item.classList.add(active)
+      })
+
     }, 1000)
 
     sliderContentButtonsPrev?.setAttribute('data-active', randomId);
