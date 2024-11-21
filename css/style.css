@@ -1727,11 +1727,15 @@ body.active-slider .slider-content-info {
 }
 .mobile-slider-item-content h2 {
   align-self: stretch;
+  font-family: "CapturaNow", serif;
   color: #00B140;
   font-size: 32px;
   font-weight: 800;
   line-height: 116%;
   text-transform: uppercase;
+}
+.mobile-slider-item-content h2 span {
+  font-family: "CapturaNow", serif;
 }
 .mobile-slider-item-content h2 br {
   display: none;

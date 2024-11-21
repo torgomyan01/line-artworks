@@ -113,11 +113,15 @@
         }
         h2{
           align-self: stretch;
+          font-family: "CapturaNow", serif;
           color: #00B140;
           font-size: 32px;
           font-weight: 800;
           line-height: 116%;
           text-transform: uppercase;
+          span{
+            font-family: "CapturaNow", serif;
+          }
           br{
             display: none;
           }
