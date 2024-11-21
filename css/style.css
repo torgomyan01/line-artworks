@@ -1362,9 +1362,9 @@ body.active-slider .slider-content-info {
 .menu .btn-submit {
   margin-top: -10px;
 }
-@media (max-width: 768px) {
+@media (max-height: 768px) {
   .menu .btn-submit {
-    margin-top: 10px;
+    margin-top: 20px;
   }
 }
 .menu-back-contact {
