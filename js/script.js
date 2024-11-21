@@ -85,6 +85,7 @@ const menuRightContent = $('.menu-right-content');
 navMenu?.addEventListener('click', function () {
   if (navMenu.classList.contains(active)) {
 
+    document.body.style.overflow = null;
     navMenu.classList.remove(active);
     menu.classList.remove(active);
     menu.querySelector('.menu-items').classList.remove(active);
@@ -97,6 +98,7 @@ navMenu?.addEventListener('click', function () {
     }, 1500);
 
   } else {
+    document.body.style.overflow = 'hidden';
     navMenu.classList.add(active);
     menu.style.width = '100%';
     nav.style.backgroundColor = '#fff';
@@ -162,6 +164,80 @@ menuRightLanguageItem.forEach((tab) => {
   })
 })
 
+
+// DEFAULT INPUT
+const inpLabel = $('.def-input');
+
+startWorkingTextFields($('.def-input input'), inpLabel); // FOR INPUTS
+startWorkingTextFields($('.def-input textarea'), inpLabel); // FOR LABELS
+
+function startWorkingTextFields(inputs, parents) {
+  inputs.forEach((item) => {
+    item?.addEventListener('blur', function () {
+      parents.forEach((inp) => {
+        if (inp.querySelector('input')?.value === '' || inp.querySelector('textarea')?.value === '') {
+          inp.classList.remove(active)
+        }
+      })
+    })
+
+    item?.addEventListener('input', function () {
+      validateInput(item)
+    })
+  })
+
+  inputs.forEach((item) => {
+    item?.addEventListener('focus', function () {
+      item.parentElement.classList.add(active)
+    })
+  })
+}
+
+
+function validateInput(input) {
+  const validations = input.getAttribute('data-validation')?.split(',');
+  const value = input.value.trim();
+  let errorMessage = '';
+
+  validations.forEach(validation => {
+    if (errorMessage) return;
+
+    if (validation === 'required' && value === '') {
+      errorMessage = 'This field is required';
+    } else if (validation === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+      errorMessage = 'Please enter a valid email address';
+    } else if (validation.startsWith('textMin-')) {
+      const minLength = parseInt(validation.split('-')[1], 10);
+      if (value.length < minLength) {
+        errorMessage = `Text must be at least ${minLength} characters long`;
+      }
+    } else if (validation.startsWith('textMax-')) {
+      const maxLength = parseInt(validation.split('-')[1], 10);
+      if (value.length > maxLength) {
+        errorMessage = `Text must have a maximum of ${maxLength} characters`;
+      }
+    } else if (validation === 'phone' && !/^\+?\d{3,30}$/.test(value)) {
+      errorMessage = 'Enter a valid phone number';
+    }
+  });
+
+  const errorSpan = input.parentElement;
+  errorSpan.querySelectorAll('b').forEach((item) => {
+    item.outerHTML = '';
+    console.log(222)
+  })
+
+
+  if (errorMessage) {
+    errorSpan.insertAdjacentHTML('beforeend', `
+      <b class="def-input-error">
+        <i class="icon-warning"></i>
+        ${errorMessage}
+      </b>
+    `)
+  }
+
+}
 
 
 
@@ -610,79 +686,6 @@ if (document.body.dataset.page === 'home'){
   }
 
 
-// DEFAULT INPUT
-  const inpLabel = $('.def-input');
-
-  startWorkingTextFields($('.def-input input'), inpLabel); // FOR INPUTS
-  startWorkingTextFields($('.def-input textarea'), inpLabel); // FOR LABELS
-
-  function startWorkingTextFields(inputs, parents) {
-    inputs.forEach((item) => {
-      item?.addEventListener('blur', function () {
-        parents.forEach((inp) => {
-          if (inp.querySelector('input')?.value === '' || inp.querySelector('textarea')?.value === '') {
-            inp.classList.remove(active)
-          }
-        })
-      })
-
-      item?.addEventListener('input', function () {
-        validateInput(item)
-      })
-    })
-
-    inputs.forEach((item) => {
-      item?.addEventListener('focus', function () {
-        item.parentElement.classList.add(active)
-      })
-    })
-  }
-
-
-  function validateInput(input) {
-    const validations = input.getAttribute('data-validation')?.split(',');
-    const value = input.value.trim();
-    let errorMessage = '';
-
-    validations.forEach(validation => {
-      if (errorMessage) return;
-
-      if (validation === 'required' && value === '') {
-        errorMessage = 'This field is required';
-      } else if (validation === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
-        errorMessage = 'Please enter a valid email address';
-      } else if (validation.startsWith('textMin-')) {
-        const minLength = parseInt(validation.split('-')[1], 10);
-        if (value.length < minLength) {
-          errorMessage = `Text must be at least ${minLength} characters long`;
-        }
-      } else if (validation.startsWith('textMax-')) {
-        const maxLength = parseInt(validation.split('-')[1], 10);
-        if (value.length > maxLength) {
-          errorMessage = `Text must have a maximum of ${maxLength} characters`;
-        }
-      } else if (validation === 'phone' && !/^\+?\d{3,30}$/.test(value)) {
-        errorMessage = 'Enter a valid phone number';
-      }
-    });
-
-    const errorSpan = input.parentElement;
-    errorSpan.querySelectorAll('b').forEach((item) => {
-      item.outerHTML = '';
-      console.log(222)
-    })
-
-
-    if (errorMessage) {
-      errorSpan.insertAdjacentHTML('beforeend', `
-      <b class="def-input-error">
-        <i class="icon-warning"></i>
-        ${errorMessage}
-      </b>
-    `)
-    }
-
-  }
 
 
   const sliderContentMaxTitle = $('.slider-content-item-title');

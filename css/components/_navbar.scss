@@ -215,6 +215,10 @@
     &.active{
       .nav-menu-icon{
         top: -3px;
+
+        @media (max-width: 576px){
+          top: -4px;
+        }
         &:after{
           transform: rotate(45deg);
           width: 17px;
