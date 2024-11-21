@@ -2388,9 +2388,19 @@ body[data-page=projects] .nav .container {
   text-transform: uppercase;
   cursor: pointer;
 }
+@media (max-width: 768px) {
+  .projects-footer-contact {
+    font-size: 16px;
+  }
+}
 .projects-footer-contact i {
   font-size: 1.125rem;
   margin-left: 16px;
+}
+@media (max-width: 768px) {
+  .projects-footer-contact i {
+    font-size: 13px;
+  }
 }
 
 .process-slider {

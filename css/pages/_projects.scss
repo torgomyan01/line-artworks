@@ -183,9 +183,17 @@ body[data-page="projects"]{
       line-height: normal;
       text-transform: uppercase;
       cursor: pointer;
+
+      @media (max-width: 768px){
+        font-size: 16px;
+      }
+
       i{
         font-size: 1.125rem;
         margin-left: 16px;
+        @media (max-width: 768px){
+          font-size: 13px;
+        }
       }
     }
   }
