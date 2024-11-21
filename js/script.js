@@ -1105,34 +1105,37 @@ if (document.body.dataset.page === 'projects'){
 
     if(Text === 'View'){
       item.addEventListener('click', function (e){
-        const rect = e.target.getBoundingClientRect();
-        modalImage.src = e.target.src;
-        modal.style.display = 'flex';
 
-        imageOldPosition.x = rect.x;
-        imageOldPosition.y = rect.y;
-        imageOldPosition.width = rect.width;
-        imageOldPosition.height = rect.height;
+        if(window.innerWidth > 767){
+          const rect = e.target.getBoundingClientRect();
+          modalImage.src = e.target.src;
+          modal.style.display = 'flex';
 
-        modalImage.style.left = `${rect.x}px`;
-        modalImage.style.top = `${rect.y}px`;
+          imageOldPosition.x = rect.x;
+          imageOldPosition.y = rect.y;
+          imageOldPosition.width = rect.width;
+          imageOldPosition.height = rect.height;
 
-        modalImage.style.width = `${rect.width}px`;
-        modalImage.style.height = `${rect.height}px`;
+          modalImage.style.left = `${rect.x}px`;
+          modalImage.style.top = `${rect.y}px`;
 
-        const img = new Image();
-        img.src = e.target.src;
+          modalImage.style.width = `${rect.width}px`;
+          modalImage.style.height = `${rect.height}px`;
 
-        modalImage.style.transition = `1s`;
+          const img = new Image();
+          img.src = e.target.src;
 
-        img.onload = () => {
-          setTimeout(() => {
-            modalImage.style.left = `50%`;
-            modalImage.style.top = `50%`;
-            modalImage.style.transform = `translate(-50%, -50%)`;
-            modalImage.style.width = `${img.naturalWidth}px`;
-            modalImage.style.height = `${img.naturalHeight}px`;
-          }, 200)
+          modalImage.style.transition = `1s`;
+
+          img.onload = () => {
+            setTimeout(() => {
+              modalImage.style.left = `50%`;
+              modalImage.style.top = `50%`;
+              modalImage.style.transform = `translate(-50%, -50%)`;
+              modalImage.style.width = `${img.naturalWidth}px`;
+              modalImage.style.height = `${img.naturalHeight}px`;
+            }, 200)
+          }
         }
       })
     }
