@@ -43,10 +43,7 @@
   }
 
   .btn-submit{
-    margin-top: -10px;
-    @media (max-height: 768px){
-      margin-top: 20px;
-    }
+    margin-top: 20px;
   }
 
   &-back-contact{
@@ -88,13 +85,13 @@
 
 
     .def-input{
-      height: 10vh;
+      height: 70px;
       transform: translateY(100px);
       transition: 0.8s;
       opacity: 0;
       textarea{
-        margin-top: -2vh;
-        min-height: 18.5vh;
+        margin-top: 0;
+        min-height: 150px;
         @media (max-width: 1024px){
           margin-top: 10px;
         }
@@ -105,7 +102,7 @@
       }
       @media (max-width: 768px){
         height: 60px;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
       }
     }
 
