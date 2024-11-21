@@ -1369,7 +1369,7 @@ body.active-slider .slider-content-info {
 }
 @media (max-width: 576px) {
   .menu-back-contact {
-    left: 0;
+    left: 12px;
     top: -1rem;
   }
 }
