@@ -74,7 +74,7 @@ const sliderInfo = [
 // ------------------------------
 
 const navMenu = $el('.nav-menu');
-const footerContact = $el('.footer-contact');
+const footerContact = $('.footer-contact');
 const menuItemContact = $el('.menu-item-contact');
 const menuBackContact = $el('.menu-back-contact');
 const menu = $el('.menu');
@@ -110,17 +110,20 @@ navMenu?.addEventListener('click', function () {
 
 })
 
-footerContact?.addEventListener('click', function () {
-  window.scrollTo(0, 0)
-  navMenu.classList.add(active);
-  menu.style.width = '100%';
-  nav.style.backgroundColor = '#fff';
+footerContact.forEach((item) => {
+  item.addEventListener('click', function () {
+    window.scrollTo(0, 0)
+    navMenu.classList.add(active);
+    menu.style.width = '100%';
+    nav.style.backgroundColor = '#fff';
 
-  setTimeout(() => {
-    menu.classList.add(active);
-    menu.querySelector('.menu-contact').classList.add(active);
-  }, 1000)
+    setTimeout(() => {
+      menu.classList.add(active);
+      menu.querySelector('.menu-contact').classList.add(active);
+    }, 1000)
+  })
 })
+
 
 
 menuItemContact?.addEventListener('click', function () {
@@ -1010,7 +1013,7 @@ if (document.body.dataset.page === 'studio'){
 
     const totalWidth = item.scrollWidth / 2; // Ընդհանուր թրեքի երկարությունը
 
-    const randomDuration = getRandomDuration(200, 250);
+    const randomDuration = getRandomDuration(150, 200);
 
     gsap.to(item, {
       x: -totalWidth,
