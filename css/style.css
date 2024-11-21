@@ -1169,6 +1169,7 @@ body.active-slider .slider-content-info {
   top: 60px;
   transform-origin: left top;
   transform: scale(0.7);
+  min-width: 50rem;
 }
 .slider-content-item-title .type {
   font-size: 20px;
