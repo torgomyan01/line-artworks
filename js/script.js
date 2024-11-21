@@ -1079,4 +1079,29 @@ if (document.body.dataset.page === 'projects'){
   }
 
 
+
+  const dataMove = $('[data-move]');
+  const userDirection = $el('.user-direction');
+
+
+  dataMove.forEach((item) => {
+    const Text = item.dataset.move;
+    item.addEventListener('mouseenter', function (){
+      userDirection.style.opacity = '1';
+      userDirection.innerText = Text;
+    })
+    item.addEventListener('mouseleave', function (){
+      userDirection.style.opacity = '0';
+    })
+  })
+
+  window.addEventListener('mousemove', function (e){
+    const x = e.x;
+    const y = e.y;
+
+    userDirection.style.left = `${x}px`;
+    userDirection.style.top = `${y}px`;
+    console.log(e.x)
+  })
+
 }
