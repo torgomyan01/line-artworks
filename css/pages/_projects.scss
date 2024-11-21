@@ -106,6 +106,9 @@ body[data-page="projects"]{
         left: 32px;
         font-size: 5rem;
       }
+      @media (max-width: 700px) {
+        display: none;
+      }
     }
   }
 
@@ -141,10 +144,17 @@ body[data-page="projects"]{
     margin-bottom: 44px;
     .container{
       @include flex('sb', 'c');
+      @media (max-width: 850px){
+        flex-direction: column;
+      }
     }
     &-hashtags{
       @include flex('s', 'c');
       gap: 1rem;
+
+      @media (max-width: 850px){
+        display: none;
+      }
     }
     &-hashtag{
       color: #7C7B7B;
@@ -185,8 +195,17 @@ body[data-page="projects"]{
   padding-top: 8rem;
   height: 500px;
   @include flex('c', 's');
+
+  @media (max-width: 850px){
+    height: 400px;
+  }
+  @media (max-width: 576px){
+    height: 450px;
+  }
+
   .container{
     @include flex('sb', 'c');
+    padding: 0 32px;
   }
 
   &-prev{
@@ -204,8 +223,20 @@ body[data-page="projects"]{
       margin-right: 1.25rem;
       font-size: 1.375rem;
     }
+
+    span{
+      @media (max-width: 650px){
+        display: none;
+      }
+    }
     &:hover{
       color: #00B140;
+
+      .process-slider-prev-info{
+        @media (min-width: 650px){
+          opacity: 1;
+        }
+      }
     }
 
     &-info{
@@ -216,9 +247,6 @@ body[data-page="projects"]{
       opacity: 0;
       transition: 0.3s;
 
-      &.active{
-        opacity: 1;
-      }
 
       img{
         width: 22.5rem;
@@ -262,8 +290,33 @@ body[data-page="projects"]{
       margin-left: 1.25rem;
       font-size: 1.375rem;
     }
+    span{
+      @include flex('e', 'c');
+      @media (max-width: 650px){
+        display: none;
+      }
+    }
+
+    .up-next{
+      display: none;
+      color: #00B140;
+      text-align: right;
+      font-size: 22px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 140%;
+    }
+    @media (max-width: 650px){
+      .up-next{
+        display: block;
+      }
+    }
     &:hover{
       color: #00B140;
+
+      .process-slider-next-info{
+        opacity: 1;
+      }
     }
 
     &-info{
@@ -274,9 +327,24 @@ body[data-page="projects"]{
       opacity: 0;
       transition: 0.3s;
 
-      &.active{
+      @media (max-width: 650px){
         opacity: 1;
+        width: 100vw;
+        left: 0;
+        transform: translateX(calc(-100% + 114px)) translateY(60px);
+        img{
+          width: 100% !important;
+          height: 168px;
+        }
+        .process-slider-next-info-type{
+          padding-left: 32px;
+          margin-bottom: 4px;
+        }
+        .process-slider-next-info-title{
+          padding-left: 32px;
+        }
       }
+
 
       img{
         width: 22.5rem;
@@ -307,6 +375,17 @@ body[data-page="projects"]{
   }
 }
 
+.mobile-socials{
+  display: none;
+  justify-content: start;
+  align-items: center;
+  gap: 16px;
+  padding-left: 32px;
+
+  @media (max-width: 576px){
+    display: flex;
+  }
+}
 
 .wrapper{
   .info{
@@ -337,16 +416,34 @@ body[data-page="projects"]{
     margin-top: 20px;
     position: relative;
     margin-bottom: 7.5rem;
+    span{
+      display: none;
+
+      @media (max-width: 700px){
+        display: inline-block;;
+      }
+    }
 
     @media (max-width: 768px){
       padding-left: 32px;
+    }
+    @media (max-width: 700px){
+      font-size: 40px;
+    }
+    @media (max-width: 576px){
+      font-size: 32px;
     }
     img{
       position: absolute;
       left: 30%;
       bottom: -3.5rem;
+
+      @media (max-width: 576px){
+
+      }
     }
   }
+
 
   .section{
     &-max-image{
@@ -371,6 +468,10 @@ body[data-page="projects"]{
       &.amwaj-user{
         width: 100%;
         max-width: 556px;
+
+        @media (max-width: 620px){
+          max-width: calc(100% - 64px);
+        }
       }
     }
     &-text{
@@ -507,9 +608,13 @@ body[data-page="projects"]{
         padding: 0 32px;
       }
 
+
       &-socials{
         @include flex('e', 'c');
         gap: 1.875rem;
+        @media (max-width: 576px){
+          display: none;
+        }
         a{
           svg, path{
             transition: 0.3s;

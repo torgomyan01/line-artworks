@@ -1054,7 +1054,7 @@ if (document.body.dataset.page === 'projects'){
   function changeSlider(type){
     if(type === 'next'){
       activeItem += 1;
-      XPositionSlider = XPositionSlider - partContainer;
+      XPositionSlider = (XPositionSlider - partContainer) - 8;
 
       if(activeItem > projectsSliderBodyItem.length - 1){
         XPositionSlider = 0;
@@ -1063,7 +1063,7 @@ if (document.body.dataset.page === 'projects'){
 
     } else if(type === 'prev') {
       activeItem -= 1;
-      XPositionSlider = XPositionSlider + partContainer;
+      XPositionSlider = (XPositionSlider + partContainer) - (activeItem * 8);
 
       if(activeItem < 0){
         XPositionSlider = defWindowCont
@@ -1078,62 +1078,5 @@ if (document.body.dataset.page === 'projects'){
     projectsSliderBody.style.transform = `translateX(${XPositionSlider}px)`;
   }
 
-
-  // HOVER TO NEXT
-  const processSliderNext = $el('.process-slider-next');
-  const processSliderNextInfo = $el('.process-slider-next-info');
-
-  processSliderNext.addEventListener('mouseenter', NextHover)
-
-  function NextHover(){
-    const _elem = projectsSliderBodyItem[activeItem + 1];
-    const imageUrl = _elem.querySelector('img').getAttribute('src');
-    const type = _elem.dataset.type;
-    const title = _elem.dataset.title;
-
-    processSliderNextInfo.querySelector('img').setAttribute('src', imageUrl);
-    processSliderNextInfo.querySelector('.process-slider-next-info-type').innerText = type;
-    processSliderNextInfo.querySelector('.process-slider-next-info-title').innerText = title;
-
-    processSliderNextInfo.classList.add(active);
-  }
-
-  processSliderNext.addEventListener('mouseout', function (){
-    processSliderNextInfo.classList.remove(active);
-  })
-
-  processSliderNext.addEventListener('click', function (){
-    clearInterval(intSlider)
-    changeSlider('next');
-    NextHover()
-  })
-
-  // HOVER TO PREV
-  const processSliderPrev = $el('.process-slider-prev');
-  const processSliderPrevInfo = $el('.process-slider-prev-info');
-
-  processSliderPrev.addEventListener('mouseenter', prevHover);
-
-  function prevHover(){
-    const _elem = projectsSliderBodyItem[activeItem - 1 < 0 ? 0 : activeItem - 1];
-    const imageUrl = _elem.querySelector('img').getAttribute('src');
-    const type = _elem.dataset.type;
-    const title = _elem.dataset.title;
-
-    processSliderPrevInfo.querySelector('img').setAttribute('src', imageUrl);
-    processSliderPrevInfo.querySelector('.process-slider-prev-info-type').innerText = type;
-    processSliderPrevInfo.querySelector('.process-slider-prev-info-title').innerText = title;
-
-    processSliderPrevInfo.classList.add(active);
-  }
-
-  processSliderPrev.addEventListener('mouseout', function (){
-    processSliderPrevInfo.classList.remove(active)
-  })
-  processSliderPrev.addEventListener('click', function (){
-    clearInterval(intSlider)
-    changeSlider('prev');
-    prevHover()
-  })
 
 }
