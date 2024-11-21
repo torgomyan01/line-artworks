@@ -1082,7 +1082,16 @@ if (document.body.dataset.page === 'projects'){
 
   const dataMove = $('[data-move]');
   const userDirection = $el('.user-direction');
-
+  const modalClose = $el('.modal-close');
+  const gallery = document.querySelector('.gallery');
+  const modal = document.getElementById('modal');
+  const modalImage = document.getElementById('modalImage');
+  const imageOldPosition = {
+    x: 0,
+    y: 0,
+    width: 0,
+    height: 0
+  }
 
   dataMove.forEach((item) => {
     const Text = item.dataset.move;
@@ -1093,7 +1102,53 @@ if (document.body.dataset.page === 'projects'){
     item.addEventListener('mouseleave', function (){
       userDirection.style.opacity = '0';
     })
+
+
+    item.addEventListener('click', function (e){
+      const rect = e.target.getBoundingClientRect();
+      modalImage.src = e.target.src;
+      modal.style.display = 'flex';
+
+      imageOldPosition.x = rect.x;
+      imageOldPosition.y = rect.y;
+      imageOldPosition.width = rect.width;
+      imageOldPosition.height = rect.height;
+
+      modalImage.style.left = `${rect.x}px`;
+      modalImage.style.top = `${rect.y}px`;
+
+      modalImage.style.width = `${rect.width}px`;
+      modalImage.style.height = `${rect.height}px`;
+
+      const img = new Image();
+      img.src = e.target.src;
+
+      modalImage.style.transition = `1s`;
+
+      img.onload = () => {
+        setTimeout(() => {
+          modalImage.style.left = `50%`;
+          modalImage.style.top = `50%`;
+          modalImage.style.transform = `translate(-50%, -50%)`;
+          modalImage.style.width = `${img.naturalWidth}px`;
+          modalImage.style.height = `${img.naturalHeight}px`;
+        }, 200)
+      }
+    })
   })
+
+  modalClose.addEventListener('click', () => {
+    modalImage.style.transform = 'translate(0, 0)';
+    modalImage.style.left = `${imageOldPosition.x}px`;
+    modalImage.style.top = `${imageOldPosition.y}px`;
+    modalImage.style.width = `${imageOldPosition.width > window.innerWidth ? window.innerWidth : imageOldPosition.width }px`;
+    modalImage.style.height = `${imageOldPosition.height > window.innerHeight ? window.innerHeight : imageOldPosition.height}px`;
+
+    modalImage.addEventListener('transitionend', () => {
+      modal.style.display = 'none';
+      modalImage.style.transition = '';
+    }, { once: true });
+  });
 
   window.addEventListener('mousemove', function (e){
     const x = e.x;
@@ -1101,7 +1156,6 @@ if (document.body.dataset.page === 'projects'){
 
     userDirection.style.left = `${x}px`;
     userDirection.style.top = `${y}px`;
-    console.log(e.x)
   })
 
 }
