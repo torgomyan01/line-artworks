@@ -2863,8 +2863,8 @@ body[data-page=projects] .nav .container {
 }
 
 .user-direction {
-  width: 120px;
-  height: 120px;
+  width: 7.5rem;
+  height: 7.5rem;
   flex-shrink: 0;
   border-radius: 120px;
   background: radial-gradient(176.24% 147.36% at 20% 24.17%, rgba(37, 42, 49, 0.2) 0%, rgba(37, 42, 49, 0) 100%);
@@ -2882,6 +2882,11 @@ body[data-page=projects] .nav .container {
   left: 10px;
   top: 100px;
   opacity: 0;
+}
+@media (max-width: 768px) {
+  .user-direction {
+    display: none;
+  }
 }
 
 [data-move=View] {

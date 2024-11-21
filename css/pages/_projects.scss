@@ -651,8 +651,8 @@ body[data-page="projects"]{
 
 
 .user-direction{
-  width: 120px;
-  height: 120px;
+  width: 7.5rem;
+  height: 7.5rem;
   flex-shrink: 0;
   border-radius: 120px;
   background: radial-gradient(176.24% 147.36% at 20% 24.17%, rgba(37, 42, 49, 0.20) 0%, rgba(37, 42, 49, 0.00) 100%);
@@ -668,6 +668,10 @@ body[data-page="projects"]{
   left: 10px;
   top: 100px;
   opacity: 0;
+
+  @media (max-width: 768px){
+    display: none;
+  }
 }
 
 [data-move="View"]{
