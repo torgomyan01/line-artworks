@@ -1048,7 +1048,7 @@ if (document.body.dataset.page === 'projects'){
   projectsSliderBodyItem[activeItem].classList.add(active);
 
   const intSlider = setInterval(() => {
-    changeSlider('next')
+    changeSlider('next');
   }, 3000)
 
   function changeSlider(type){

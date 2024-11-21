@@ -53,14 +53,28 @@ body[data-page="projects"]{
       @include flex('sb', 's');
       $infoWidth: 15.4375rem;
       height: 100%;
+      @media (max-width: 768px) {
+        padding-left: 0;
+        padding-right: 0;
+      }
       .info{
         width: $infoWidth;
         height: 100%;
+
+        @media (max-width: 768px) {
+          display: none;
+        }
       }
       .content{
         width: calc(100% - #{$infoWidth});
         padding-left: 4rem;
         height: 100%;
+
+        @media (max-width: 768px) {
+          width: 100%;
+          padding-left: 0;
+        }
+
       }
     }
   }
@@ -87,6 +101,11 @@ body[data-page="projects"]{
       position: absolute;
       left: 4rem;
       bottom: -0.5rem;
+
+      @media (max-width: 768px) {
+        left: 32px;
+        font-size: 5rem;
+      }
     }
   }
 
@@ -318,6 +337,10 @@ body[data-page="projects"]{
     margin-top: 20px;
     position: relative;
     margin-bottom: 7.5rem;
+
+    @media (max-width: 768px){
+      padding-left: 32px;
+    }
     img{
       position: absolute;
       left: 30%;
@@ -330,6 +353,20 @@ body[data-page="projects"]{
       width: 100%;
       height: auto;
       margin-bottom: 4rem;
+
+      @media (max-width: 768px) {
+        width: calc(100% - 32px);
+        position: relative;
+        left: 32px;
+
+      }
+
+      &.left{
+        @media (max-width: 768px) {
+          left: 0;
+          right: 32px;
+        }
+      }
 
       &.amwaj-user{
         width: 100%;
@@ -345,6 +382,15 @@ body[data-page="projects"]{
       font-weight: 400;
       line-height: 150%;
       margin-bottom: 4rem;
+      @media (max-width: 768px) {
+        margin-left: 32px;
+      }
+      @media (max-width: 620px) {
+        max-width: calc(100% - 40px);
+      }
+      @media (max-width: 576px) {
+        max-width: calc(100% - 40px);
+      }
       span{
         color: #fff;
         background-color: #00B140;
@@ -356,12 +402,32 @@ body[data-page="projects"]{
       margin-bottom: 8rem;
       @include flex('sb', 's');
       gap: 4rem;
+
+      @media (max-width: 992px){
+        gap: 3rem;
+      }
+      @media (max-width: 768px){
+        flex-direction: column;
+        gap: 32px;
+        margin-bottom: 4rem;
+      }
       img{
         width: calc((100% / 2) - 2rem);
         height: auto;
         &:nth-of-type(2){
           position: relative;
           top: 4rem;
+        }
+        @media (max-width: 768px){
+          &:nth-of-type(1){
+            width: calc(100% - 32px);
+          }
+          &:nth-of-type(2){
+            width: calc(100% - 32px);
+            position: relative;
+            left: 32px;
+            top: 0;
+          }
         }
       }
     }
@@ -377,6 +443,13 @@ body[data-page="projects"]{
       text-transform: uppercase;
       margin-bottom: 2.5rem;
 
+      @media (max-width: 768px) {
+        padding-left: 32px;
+      }
+      @media (max-width: 576px) {
+        font-size: 24px;
+      }
+
       &.one{
         margin-bottom: 0.5rem;
       }
@@ -388,6 +461,9 @@ body[data-page="projects"]{
       font-weight: 700;
       line-height: 130%;
       margin-bottom: 2rem;
+      @media (max-width: 768px) {
+        padding-left: 32px;
+      }
     }
     &-selected-text{
       width: 100%;
@@ -400,6 +476,15 @@ body[data-page="projects"]{
       border-left: 1px solid #00B140;
       margin-bottom: 4rem;
       padding-left: 1.5rem;
+
+      @media (max-width: 768px) {
+        margin-left: 32px;
+        font-size: 22px;
+      }
+      @media (max-width: 496px) {
+        width: calc(100% - 35px);
+      }
+
       i{
         display: block;
         color: #00B140;
@@ -417,6 +502,10 @@ body[data-page="projects"]{
       line-height: 116%;
       letter-spacing: 1px;
       text-transform: uppercase;
+
+      @media (max-width: 768px){
+        padding: 0 32px;
+      }
 
       &-socials{
         @include flex('e', 'c');

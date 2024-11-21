@@ -2251,14 +2251,31 @@ body[data-page=projects] .nav .container {
   align-items: start;
   height: 100%;
 }
+@media (max-width: 768px) {
+  .projects-content .container {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
 .projects-content .container .info {
   width: 15.4375rem;
   height: 100%;
+}
+@media (max-width: 768px) {
+  .projects-content .container .info {
+    display: none;
+  }
 }
 .projects-content .container .content {
   width: calc(100% - 15.4375rem);
   padding-left: 4rem;
   height: 100%;
+}
+@media (max-width: 768px) {
+  .projects-content .container .content {
+    width: 100%;
+    padding-left: 0;
+  }
 }
 .projects-header {
   width: 100%;
@@ -2284,6 +2301,12 @@ body[data-page=projects] .nav .container {
   position: absolute;
   left: 4rem;
   bottom: -0.5rem;
+}
+@media (max-width: 768px) {
+  .projects-header-title {
+    left: 32px;
+    font-size: 5rem;
+  }
 }
 .projects-slider {
   width: 100%;
@@ -2507,6 +2530,11 @@ body[data-page=projects] .nav .container {
   position: relative;
   margin-bottom: 7.5rem;
 }
+@media (max-width: 768px) {
+  .wrapper-title {
+    padding-left: 32px;
+  }
+}
 .wrapper-title img {
   position: absolute;
   left: 30%;
@@ -2516,6 +2544,19 @@ body[data-page=projects] .nav .container {
   width: 100%;
   height: auto;
   margin-bottom: 4rem;
+}
+@media (max-width: 768px) {
+  .wrapper .section-max-image {
+    width: calc(100% - 32px);
+    position: relative;
+    left: 32px;
+  }
+}
+@media (max-width: 768px) {
+  .wrapper .section-max-image.left {
+    left: 0;
+    right: 32px;
+  }
 }
 .wrapper .section-max-image.amwaj-user {
   width: 100%;
@@ -2531,6 +2572,21 @@ body[data-page=projects] .nav .container {
   line-height: 150%;
   margin-bottom: 4rem;
 }
+@media (max-width: 768px) {
+  .wrapper .section-text {
+    margin-left: 32px;
+  }
+}
+@media (max-width: 620px) {
+  .wrapper .section-text {
+    max-width: calc(100% - 40px);
+  }
+}
+@media (max-width: 576px) {
+  .wrapper .section-text {
+    max-width: calc(100% - 40px);
+  }
+}
 .wrapper .section-text span {
   color: #fff;
   background-color: #00B140;
@@ -2544,6 +2600,18 @@ body[data-page=projects] .nav .container {
   align-items: start;
   gap: 4rem;
 }
+@media (max-width: 992px) {
+  .wrapper .section-images {
+    gap: 3rem;
+  }
+}
+@media (max-width: 768px) {
+  .wrapper .section-images {
+    flex-direction: column;
+    gap: 32px;
+    margin-bottom: 4rem;
+  }
+}
 .wrapper .section-images img {
   width: calc(50% - 2rem);
   height: auto;
@@ -2551,6 +2619,17 @@ body[data-page=projects] .nav .container {
 .wrapper .section-images img:nth-of-type(2) {
   position: relative;
   top: 4rem;
+}
+@media (max-width: 768px) {
+  .wrapper .section-images img:nth-of-type(1) {
+    width: calc(100% - 32px);
+  }
+  .wrapper .section-images img:nth-of-type(2) {
+    width: calc(100% - 32px);
+    position: relative;
+    left: 32px;
+    top: 0;
+  }
 }
 .wrapper .section-title {
   color: #00B140;
@@ -2563,6 +2642,16 @@ body[data-page=projects] .nav .container {
   text-transform: uppercase;
   margin-bottom: 2.5rem;
 }
+@media (max-width: 768px) {
+  .wrapper .section-title {
+    padding-left: 32px;
+  }
+}
+@media (max-width: 576px) {
+  .wrapper .section-title {
+    font-size: 24px;
+  }
+}
 .wrapper .section-title.one {
   margin-bottom: 0.5rem;
 }
@@ -2573,6 +2662,11 @@ body[data-page=projects] .nav .container {
   font-weight: 700;
   line-height: 130%;
   margin-bottom: 2rem;
+}
+@media (max-width: 768px) {
+  .wrapper .section-subtitle {
+    padding-left: 32px;
+  }
 }
 .wrapper .section-selected-text {
   width: 100%;
@@ -2585,6 +2679,17 @@ body[data-page=projects] .nav .container {
   border-left: 1px solid #00B140;
   margin-bottom: 4rem;
   padding-left: 1.5rem;
+}
+@media (max-width: 768px) {
+  .wrapper .section-selected-text {
+    margin-left: 32px;
+    font-size: 22px;
+  }
+}
+@media (max-width: 496px) {
+  .wrapper .section-selected-text {
+    width: calc(100% - 35px);
+  }
 }
 .wrapper .section-selected-text i {
   display: block;
@@ -2604,6 +2709,11 @@ body[data-page=projects] .nav .container {
   line-height: 116%;
   letter-spacing: 1px;
   text-transform: uppercase;
+}
+@media (max-width: 768px) {
+  .wrapper .section-backstage {
+    padding: 0 32px;
+  }
 }
 .wrapper .section-backstage-socials {
   display: flex;
