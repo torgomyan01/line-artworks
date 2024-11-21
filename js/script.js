@@ -1131,6 +1131,7 @@ if (document.body.dataset.page === 'projects'){
       item.addEventListener('click', function (e){
 
         if(window.innerWidth > 767){
+          document.body.style.overflow = 'hidden';
           const rect = e.target.getBoundingClientRect();
           modalImage.src = e.target.src;
           modal.style.display = 'flex';
@@ -1151,13 +1152,26 @@ if (document.body.dataset.page === 'projects'){
 
           modalImage.style.transition = `1s`;
 
+          const width = () => {
+
+            if(img.naturalHeight > window.innerHeight){
+              const percentageDifference = img.naturalWidth * 100 / img.naturalHeight;
+              return ((img.naturalWidth * percentageDifference) / 100);
+            } else {
+              return img.naturalWidth > window.innerWidth ? window.innerWidth : img.naturalWidth;
+            }
+
+
+          };
+          const height = img.naturalHeight > window.innerHeight ? window.innerHeight : img.naturalHeight;
+
           img.onload = () => {
             setTimeout(() => {
               modalImage.style.left = `50%`;
               modalImage.style.top = `50%`;
               modalImage.style.transform = `translate(-50%, -50%)`;
-              modalImage.style.width = `${img.naturalWidth}px`;
-              modalImage.style.height = `${img.naturalHeight}px`;
+              modalImage.style.width = `${width()}px`;
+              modalImage.style.height = `${height}px`;
             }, 200)
           }
         }
@@ -1176,6 +1190,7 @@ if (document.body.dataset.page === 'projects'){
     modalImage.addEventListener('transitionend', () => {
       modal.style.display = 'none';
       modalImage.style.transition = '';
+      document.body.style.overflow = null;
     }, { once: true });
   });
 
