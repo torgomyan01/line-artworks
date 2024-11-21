@@ -173,7 +173,7 @@ if (document.body.dataset.page === 'home'){
   const mobileSliderHashtags = $el('.mobile-slider-hashtags');
 
   const PrintHashtagItem = (item, index) => `<span class="footer-hashtags-item ${index === 0 ? 'active' : ''}" data-hashtag="${item}">#${item}</span>`;
-  const PrintHashtagItemMobile = (item, index) => `<span class="mobile-slider-hashtags-item ${index === 0 ? 'active' : ''}" data-hashtag="${item}">#${item}</span>`;
+  const PrintHashtagItemMobile = (item, index) => `<span class="mobile-slider-hashtags-item" data-hashtagmobile="${item}">#${item}</span>`;
 
 
   Object.values(hashtags).forEach((value, index) => {
@@ -191,19 +191,23 @@ if (document.body.dataset.page === 'home'){
        <h2 class="slider-content-item-title">${title}</h2>
     </div>
   `)
-
-
-    _mobileSliderBody?.insertAdjacentHTML('beforeend', `
-     <div class="mobile-slider-item">
-        <img src="${item.img}" alt="${title}">
-        <div class="mobile-slider-item-content">
-          <h4>${item.type}</h4>
-          <h2>${title}</h2>
-        </div>
-      </div>
-  `)
-
   });
+
+  Array.from({length: 20}).forEach(() => {
+    sliderInfo.forEach((item) => {
+      const title = item.title.split('|').map((titleItem) => `<span>${titleItem}</span> <br />`).join('')
+
+      _mobileSliderBody?.insertAdjacentHTML('beforeend', `
+         <div class="mobile-slider-item">
+            <img src="${item.img}" alt="${title}">
+            <div class="mobile-slider-item-content">
+              <h4>${item.type}</h4>
+              <h2>${title}</h2>
+            </div>
+         </div>
+      `)
+    });
+  })
 //
 
 //
@@ -725,7 +729,7 @@ if (document.body.dataset.page === 'home'){
 
   const mobileSlider = $el('.mobile-slider');
   const mobileSliderBody = $el('.mobile-slider-body');
-  const mobileSliderHashtagsItem  = $('.mobile-slider-hashtags-item ');
+  const mobileSliderHashtagsItem  = $('.mobile-slider-hashtags-item');
   const progressBarMobile = $el('.progress-bar-mobile');
   let percentMobile = 0;
   let intMobile;
@@ -828,7 +832,12 @@ if (document.body.dataset.page === 'home'){
       item.classList.remove(active);
     })
 
-    mobileSliderHashtagsItem[activeMobileSlider].classList.add(active);
+    const getActiveInfo = sliderInfo[activeMobileSlider];
+    const getHashtag = $(`[data-hashtagmobile="${getActiveInfo.hashtag}"]`);
+
+    getHashtag.forEach((item) => {
+      item.classList.add(active)
+    })
   }
 
   mobileSliderHashtagsItem.forEach((item, index) => {
