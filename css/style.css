@@ -880,6 +880,9 @@ body {
 .nav-menu-opened {
   display: none;
 }
+.nav-menu.active .nav-menu-icon {
+  top: -3px;
+}
 .nav-menu.active .nav-menu-icon:after {
   transform: rotate(45deg);
   width: 17px;

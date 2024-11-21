@@ -214,6 +214,7 @@
 
     &.active{
       .nav-menu-icon{
+        top: -3px;
         &:after{
           transform: rotate(45deg);
           width: 17px;
@@ -239,6 +240,7 @@
       height: 30px;
       position: relative;
       margin-left: 1rem;
+
       &:before{
         content: "";
         position: absolute;
