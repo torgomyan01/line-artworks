@@ -1181,6 +1181,7 @@ body.active-slider .slider-content-info {
   text-transform: uppercase;
   font-weight: 800;
   transition: 0.3s;
+  font-family: "CapturaNow", serif;
 }
 .slider-content-buttons {
   display: flex;

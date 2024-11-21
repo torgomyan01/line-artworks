@@ -185,7 +185,7 @@ if (document.body.dataset.page === 'home'){
     const title = item.title.split('|').map((titleItem) => `<span>${titleItem}</span> <br />`).join('')
 
     sliderContentInfoContent?.insertAdjacentHTML('beforeend', `
-    <div class="slider-content-item">
+    <div class="slider-content-item" data-typehashtag="${item.hashtag}">
        <img src="${item.img}" class="slider-content-item-img" alt="slider" width="1560" height="884">
        <h4 class="slider-content-item-type">${item.type}</h4>
        <h2 class="slider-content-item-title">${title}</h2>
@@ -392,11 +392,11 @@ if (document.body.dataset.page === 'home'){
 
             img.style.transform = `scale(${calc})`;
 
-            title.style.transform = `scale(${calc})`;
+            // title.style.transform = `scale(${calc})`;
             title.style.left = `${obj.textLeftPercent + titleLeft}%`;
             // title.style.top = `${30 + top}%`;
 
-            type.style.transform = `scale(${calc})`;
+            // type.style.transform = `scale(${calc})`;
             type.style.left = `${obj.textLeftPercent + titleLeft}%`;
             // type.style.top = `${16 + topType}%`;
 
@@ -475,27 +475,40 @@ if (document.body.dataset.page === 'home'){
 
   footerHashtagsItem.forEach((item, index) => {
     item?.addEventListener('click', function () {
-      percent = 0;
-      progressBar?.setAttribute('style', `--percent: 0%`);
-      clearInterval(int);
 
-      if (index < sliderActiveIndex) {
-        sliderActiveIndex = index;
+      if(document.body.classList.contains('active-slider')){
+        percent = 0;
+        progressBar?.setAttribute('style', `--percent: 0%`);
+        clearInterval(int);
 
-        nextAnimation(false);
+        if (index < sliderActiveIndex) {
+          sliderActiveIndex = index;
 
-        setTimeout(() => {
-          startNextAnimation(false)
-        }, 500)
+          nextAnimation(false);
 
+          setTimeout(() => {
+            startNextAnimation(false)
+          }, 500)
+
+        } else {
+          sliderActiveIndex = index;
+
+          nextAnimation(true);
+
+          setTimeout(() => {
+            startNextAnimation(true)
+          }, 500)
+        }
       } else {
-        sliderActiveIndex = index;
+        const getHashtag = item.dataset.hashtag;
+        const getElem = $el(`[data-typehashtag="${getHashtag}"]`);
+        const top = getElem.offsetTop;
 
-        nextAnimation(true);
-
-        setTimeout(() => {
-          startNextAnimation(true)
-        }, 500)
+        sliderContentInfoContent.scrollTo({
+          top: top,
+          left: 0,
+          behavior: "smooth",
+        })
       }
     })
   })
@@ -995,25 +1008,18 @@ if (document.body.dataset.page === 'studio'){
   function getRandomDuration(min, max) {
     return Math.random() * (max - min) + min; // Պատահական թիվ [min, max] տիրույթում
   }
-  function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-      const randomIndex = Math.floor(Math.random() * (i + 1)); // Գեներացնում է պատահական ինդեքս
-      [array[i], array[randomIndex]] = [array[randomIndex], array[i]]; // Փոխանակում է տարրերը
-    }
-    return array;
-  }
 
   partnersItem.forEach((item) => {
     const logos = Array.from(item.children);
 
     Array.from({length: 10}).forEach(() => {
-      const clonedLogos = shuffleArray(logos.map((logo) => logo.cloneNode(true)));
+      const clonedLogos = logos.map((logo) => logo.cloneNode(true));
       clonedLogos.forEach((clone) => item.appendChild(clone));
     })
 
     const totalWidth = item.scrollWidth / 2; // Ընդհանուր թրեքի երկարությունը
 
-    const randomDuration = getRandomDuration(150, 200);
+    const randomDuration = getRandomDuration(115, 160);
 
     gsap.to(item, {
       x: -totalWidth,
