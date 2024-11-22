@@ -92,6 +92,10 @@
     transition: 0.3s;
     cursor: text;
     opacity: 0.9;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
   }
   input, textarea{
     width: 100% !important;

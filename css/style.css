@@ -201,6 +201,10 @@ body {
   transition: 0.3s;
   cursor: text;
   opacity: 0.9;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
 }
 .def-input input, .def-input textarea {
   width: 100% !important;
@@ -1343,11 +1347,6 @@ body.active-slider .slider-content-info {
   height: 40%;
   position: relative;
 }
-@media (max-width: 1000px) {
-  .menu .container {
-    justify-content: start;
-  }
-}
 @media (max-width: 768px) {
   .menu .container {
     flex-direction: column;
@@ -1377,6 +1376,11 @@ body.active-slider .slider-content-info {
   visibility: hidden;
   cursor: pointer;
 }
+@media (max-width: 1184px) {
+  .menu-back-contact {
+    left: 12px;
+  }
+}
 @media (max-width: 576px) {
   .menu-back-contact {
     left: 12px;
@@ -1398,7 +1402,7 @@ body.active-slider .slider-content-info {
 }
 @media (max-width: 1000px) {
   .menu-left {
-    width: 40%;
+    width: 60%;
   }
 }
 @media (max-width: 768px) {
@@ -1414,7 +1418,7 @@ body.active-slider .slider-content-info {
 }
 .menu-left .def-input textarea {
   margin-top: 0;
-  min-height: 150px;
+  min-height: 9.375rem;
 }
 @media (max-width: 1024px) {
   .menu-left .def-input textarea {
@@ -1469,7 +1473,7 @@ body.active-slider .slider-content-info {
   font-weight: 400;
   line-height: 3.5rem;
 }
-@media (max-width: 576px) {
+@media (max-width: 768px) {
   .menu-contact {
     flex-direction: column;
     height: 100vh;
@@ -1480,7 +1484,7 @@ body.active-slider .slider-content-info {
   width: 40%;
   padding-right: 2rem;
 }
-@media (max-width: 576px) {
+@media (max-width: 768px) {
   .menu-contact-left {
     width: 100%;
     padding-right: 0;
@@ -1496,7 +1500,12 @@ body.active-slider .slider-content-info {
 .menu-contact-right .btn-submit, .menu-contact-right .def-checkbox {
   display: none;
 }
-@media (max-width: 576px) {
+@media (max-width: 1000px) {
+  .menu-contact-right {
+    padding-right: 3rem;
+  }
+}
+@media (max-width: 768px) {
   .menu-contact-right {
     width: 100%;
     padding-right: 0;
@@ -1562,7 +1571,7 @@ body.active-slider .slider-content-info {
 }
 @media (max-width: 1000px) {
   .menu-right {
-    width: 60%;
+    width: 50%;
   }
 }
 @media (max-width: 768px) {
