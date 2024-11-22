@@ -39,6 +39,7 @@ const sliderInfo = [
     img: 'images/slider-image-1.png',
     hashtag: hashtags.production,
     logo: false,
+    url: 'projects.html'
   },
   {
     type: 'Air Samarkand',
@@ -46,6 +47,7 @@ const sliderInfo = [
     img: 'images/slider-image-2.png',
     hashtag: hashtags.aviation,
     logo: false,
+    url: 'projects.html'
   },
   {
     type: 'AGC Glass',
@@ -53,6 +55,7 @@ const sliderInfo = [
     img: 'images/slider-image-3.png',
     hashtag: hashtags.construction,
     logo: false,
+    url: 'projects.html'
   },
   {
     type: 'EuroChem Group AG',
@@ -60,6 +63,7 @@ const sliderInfo = [
     img: 'images/slider-image-4.png',
     hashtag: hashtags.construction,
     logo: 'images/top-nomination.png',
+    url: 'projects.html'
   },
   {
     type: 'EMCO',
@@ -67,6 +71,7 @@ const sliderInfo = [
     img: 'images/slider-image-5.png',
     hashtag: hashtags.construction,
     logo: false,
+    url: 'projects.html'
   },
 ];
 
@@ -278,13 +283,17 @@ if (document.body.dataset.page === 'home'){
 
       _mobileSliderBody?.insertAdjacentHTML('beforeend', `
          <div class="mobile-slider-item">
-            <div class="mobile-slider-item-body">
-              <img src="${item.img}" alt="mobile-header-image" class="mobile-slider-item-body-image">
-              ${item.logo ? `<img class="mobile-slider-item-body-logo" src="${item.logo}" alt="logo">` : ''}
-            </div>
+            <a href="${item.url}">
+              <div class="mobile-slider-item-body">
+                <img src="${item.img}" alt="mobile-header-image" class="mobile-slider-item-body-image">
+                ${item.logo ? `<img class="mobile-slider-item-body-logo" src="${item.logo}" alt="logo">` : ''}
+              </div>
+            </a>
             <div class="mobile-slider-item-content">
               <h4>${item.type}</h4>
-              <h2>${title}</h2>
+              <a href="${item.url}">
+                <h2>${title}</h2>
+              </a>
             </div>
          </div>
       `)
@@ -633,11 +642,15 @@ if (document.body.dataset.page === 'home'){
 
     animationContent.insertAdjacentHTML('beforeend', `
       <div class="slider-content-max" id="${randomId}" style="top: ${status ? '100vh' : 'calc(-100vh - 130px)'}">
-         <img src="${getActiveInfo.img}" class="slider-content-img slider-content-max-img" alt="slider" width="1560" height="884">
-         <h2 class="slider-content-max-title">
-           <b class="type">${getActiveInfo.type}</b>
-           ${title}
-         </h2>
+         <a href="${getActiveInfo.url}">
+          <img src="${getActiveInfo.img}" class="slider-content-img slider-content-max-img" alt="slider" width="1560" height="884">
+         </a>
+         <a href="${getActiveInfo.url}">
+           <h2 class="slider-content-max-title">
+             <b class="type">${getActiveInfo.type}</b>
+             ${title}
+           </h2>
+         </a>
          ${getActiveInfo.logo ? `<img class="slider-content-max-logo" src="${getActiveInfo.logo}" alt="logo">` : ''}
       </div>
     `);
@@ -856,7 +869,6 @@ if (document.body.dataset.page === 'home'){
     const getActiveInfo = sliderInfo[activeMobileSlider];
     const getHashtag = $(`[data-hashtagmobile="${getActiveInfo.hashtag}"]`);
 
-    console.log(getHashtag)
     getHashtag.forEach((item) => {
       item.classList.add(active)
     })
