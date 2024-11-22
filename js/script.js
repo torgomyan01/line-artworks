@@ -619,6 +619,7 @@ if (document.body.dataset.page === 'home'){
     })
   })
 
+  let successClickOpenPage = false;
   function startNextAnimation(status) {
     const getActiveInfo = sliderInfo[sliderActiveIndex];
     const randomId = `and_project_${Math.floor(Math.random() * 1000)}`;
@@ -640,23 +641,23 @@ if (document.body.dataset.page === 'home'){
     sliderContentButtonsPrev?.setAttribute('data-active', randomId);
 
 
+
     animationContent.insertAdjacentHTML('beforeend', `
       <div class="slider-content-max" id="${randomId}" style="top: ${status ? '100vh' : 'calc(-100vh - 130px)'}">
-         <a href="${getActiveInfo.url}">
-          <img src="${getActiveInfo.img}" class="slider-content-img slider-content-max-img" alt="slider" width="1560" height="884">
-         </a>
-         <a href="${getActiveInfo.url}">
-           <h2 class="slider-content-max-title">
-             <b class="type">${getActiveInfo.type}</b>
-             ${title}
-           </h2>
-         </a>
-         ${getActiveInfo.logo ? `<img class="slider-content-max-logo" src="${getActiveInfo.logo}" alt="logo">` : ''}
+        <img src="${getActiveInfo.img}" class="slider-content-img slider-content-max-img" onclick="openPage('${getActiveInfo.url}')" alt="slider" width="1560" height="884">
+         <h2 class="slider-content-max-title" onclick="openPage('${getActiveInfo.url}')">
+           <b class="type">${getActiveInfo.type}</b>
+           ${title}
+         </h2>
+        ${getActiveInfo.logo ? `<img class="slider-content-max-logo" src="${getActiveInfo.logo}" alt="logo">` : ''}
       </div>
     `);
 
+    successClickOpenPage = false;
     getCenterActiveElem(randomId);
   }
+
+
 
 
   function printHeight(height) {
@@ -710,12 +711,22 @@ if (document.body.dataset.page === 'home'){
         successClickNextPrev = 1;
 
         startedAnimationStatus = false;
+        setTimeout(() => {
+          successClickOpenPage = true;
+        }, 800)
       }, startedAnimationStatus ? 3500 : 1500)
 
       sliderContentMax.style.transition = `0.8s`;
     }, 500)
   }
 
+
+  function openPage(url){
+    if(successClickOpenPage){
+      // console.log(url)
+      window.open(url, '_top')
+    }
+  }
 
 
 

@@ -1011,6 +1011,7 @@ body.active-slider .slider-content-info {
   top: 0;
   object-fit: cover;
   transition: 0.8s;
+  cursor: pointer;
 }
 .slider-content-max-logo {
   width: 10rem !important;
@@ -1027,6 +1028,7 @@ body.active-slider .slider-content-info {
   bottom: 0;
   width: 40rem;
   transition: 0.8s;
+  cursor: pointer;
 }
 .slider-content-max-title span {
   color: #FFF;
