@@ -98,6 +98,29 @@
       transition: 0.3s;
       transform-origin: center;
 
+      &-body{
+        width: 100%;
+        position: relative;
+        height: 40vh;
+        @media (max-width: 450px){
+          height: 35vh;
+        }
+        &-logo{
+          position: absolute;
+          width: 60px;
+          height: auto;
+          right: 8px;
+          bottom: 8px;
+        }
+
+        &-image{
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+
+        }
+      }
+
 
       &-content{
         padding: 2rem;
@@ -125,16 +148,6 @@
           br{
             display: none;
           }
-        }
-      }
-      img{
-        width: 100%;
-        height: 40vh;
-        object-fit: cover;
-        object-position: bottom right;
-
-        @media (max-width: 450px){
-          height: 35vh;
         }
       }
     }

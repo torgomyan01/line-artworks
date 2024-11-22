@@ -82,6 +82,15 @@ body{
       transition: 0.8s;
     }
 
+    &-logo{
+      width: 10rem !important;
+      height: auto !important;
+      position: absolute !important;
+      right: 2rem !important;
+      bottom: 2rem !important;
+      top: unset !important;
+    }
+
     &-title{
       z-index: 1;
       position: absolute;
@@ -353,6 +362,6 @@ body{
   }
 }
 
-[src="images/slider-image-4.png"]{
-  object-position: right bottom;
-}
+//[src="images/slider-image-4.png"]{
+//  object-position: right bottom;
+//}

@@ -37,35 +37,38 @@ const sliderInfo = [
     type: 'Emirates <br> Global Aluminium',
     title: 'Women|in Heavy|Industry',
     img: 'images/slider-image-1.png',
-    hashtag: hashtags.production
+    hashtag: hashtags.production,
+    logo: false,
   },
   {
     type: 'Air Samarkand',
     title: 'New Airline|of Uzbekistan',
     img: 'images/slider-image-2.png',
-    hashtag: hashtags.aviation
+    hashtag: hashtags.aviation,
+    logo: false,
   },
   {
     type: 'AGC Glass',
     title: 'Industrial|photoshop|for Agc Glass',
     img: 'images/slider-image-3.png',
-    hashtag: hashtags.construction
+    hashtag: hashtags.construction,
+    logo: false,
   },
   {
     type: 'EuroChem Group AG',
     title: 'Image|photoshoot ',
     img: 'images/slider-image-4.png',
-    hashtag: hashtags.construction
+    hashtag: hashtags.construction,
+    logo: 'images/top-nomination.png',
   },
   {
     type: 'EMCO',
     title: 'Industrial|Photography|at Emco',
     img: 'images/slider-image-5.png',
-    hashtag: hashtags.construction
+    hashtag: hashtags.construction,
+    logo: false,
   },
 ];
-
-
 
 
 
@@ -275,7 +278,10 @@ if (document.body.dataset.page === 'home'){
 
       _mobileSliderBody?.insertAdjacentHTML('beforeend', `
          <div class="mobile-slider-item">
-            <img src="${item.img}" alt="${title}">
+            <div class="mobile-slider-item-body">
+              <img src="${item.img}" alt="mobile-header-image" class="mobile-slider-item-body-image">
+              ${item.logo ? `<img class="mobile-slider-item-body-logo" src="${item.logo}" alt="logo">` : ''}
+            </div>
             <div class="mobile-slider-item-content">
               <h4>${item.type}</h4>
               <h2>${title}</h2>
@@ -562,22 +568,33 @@ if (document.body.dataset.page === 'home'){
         clearInterval(int);
 
         if (index < sliderActiveIndex) {
-          sliderActiveIndex = index;
+          const hashtag = item.dataset.hashtag;
 
-          nextAnimation(false);
 
-          setTimeout(() => {
-            startNextAnimation(false)
-          }, 500)
+          const findIndex = sliderInfo.findIndex((_sl) => _sl.hashtag === hashtag);
+          if(findIndex >= 0){
+            sliderActiveIndex = findIndex
+
+            nextAnimation(false);
+
+            setTimeout(() => {
+              startNextAnimation(false)
+            }, 500)
+          }
 
         } else {
-          sliderActiveIndex = index;
+          const hashtag = item.dataset.hashtag;
 
-          nextAnimation(true);
+          const findIndex = sliderInfo.findIndex((_sl) => _sl.hashtag === hashtag);
+          if(findIndex >= 0){
+            sliderActiveIndex = findIndex;
 
-          setTimeout(() => {
-            startNextAnimation(true)
-          }, 500)
+            nextAnimation(true);
+
+            setTimeout(() => {
+              startNextAnimation(true)
+            }, 500)
+          }
         }
       } else {
         const getHashtag = item.dataset.hashtag;
@@ -616,11 +633,12 @@ if (document.body.dataset.page === 'home'){
 
     animationContent.insertAdjacentHTML('beforeend', `
       <div class="slider-content-max" id="${randomId}" style="top: ${status ? '100vh' : 'calc(-100vh - 130px)'}">
-         <img src="${getActiveInfo.img}" class="slider-content-img" alt="slider" width="1560" height="884">
+         <img src="${getActiveInfo.img}" class="slider-content-img slider-content-max-img" alt="slider" width="1560" height="884">
          <h2 class="slider-content-max-title">
            <b class="type">${getActiveInfo.type}</b>
            ${title}
          </h2>
+         ${getActiveInfo.logo ? `<img class="slider-content-max-logo" src="${getActiveInfo.logo}" alt="logo">` : ''}
       </div>
     `);
 
@@ -838,6 +856,7 @@ if (document.body.dataset.page === 'home'){
     const getActiveInfo = sliderInfo[activeMobileSlider];
     const getHashtag = $(`[data-hashtagmobile="${getActiveInfo.hashtag}"]`);
 
+    console.log(getHashtag)
     getHashtag.forEach((item) => {
       item.classList.add(active)
     })
@@ -845,20 +864,26 @@ if (document.body.dataset.page === 'home'){
 
   mobileSliderHashtagsItem.forEach((item, index) => {
     item?.addEventListener('click', function (){
-      percentMobile = 0;
-      activeMobileSlider = index;
+      const hashtag = item.dataset.hashtagmobile;
+      const findIndex = sliderInfo.findIndex((_sl) => _sl.hashtag === hashtag);
 
-      sliderX = -(window.innerWidth + _gap) * activeMobileSlider;
+      if(findIndex >= 0){
+        percentMobile = 0;
+        activeMobileSlider = findIndex;
 
-      changeActiveHashtagsMobile();
+        sliderX = -(window.innerWidth + _gap) * activeMobileSlider;
 
-      AnimationSliderMobile();
+        changeActiveHashtagsMobile();
+
+        AnimationSliderMobile();
+      }
     })
   })
 
 
   setTimeout(() => {
     startMobileSlidingProcess()
+    changeActiveHashtagsMobile()
   }, 10000)
 
   function startMobileSlidingProcess(){
