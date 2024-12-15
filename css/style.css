@@ -1590,7 +1590,7 @@ body.active-slider .slider-content-info {
   align-items: center;
 }
 .menu-right-socials a {
-  margin-right: 2rem;
+  margin-right: 1.4rem;
   transition: 0.3s;
 }
 .menu-right-socials a svg, .menu-right-socials a * {
