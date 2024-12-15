@@ -444,6 +444,7 @@ body {
 .nav.no-animation .nav-menu {
   opacity: 1;
   animation: unset;
+  margin-right: -10px;
 }
 .nav-logo img {
   width: 36.875rem;
@@ -1362,14 +1363,14 @@ body.active-slider .slider-content-info {
   }
 }
 .menu-left .def-input {
-  height: 70px;
+  height: 80px;
   transform: translateY(100px);
   transition: 0.8s;
   opacity: 0;
 }
 .menu-left .def-input textarea {
   margin-top: 0;
-  min-height: 9.375rem;
+  min-height: 10.125rem;
 }
 @media (max-width: 1024px) {
   .menu-left .def-input textarea {

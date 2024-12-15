@@ -85,13 +85,13 @@
 
 
     .def-input{
-      height: 70px;
+      height: 80px;
       transform: translateY(100px);
       transition: 0.8s;
       opacity: 0;
       textarea{
         margin-top: 0;
-        min-height: 9.375rem;
+        min-height: 10.125rem;
         @media (max-width: 1024px){
           margin-top: 10px;
         }
