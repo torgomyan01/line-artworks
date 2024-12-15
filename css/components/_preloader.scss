@@ -9,7 +9,7 @@
   left: 0;
   top: 0;
   animation: close-preloader infinite 1s;
-  animation-delay: 11s;
+  animation-delay: 10s;
   animation-fill-mode: both;
   animation-iteration-count: 1;
   opacity: 1;
@@ -104,7 +104,7 @@
       width: #{$width};
       height: $height;
       background-color: transparent;
-      transform: translate(-50%, -100%);
+      transform: translate(-50%, -50%);
     }
   }
 
@@ -117,62 +117,4 @@
     @include lineAnim(18.125rem, 2.5rem);
   }
 
-  &-subtitle {
-    position: absolute;
-    left: 50%;
-    top: 100%;
-    transform: translate(-50%, 0);
-    width: 1180px;
-    color: #00B140;
-    font-weight: 200;
-    font-size: 6rem;
-    line-height: 1.16;
-    text-align: center;
-    animation: preloader-subtitle infinite $animTime;
-    animation-iteration-count: 1;
-    animation-fill-mode: both;
-    opacity: 0;
-
-    @media (max-width: 1050px) {
-      font-size: 5rem;
-    }
-    @media (max-width: 812px) {
-      font-size: 3rem;
-    }
-    @media (max-width: 576px) {
-      font-weight: 200;
-      font-size: 40px;
-      line-height: 40px;
-      text-transform: uppercase;
-      width: 100%;
-    }
-  }
-
-  @keyframes preloader-subtitle {
-    0%{
-      top: 100%;
-      transform: translate(-50%, 0);
-      opacity: 0;
-    }
-    45%{
-      top: 100%;
-      transform: translate(-50%, 0);
-      opacity: 1;
-    }
-    80%{
-      top: 48%;
-      transform: translate(-50%, 0);
-      opacity: 1;
-    }
-    95%{
-      top: 48%;
-      transform: translate(-50%, 0);
-      opacity: 1;
-    }
-    100%{
-      top: 48%;
-      transform: translate(-50%, 0);
-      opacity: 0;
-    }
-  }
 }

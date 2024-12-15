@@ -317,7 +317,7 @@ if (document.body.dataset.page === 'home'){
 
   setTimeout(() => {
     startProgress();
-  }, 9000)
+  }, 7000)
 
 
   let status = false;
@@ -622,7 +622,7 @@ if (document.body.dataset.page === 'home'){
   let successClickOpenPage = false;
   function startNextAnimation(status) {
     const getActiveInfo = sliderInfo[sliderActiveIndex];
-    const randomId = `and_project_${Math.floor(Math.random() * 1000)}`;
+    const randomId = `torgomyan01_${Math.floor(Math.random() * 1000)}`;
 
     const title = getActiveInfo.title.split('|').map((item, index) => `<span style="transition-delay: 1.${index * 3}s;">${item}</span> <br />`).join('')
 
@@ -998,6 +998,7 @@ if (document.body.dataset.page === 'studio'){
     })
 
 
+
     window.addEventListener('resize', function (){
       animationStudio()
     })
@@ -1045,7 +1046,6 @@ if (document.body.dataset.page === 'studio'){
         heroVideo.style.width = window.innerWidth > 768 ? '100%' : 'calc(100% + 40px)';
         document.body.style.overflow = 'auto';
         studioAnim.style.position = `absolute`;
-
 
         setTimeout(() => {
           heroVideoPlay.style.opacity = '1';

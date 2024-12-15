@@ -2,30 +2,37 @@
 @font-face {
   font-family: "CapturaNow";
   src: url(../fonts/CapturaNow-Light.otf) format("opentype");
+  font-weight: 100;
 }
 @font-face {
   font-family: "CapturaNow";
   src: url(../fonts/CapturaNow-Medium.otf) format("opentype");
+  font-weight: 200;
 }
 @font-face {
   font-family: "CapturaNow";
   src: url(../fonts/CapturaNow-Regular.otf) format("opentype");
+  font-weight: 300;
 }
 @font-face {
   font-family: "CapturaNow";
   src: url(../fonts/CapturaNow-Bold.otf) format("opentype");
+  font-weight: 400;
 }
 @font-face {
   font-family: "CapturaNow";
   src: url(../fonts/CapturaNow-ExtraLight.otf) format("opentype");
+  font-weight: 500;
 }
 @font-face {
   font-family: "CapturaNow";
   src: url(../fonts/CapturaNow-ExtraBold.otf) format("opentype");
+  font-weight: 600;
 }
 @font-face {
   font-family: "CapturaNow";
   src: url(../fonts/CapturaNow-Black.otf) format("opentype");
+  font-weight: 700;
 }
 ::-webkit-scrollbar {
   width: 5px;
@@ -253,7 +260,7 @@ body {
   left: 0;
   top: 0;
   animation: close-preloader infinite 1s;
-  animation-delay: 11s;
+  animation-delay: 10s;
   animation-fill-mode: both;
   animation-iteration-count: 1;
   opacity: 1;
@@ -346,7 +353,7 @@ body {
     width: 36.875rem;
     height: 4rem;
     background-color: transparent;
-    transform: translate(-50%, -100%);
+    transform: translate(-50%, -50%);
   }
 }
 @keyframes anim-line-576 {
@@ -397,69 +404,7 @@ body {
     width: 18.125rem;
     height: 2.5rem;
     background-color: transparent;
-    transform: translate(-50%, -100%);
-  }
-}
-.preloader-subtitle {
-  position: absolute;
-  left: 50%;
-  top: 100%;
-  transform: translate(-50%, 0);
-  width: 1180px;
-  color: #00B140;
-  font-weight: 200;
-  font-size: 6rem;
-  line-height: 1.16;
-  text-align: center;
-  animation: preloader-subtitle infinite 9s;
-  animation-iteration-count: 1;
-  animation-fill-mode: both;
-  opacity: 0;
-}
-@media (max-width: 1050px) {
-  .preloader-subtitle {
-    font-size: 5rem;
-  }
-}
-@media (max-width: 812px) {
-  .preloader-subtitle {
-    font-size: 3rem;
-  }
-}
-@media (max-width: 576px) {
-  .preloader-subtitle {
-    font-weight: 200;
-    font-size: 40px;
-    line-height: 40px;
-    text-transform: uppercase;
-    width: 100%;
-  }
-}
-@keyframes preloader-subtitle {
-  0% {
-    top: 100%;
-    transform: translate(-50%, 0);
-    opacity: 0;
-  }
-  45% {
-    top: 100%;
-    transform: translate(-50%, 0);
-    opacity: 1;
-  }
-  80% {
-    top: 48%;
-    transform: translate(-50%, 0);
-    opacity: 1;
-  }
-  95% {
-    top: 48%;
-    transform: translate(-50%, 0);
-    opacity: 1;
-  }
-  100% {
-    top: 48%;
-    transform: translate(-50%, 0);
-    opacity: 0;
+    transform: translate(-50%, -50%);
   }
 }
 
@@ -544,24 +489,24 @@ body {
   }
   43% {
     opacity: 1;
-    top: calc(50vh - 5.625rem);
+    top: calc(50vh - 1.6875rem);
     left: 50%;
     transform: translateX(-50%);
     width: 36.875rem;
   }
   55% {
     opacity: 1;
-    top: calc(50vh - 5.625rem);
+    top: calc(50vh - 1.6875rem);
     left: 50%;
     transform: translateX(-50%);
     width: 36.875rem;
   }
-  80% {
+  68% {
     opacity: 1;
-    top: calc(50vh - 5.625rem);
-    left: 50%;
-    transform: translateX(-50%);
-    width: 36.875rem;
+    top: 3.125rem;
+    left: 8.125rem;
+    transform: translateX(0);
+    width: 12.5rem;
   }
   100% {
     opacity: 1;
@@ -602,24 +547,24 @@ body {
   }
   43% {
     opacity: 1;
-    top: calc(50vh - 5.625rem);
+    top: calc(50vh - 1.6875rem);
     left: 50%;
     transform: translateX(-50%);
     width: 36.875rem;
   }
   55% {
     opacity: 1;
-    top: calc(50vh - 5.625rem);
+    top: calc(50vh - 1.6875rem);
     left: 50%;
     transform: translateX(-50%);
     width: 36.875rem;
   }
-  80% {
+  68% {
     opacity: 1;
-    top: calc(50vh - 5.625rem);
-    left: 50%;
-    transform: translateX(-50%);
-    width: 36.875rem;
+    top: 3.125rem;
+    left: 4.6875rem;
+    transform: translateX(0);
+    width: 12.5rem;
   }
   100% {
     opacity: 1;
@@ -660,24 +605,24 @@ body {
   }
   43% {
     opacity: 1;
-    top: calc(50vh - 5.625rem);
+    top: calc(50vh - 1.6875rem);
     left: 50%;
     transform: translateX(-50%);
     width: 36.875rem;
   }
   55% {
     opacity: 1;
-    top: calc(50vh - 5.625rem);
+    top: calc(50vh - 1.6875rem);
     left: 50%;
     transform: translateX(-50%);
     width: 36.875rem;
   }
-  80% {
+  68% {
     opacity: 1;
-    top: calc(50vh - 5.625rem);
-    left: 50%;
-    transform: translateX(-50%);
-    width: 36.875rem;
+    top: 3.125rem;
+    left: 1.875rem;
+    transform: translateX(0);
+    width: 12.5rem;
   }
   100% {
     opacity: 1;
@@ -718,24 +663,24 @@ body {
   }
   43% {
     opacity: 1;
-    top: calc(50vh - 5.625rem);
+    top: calc(50vh - 1.6875rem);
     left: 50%;
     transform: translateX(-50%);
     width: 36.875rem;
   }
   55% {
     opacity: 1;
-    top: calc(50vh - 5.625rem);
+    top: calc(50vh - 1.6875rem);
     left: 50%;
     transform: translateX(-50%);
     width: 36.875rem;
   }
-  80% {
+  68% {
     opacity: 1;
-    top: calc(50vh - 5.625rem);
-    left: 50%;
-    transform: translateX(-50%);
-    width: 36.875rem;
+    top: 2.8125rem;
+    left: 2.3125rem;
+    transform: translateX(0);
+    width: 12.5rem;
   }
   100% {
     opacity: 1;
@@ -776,24 +721,24 @@ body {
   }
   43% {
     opacity: 1;
-    top: calc(50vh - 4rem);
+    top: calc(50vh - 1rem);
     left: 50%;
     transform: translateX(-50%);
     width: 18.125rem;
   }
   55% {
     opacity: 1;
-    top: calc(50vh - 4rem);
+    top: calc(50vh - 1rem);
     left: 50%;
     transform: translateX(-50%);
     width: 18.125rem;
   }
-  80% {
+  68% {
     opacity: 1;
-    top: calc(50vh - 4rem);
-    left: 50%;
-    transform: translateX(-50%);
-    width: 18.125rem;
+    top: 2.15rem;
+    left: 1.875rem;
+    transform: translateX(0);
+    width: 12.5rem;
   }
   100% {
     opacity: 1;
@@ -1823,8 +1768,10 @@ body[data-page=studio] .hidden {
 body[data-page=studio] .menu .container {
   padding: 0 15px;
 }
-body[data-page=studio] .nav .container {
-  padding: 0 15px;
+@media (max-width: 1180px) {
+  body[data-page=studio] .nav .container {
+    padding: 0 15px;
+  }
 }
 @media (max-width: 576px) {
   body[data-page=studio] .nav .container img {
@@ -1877,6 +1824,7 @@ body[data-page=studio] .nav .container {
   position: relative;
   top: 150px;
   transition: 0.3s;
+  font-weight: 400;
 }
 .studio-anim span.active {
   top: 0;
@@ -1930,6 +1878,7 @@ body[data-page=studio] .nav .container {
   font-weight: 400;
   line-height: 3.5rem;
   opacity: 0;
+  margin-left: -2px;
 }
 .hero .info {
   height: 100%;

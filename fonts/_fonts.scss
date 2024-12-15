@@ -8,10 +8,13 @@ $names: [
 'CapturaNow-Black.otf',
 ];
 
+$i: 0;
 @each $name in $names {
+  $i: $i + 100;
   @font-face {
     font-family: 'CapturaNow';
     src: url(../fonts/#{$name}) format("opentype");
+    font-weight: $i;
   }
 }
 

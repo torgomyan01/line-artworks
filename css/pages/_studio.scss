@@ -27,7 +27,9 @@ body[data-page="studio"]{
     }
   }
   .nav .container {
-    padding: 0 15px;
+    @media (max-width: 1180px){
+      padding: 0 15px;
+    }
     img{
       @media (max-width: 576px){
         width: 145px;
@@ -79,6 +81,7 @@ body[data-page="studio"]{
     position: relative;
     top: 150px;
     transition: 0.3s;
+    font-weight: 400;
 
     &.active{
       top: 0;

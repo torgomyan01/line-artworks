@@ -79,24 +79,24 @@
         }
         43%{
           opacity: 1;
-          top: calc(50vh - #{$goTop});
+          top: calc(50vh - #{$topCalc});
           left: 50%;
           transform: translateX(-50%);
           width: $logoWidth;
         }
         55%{
           opacity: 1;
-          top: calc(50vh - #{$goTop});
+          top: calc(50vh - #{$topCalc});
           left: 50%;
           transform: translateX(-50%);
           width: $logoWidth;
         }
-        80%{
+        68%{
           opacity: 1;
-          top: calc(50vh - #{$goTop});
-          left: 50%;
-          transform: translateX(-50%);
-          width: $logoWidth;
+          top: $top;
+          left: $logoLeft;
+          transform: translateX(0);
+          width: 12.5rem;
         }
         100%{
           opacity: 1;
