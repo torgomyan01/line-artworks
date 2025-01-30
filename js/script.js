@@ -1077,9 +1077,12 @@ if (document.body.dataset.page === 'studio'){
       clonedLogos.forEach((clone) => item.appendChild(clone));
     })
 
-    const totalWidth = item.scrollWidth / 2; // Ընդհանուր թրեքի երկարությունը
 
-    const randomDuration = getRandomDuration(115, 160);
+    const randomDuration = getRandomDuration(130, 180);
+
+    const images = item.querySelectorAll('img');
+
+    const totalWidth = images.length * 200
 
     gsap.to(item, {
       x: -totalWidth,
