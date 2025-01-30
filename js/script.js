@@ -137,7 +137,14 @@ footerContact.forEach((item) => {
 
 
 menuItemContact?.addEventListener('click', function () {
+  menu.querySelector('.menu-items').style.transition = '0s';
   menu.querySelector('.menu-items').classList.remove(active);
+
+  setTimeout(() => {
+    menu.querySelector('.menu-items').style.transition = '1s';
+  }, 1000)
+
+
   setTimeout(() => {
     menu.querySelector('.menu-contact').classList.add(active);
     menu.querySelector('.menu-back-contact').classList.add(active);
