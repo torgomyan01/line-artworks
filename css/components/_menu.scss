@@ -158,6 +158,20 @@
     &-left{
       width: 40%;
       padding-right: 2rem;
+      @include flex('sb', 's');
+      flex-wrap: wrap;
+
+      .def-input{
+        &:nth-of-type(1), &:nth-of-type(2){
+          @media (max-height: 722px){
+            width: calc(50% - 5px);
+          }
+        }
+      }
+
+      @media (max-height: 590px){
+        margin-top: -30px;
+      }
 
       @media (max-width: 768px){
         width: 100%;

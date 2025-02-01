@@ -27,12 +27,19 @@ body[data-page="studio"]{
     }
   }
   .nav .container {
+    margin-top: -1px;
     @media (max-width: 1180px){
-      padding: 0 15px;
+      padding: 0 55px 0 33px;
+    }
+    @media (max-width: 576px){
+      padding: 0 35px 0 25px;
     }
     img{
-      @media (max-width: 576px){
+      @media (max-width: 767px){
         width: 145px;
+      }
+      @media (max-width: 576px){
+        width: 162.5px;
       }
     }
   }
