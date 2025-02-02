@@ -10,8 +10,6 @@
     padding: 0 2rem 2rem;
     @include flex('s', 's');
     gap: 10px;
-    position: relative;
-    z-index: 10;
 
     .btn-slider{
       margin-right: 0;
@@ -33,7 +31,7 @@
   }
 
   .footer-contact{
-    width: 100%;
+    width: 50%;
     text-align: center;
     position: absolute;
     bottom: 15px;
