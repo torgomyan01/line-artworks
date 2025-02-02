@@ -25,13 +25,22 @@ body[data-page="projects"]{
   .menu{
     .container{
       padding: 0 15px;
+
     }
   }
   .nav .container {
     padding: 0 15px;
+
+    @media (max-width: 1180px){
+      padding: 0 55px 0 33px;
+    }
+    @media (max-width: 576px){
+      padding: 0 35px 0 25px;
+    }
+
     img{
       @media (max-width: 576px){
-        width: 145px;
+        width: 162px;
       }
     }
   }

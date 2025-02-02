@@ -162,15 +162,22 @@
       flex-wrap: wrap;
 
       .def-input{
-        &:nth-of-type(1), &:nth-of-type(2){
+        &:nth-of-type(1),
+        &:nth-of-type(2){
           @media (max-height: 722px){
+            width: calc(50% - 5px);
+          }
+        }
+        &:nth-of-type(3),
+        &:nth-of-type(4){
+          @media (max-height: 540px){
             width: calc(50% - 5px);
           }
         }
       }
 
       @media (max-height: 590px){
-        margin-top: -30px;
+        margin-top: -40px;
       }
 
       @media (max-width: 768px){
@@ -245,6 +252,10 @@
     }
     @media (max-height: 513px){
       gap: 0;
+    }
+    @media (max-height: 470px){
+      flex-direction: row;
+      gap: 20px;
     }
 
     @media (min-height: 560px){
@@ -358,6 +369,14 @@
 }
 
 
+[data-page="studio"]{
+  .menu-back-contact{
+    @media (max-width: 768px){
+      left: 32px;
+      top: -18px !important;
+    }
+  }
+}
 
 
 

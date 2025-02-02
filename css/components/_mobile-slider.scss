@@ -10,6 +10,8 @@
     padding: 0 2rem 2rem;
     @include flex('s', 's');
     gap: 10px;
+    position: relative;
+    z-index: 10;
 
     .btn-slider{
       margin-right: 0;
@@ -66,6 +68,9 @@
       @media (max-height: 710px){
         padding-bottom: 10px;
       }
+      @media (max-height: 550px){
+        margin-top: 30px;
+      }
 
       &-item{
         color: #7C7B7B;
@@ -98,6 +103,12 @@
       transition: 0.3s;
       transform-origin: center;
 
+      @media (max-height: 550px){
+        display: flex;
+        justify-content: start;
+        align-content: start;
+      }
+
       &-body{
         width: 100%;
         position: relative;
@@ -124,6 +135,11 @@
 
       &-content{
         padding: 2rem;
+
+        @media (max-height: 600px){
+          padding-top: 0;
+        }
+
         h4{
           align-self: stretch;
           color:  rgba(0, 0, 0, 0.81);
