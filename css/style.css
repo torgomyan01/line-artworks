@@ -1799,7 +1799,7 @@ body.active-slider .slider-content-info {
 .mobile-slider-item-content {
   padding: 2rem;
 }
-@media (max-height: 600px) {
+@media (max-height: 550px) {
   .mobile-slider-item-content {
     padding-top: 0;
   }
