@@ -1851,6 +1851,13 @@ body[data-page=studio] .nav .nav-logo img {
   top: 0;
   left: 0;
   transform: translateX(0);
+  width: 12.5rem;
+}
+@media (min-width: 1438px) {
+  body[data-page=studio] .nav .container {
+    width: 100%;
+    max-width: calc(100% - 260px);
+  }
 }
 body[data-page=studio] .hidden {
   height: auto;

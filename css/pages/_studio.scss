@@ -15,6 +15,16 @@ body[data-page="studio"]{
     top: 0;
     left: 0;
     transform: translateX(0);
+    width: 12.5rem;
+  }
+
+  .nav{
+    .container{
+      @media (min-width: 1438px){
+        width: 100%;
+        max-width: calc(100% - 260px);
+      }
+    }
   }
 
   .hidden{
