@@ -1290,7 +1290,7 @@ modalToVideoClose.addEventListener('click', function (){
 
 
   setTimeout(() => {
-    document.body.style.overflow = null;
+    document.body.style.overflow = 'auto';
     modalToVideo.classList.remove('active');
   }, 500)
 })
