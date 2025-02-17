@@ -23,6 +23,8 @@
   <link rel="stylesheet" href="css/aos.css">
   <link rel="stylesheet" href="css/style.css">
 
+  <link href="https://vjs.zencdn.net/8.16.1/video-js.css" rel="stylesheet" />
+
   <script src="js/aos.js"></script>
 
   <title>Line Artworks</title>
@@ -357,7 +359,22 @@
 </div>
 
 
+<div class="modal-to-video">
+  <div class="modal-to-video-close">+</div>
+  <video
+      id="my-video"
+      controls
+         class="video-js vjs-default-skin"
+         preload="auto"
+         width="640"
+         height="360"
+         poster="images/studio-hero.png"
+         data-setup="{}">
+    <source src="video/video.mp4" type="video/mp4; codecs=&quot;avc1.42E01E, mp4a.40.2&quot;">
+  </video>
+</div>
 
+<script src="https://vjs.zencdn.net/8.16.1/video.min.js"></script>
 <script src="js/script.js"></script>
 
 </body>

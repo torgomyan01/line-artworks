@@ -1264,3 +1264,33 @@ if (document.body.dataset.page === 'projects'){
   })
 
 }
+
+
+const playVideoStudio = $el('.hero-video-play');
+const modalToVideo = $el('.modal-to-video');
+const modalToVideoClose = $el('.modal-to-video-close');
+
+const player = videojs('my-video');
+
+playVideoStudio.addEventListener('click', function (){
+  modalToVideo.classList.add('active');
+  document.body.style.overflow = 'hidden';
+
+
+  setTimeout(() => {
+    modalToVideo.querySelector('.video-js').style.opacity = '1';
+    player.play();
+  }, 500)
+})
+
+modalToVideoClose.addEventListener('click', function (){
+  modalToVideo.querySelector('.video-js').style.opacity = '0';
+  player.pause();
+  player.currentTime(0);
+
+
+  setTimeout(() => {
+    document.body.style.overflow = null;
+    modalToVideo.classList.remove('active');
+  }, 500)
+})
