@@ -968,6 +968,38 @@ if (document.body.dataset.page === 'studio'){
 
   AOS.init()
 
+
+
+  const playVideoStudio = $el('.hero-video-play');
+  const modalToVideo = $el('.modal-to-video');
+  const modalToVideoClose = $el('.modal-to-video-close');
+
+  const player = videojs('my-video');
+
+  playVideoStudio.addEventListener('click', function (){
+    modalToVideo.classList.add('active');
+    document.body.style.overflow = 'hidden';
+
+
+    setTimeout(() => {
+      modalToVideo.querySelector('.video-js').style.opacity = '1';
+      player.play();
+    }, 500)
+  })
+
+  modalToVideoClose.addEventListener('click', function (){
+    modalToVideo.querySelector('.video-js').style.opacity = '0';
+    player.pause();
+    player.currentTime(0);
+
+
+    setTimeout(() => {
+      document.body.style.overflow = 'auto';
+      modalToVideo.classList.remove('active');
+    }, 500)
+  })
+
+
   window.onload = () => {
     setTimeout(() => {
       window.scrollTo(0, 0);
@@ -1266,31 +1298,84 @@ if (document.body.dataset.page === 'projects'){
 }
 
 
-const playVideoStudio = $el('.hero-video-play');
-const modalToVideo = $el('.modal-to-video');
-const modalToVideoClose = $el('.modal-to-video-close');
-
-const player = videojs('my-video');
-
-playVideoStudio.addEventListener('click', function (){
-  modalToVideo.classList.add('active');
-  document.body.style.overflow = 'hidden';
 
 
-  setTimeout(() => {
-    modalToVideo.querySelector('.video-js').style.opacity = '1';
-    player.play();
-  }, 500)
-})
 
-modalToVideoClose.addEventListener('click', function (){
-  modalToVideo.querySelector('.video-js').style.opacity = '0';
-  player.pause();
-  player.currentTime(0);
+if (document.body.dataset.page === '404'){
+  const empty = $el('.empty');
+  const notFoundLogo = $el('.pnf-container-body .nf');
+  const pnfContainerBodyInfo = $el('.pnf-container-body-info');
+  const container = $el('.container').getBoundingClientRect();
+  const pnfContainerBodyInfoIngo = pnfContainerBodyInfo.getBoundingClientRect();
+
+  const windowContainerDeference = (window.innerWidth - container.width) / 2;
 
 
-  setTimeout(() => {
-    document.body.style.overflow = 'auto';
-    modalToVideo.classList.remove('active');
-  }, 500)
-})
+  if(window.innerWidth > 768){
+    notFoundLogo.style.transition = '2s';
+
+    setTimeout(()=>{
+      notFoundLogo.style.opacity = '1';
+
+
+      setTimeout(()=>{
+        notFoundLogo.style.maxWidth = '613px';
+        notFoundLogo.style.left = `${pnfContainerBodyInfoIngo.left - windowContainerDeference}px`;
+        notFoundLogo.style.transform = `translateY(16%)`;
+
+
+        setTimeout(()=>{
+          notFoundLogo.style.transition = `0s`;
+          notFoundLogo.style.transitionDelay = `0s`;
+
+          [...pnfContainerBodyInfo.children].forEach((item) => {
+            item.classList.add('active');
+          })
+          empty.classList.add('active');
+        }, 2000)
+      }, 2000)
+    }, 500)
+
+
+    window.addEventListener('resize', ()=>{
+      const container = $el('.container').getBoundingClientRect();
+      const notFoundLogo = $el('.pnf-container-body .nf');
+      const pnfContainerBodyInfo = $el('.pnf-container-body-info');
+      const pnfContainerBodyInfoIngo = pnfContainerBodyInfo.getBoundingClientRect();
+
+      const windowContainerDeference = (window.innerWidth - container.width) / 2;
+
+      notFoundLogo.style.left = `${pnfContainerBodyInfoIngo.left - windowContainerDeference}px`;
+    })
+
+  } else {
+    notFoundLogo.style.transition = '2s';
+
+
+    setTimeout(()=>{
+      notFoundLogo.style.opacity = '1';
+
+      setTimeout(() => {
+        notFoundLogo.style.transform = 'translateY(10%)';
+
+        setTimeout(()=>{
+          notFoundLogo.style.transition = `0s`;
+          notFoundLogo.style.transitionDelay = `0s`;
+
+          [...pnfContainerBodyInfo.children].forEach((item) => {
+            item.classList.add('active');
+          })
+          empty.classList.add('active');
+        }, 2000)
+
+      }, 2000)
+    }, 500)
+  }
+
+
+
+
+
+
+
+}
