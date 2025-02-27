@@ -82,6 +82,18 @@
       border-bottom: 2px solid #00B140;
     }
   }
+
+  &.disabled{
+    background: transparent;
+    cursor: default;
+    input, textarea{
+      background: transparent;
+      cursor: default;
+    }
+    span{
+      cursor: default;
+    }
+  }
   span{
     font-style: normal;
     font-weight: 400;

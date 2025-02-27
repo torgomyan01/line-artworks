@@ -198,6 +198,17 @@ body {
 .def-input.active input, .def-input.active textarea {
   border-bottom: 2px solid #00B140;
 }
+.def-input.disabled {
+  background: transparent;
+  cursor: default;
+}
+.def-input.disabled input, .def-input.disabled textarea {
+  background: transparent;
+  cursor: default;
+}
+.def-input.disabled span {
+  cursor: default;
+}
 .def-input span {
   font-style: normal;
   font-weight: 400;
@@ -3119,6 +3130,10 @@ body[data-page=projects] .nav .container {
   transform: rotate(-45deg);
   font-size: 2.5rem;
   font-weight: 200;
+}
+
+body[data-page="404"] .nav .nav-logo img {
+  width: 12.5rem;
 }
 
 .pnf-container {

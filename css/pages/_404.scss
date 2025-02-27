@@ -1,3 +1,10 @@
+body[data-page="404"]{
+  .nav .nav-logo img{
+    width: 12.5rem;
+  }
+}
+
+
 .pnf-container{
   @include flex('c', 'c');
   height: 80%;
