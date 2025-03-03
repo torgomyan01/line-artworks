@@ -191,7 +191,7 @@ body {
   margin-bottom: 0.625rem;
 }
 .def-input.active span {
-  transform: translateY(0);
+  transform: translateY(12px);
   opacity: 1;
   font-size: 0.9rem;
 }
@@ -239,11 +239,18 @@ body {
 }
 .def-input-error {
   color: #EA4001;
-  font-size: 14px;
+  font-size: 11px;
   font-weight: 400;
-  line-height: 19.6px;
+  line-height: 12.6px;
   letter-spacing: -0.1px;
   margin-top: 5px;
+  position: absolute;
+  top: calc(100% - 5px);
+}
+@media (max-height: 720px) {
+  .def-input-error {
+    font-size: 9.5px;
+  }
 }
 
 .btn-slider {
@@ -1376,9 +1383,11 @@ body.active-slider .slider-content-info {
 }
 .menu-left .def-input {
   height: 80px;
+  min-height: 80px;
   transform: translateY(100px);
   transition: 0.8s;
   opacity: 0;
+  position: relative;
 }
 .menu-left .def-input textarea {
   margin-top: 0;
