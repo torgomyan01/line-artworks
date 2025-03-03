@@ -1062,9 +1062,9 @@ if (document.body.dataset.page === 'studio'){
 
 
 
-    window.addEventListener('resize', function (){
-      animationStudio()
-    })
+    // window.addEventListener('resize', function (){
+    //   animationStudio()
+    // })
 
     const heroTitle = $el('.hero-title');
     const studioAnim = $el('.studio-anim');
@@ -1075,18 +1075,18 @@ if (document.body.dataset.page === 'studio'){
     const animText = $('.anim-text');
 
 
-    function animationStudio(){
-      const heroTitle = $el('.hero-title');
-      const studioAnim = $el('.studio-anim');
-      const heroTitlePos = heroTitle.getBoundingClientRect();
-
-      studioAnim.style.left = `${heroTitlePos.x}px`;
-      studioAnim.style.top = `${heroTitlePos.y + 3}px`;
-      studioAnim.style.fontSize = `2.625rem`;
-      studioAnim.style.letterSpacing = `-5.4px`;
-      studioAnim.style.transform = `translateX(0)`;
-      studioAnim.style.transition = `0s`;
-    }
+    // function animationStudio(){
+    //   const heroTitle = $el('.hero-title');
+    //   const studioAnim = $el('.studio-anim');
+    //   const heroTitlePos = heroTitle.getBoundingClientRect();
+    //
+    //   studioAnim.style.left = `${heroTitlePos.x}px`;
+    //   studioAnim.style.top = `${heroTitlePos.y + 3}px`;
+    //   studioAnim.style.fontSize = `2.625rem`;
+    //   studioAnim.style.letterSpacing = `-5.4px`;
+    //   studioAnim.style.transform = `translateX(0)`;
+    //   studioAnim.style.transition = `0s`;
+    // }
 
 
     studioAnimItems.forEach((item) => {
@@ -1098,32 +1098,22 @@ if (document.body.dataset.page === 'studio'){
     })
 
     setTimeout(() => {
-      studioAnim.style.left = `${heroTitlePos.x}px`;
-      studioAnim.style.top = `${heroTitlePos.y + 3}px`;
-      studioAnim.style.fontSize = `2.625rem`;
-      studioAnim.style.letterSpacing = `-5.4px`;
-      studioAnim.style.transform = `translateX(0)`;
-
+      heroVideo.style.width = window.innerWidth > 768 ? '100%' : 'calc(100% + 40px)';
+      document.body.style.overflow = 'auto';
+      // studioAnim.style.position = `absolute`;
 
       setTimeout(() => {
-        heroVideo.style.width = window.innerWidth > 768 ? '100%' : 'calc(100% + 40px)';
-        document.body.style.overflow = 'auto';
-        studioAnim.style.position = `absolute`;
+        heroVideoPlay.style.opacity = '1';
 
-        setTimeout(() => {
-          heroVideoPlay.style.opacity = '1';
-
-        }, 1000)
       }, 1000)
-
-    }, 3000)
+    }, 1000)
 
 
     setTimeout(() => {
       animText.forEach((item) => {
         item.classList.add(active);
       })
-    }, 3000)
+    }, 1500)
   }
 
 
