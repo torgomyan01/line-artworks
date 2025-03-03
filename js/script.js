@@ -136,6 +136,8 @@ footerContact.forEach((item) => {
 
 
 
+
+
 menuItemContact?.addEventListener('click', function () {
   menu.querySelector('.menu-items').style.transition = '0s';
   menu.querySelector('.menu-items').classList.remove(active);
@@ -179,6 +181,28 @@ menuRightLanguageItem.forEach((tab) => {
   })
 })
 
+
+const GetMenuFormCheckbox = $('.menu-contact .def-checkbox');
+const _chb = [];
+
+GetMenuFormCheckbox.forEach((item, index) => {
+
+  _chb.push(item.outerHTML);
+
+  item.outerHTML = `<div id="_menu_form_checkbox_${index}"></div>`;
+})
+
+checkFormCheckbox()
+function checkFormCheckbox(){
+  if(window.innerWidth > 768){
+    $el('#_menu_form_checkbox_0').innerHTML = _chb[0];
+    $el('#_menu_form_checkbox_1').innerHTML = '';
+  } else {
+    $el('#_menu_form_checkbox_1').innerHTML = _chb[1];
+    $el('#_menu_form_checkbox_0').innerHTML = '';
+  }
+}
+window.addEventListener('resize', checkFormCheckbox)
 
 // DEFAULT INPUT
 const inpLabel = $('.def-input');
