@@ -1389,6 +1389,11 @@ body.active-slider .slider-content-info {
   opacity: 0;
   position: relative;
 }
+@media (max-height: 670px) {
+  .menu-left .def-input {
+    min-height: 60px;
+  }
+}
 .menu-left .def-input textarea {
   margin-top: 0;
   min-height: 10.125rem;
