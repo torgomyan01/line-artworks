@@ -308,11 +308,10 @@ if (document.body.dataset.page === 'home'){
   `)
   });
 
-  Array.from({length: 20}).forEach(() => {
-    sliderInfo.forEach((item) => {
-      const title = item.title.split('|').map((titleItem) => `<span>${titleItem}</span> <br />`).join('')
+  sliderInfo.forEach((item) => {
+    const title = item.title.split('|').map((titleItem) => `<span>${titleItem}</span> <br />`).join('')
 
-      _mobileSliderBody?.insertAdjacentHTML('beforeend', `
+    _mobileSliderBody?.insertAdjacentHTML('beforeend', `
          <div class="mobile-slider-item">
             <a href="${item.url}">
               <div class="mobile-slider-item-body">
@@ -328,8 +327,7 @@ if (document.body.dataset.page === 'home'){
             </div>
          </div>
       `)
-    });
-  })
+  });
 //
 
 //
@@ -851,8 +849,9 @@ if (document.body.dataset.page === 'home'){
     activeMobileSlider += 1;
     sliderX -= window.innerWidth + _gap;
 
+
     if(sliderX < -SBWidth){
-      sliderX = 0;
+      sliderX = 0 ;
     }
 
     if (activeMobileSlider > sliderInfo.length - 1) {
@@ -867,6 +866,7 @@ if (document.body.dataset.page === 'home'){
 
   function prevMobileSlider(){
     activeMobileSlider -= 1;
+
     sliderX += window.innerWidth + _gap;
 
 
