@@ -2345,6 +2345,9 @@ body[data-page=studio] .menu .container {
   margin-bottom: 4rem;
   transition: 0.3s;
 }
+.partners-item img {
+  height: 40px;
+}
 @media (max-width: 576px) {
   .partners-item img {
     width: auto;
