@@ -55,7 +55,7 @@
   }
   .info{
     height: 100%;
-    @include flex('sb', 's');
+    @include flex('e', 's');
     flex-direction: column;
 
     &-subtitle{

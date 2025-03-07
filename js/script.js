@@ -1066,12 +1066,12 @@ if (document.body.dataset.page === 'studio'){
     //   animationStudio()
     // })
 
-    const heroTitle = $el('.hero-title');
-    const studioAnim = $el('.studio-anim');
+    // const heroTitle = $el('.hero-title');
+    // const studioAnim = $el('.studio-anim');
     const studioAnimItems = $('.studio-anim span');
     const heroVideo = $el('.hero-video');
     const heroVideoPlay = $el('.hero-video-play');
-    const heroTitlePos = heroTitle.getBoundingClientRect();
+    // const heroTitlePos = heroTitle.getBoundingClientRect();
     const animText = $('.anim-text');
 
 
