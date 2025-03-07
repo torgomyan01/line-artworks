@@ -3163,6 +3163,11 @@ body[data-page="404"] .nav .nav-logo img {
     max-width: calc(100% - 30px);
   }
 }
+@media (max-height: 500px) {
+  .pnf-container {
+    margin-top: -10vh;
+  }
+}
 .pnf-container-body {
   display: flex;
   justify-content: center;
@@ -3185,7 +3190,8 @@ body[data-page="404"] .nav .nav-logo img {
 }
 @media (max-width: 1100px) {
   .pnf-container-body .empty {
-    max-width: 328px;
+    max-width: unset;
+    height: 30vh;
   }
 }
 .pnf-container-body .empty.active {
@@ -3225,6 +3231,11 @@ body[data-page="404"] .nav .nav-logo img {
     gap: 16px;
   }
 }
+@media (max-height: 650px) {
+  .pnf-container-body-info {
+    gap: 3vh;
+  }
+}
 .pnf-container-body-info h1 {
   color: #000;
   font-family: "CapturaNow", serif;
@@ -3248,6 +3259,11 @@ body[data-page="404"] .nav .nav-logo img {
     font-size: 24px;
   }
 }
+@media (max-height: 650px) {
+  .pnf-container-body-info h1 {
+    font-size: 5vh;
+  }
+}
 .pnf-container-body-info h1.active {
   transition: 2s;
   opacity: 1;
@@ -3268,6 +3284,11 @@ body[data-page="404"] .nav .nav-logo img {
 @media (max-width: 576px) {
   .pnf-container-body-info h3 {
     font-size: 14px;
+  }
+}
+@media (max-height: 650px) {
+  .pnf-container-body-info h3 {
+    font-size: 3vh;
   }
 }
 .pnf-container-body-info h3.active {
