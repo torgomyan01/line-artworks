@@ -2485,6 +2485,11 @@ body[data-page=projects] .nav .container {
   background: url("../images/projects/header.png") no-repeat center;
   background-size: cover;
 }
+@media (max-width: 576px) {
+  .projects-header {
+    height: 60vh;
+  }
+}
 .projects-header .content {
   display: flex;
   justify-content: start;

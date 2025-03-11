@@ -94,6 +94,10 @@ body[data-page="projects"]{
     background: url("../images/projects/header.png") no-repeat center;
     background-size: cover;
 
+    @media (max-width: 576px){
+      height: calc(60vh);
+    }
+
     .content{
       @include flex('s', 'e');
       position: relative;
