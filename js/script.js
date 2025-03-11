@@ -24,56 +24,63 @@ function $(name) {
   return document.querySelectorAll(name);
 }
 
+
 const hashtags = {
-  video: 'Video',
-  production: 'Production',
-  aviation: 'Aviation',
-  construction: 'Construction',
-  people: 'People',
-}
+  aviation: `Aviation`,
+  developers: `Developers`,
+  industrial: `Industrial`,
+  production: `Production`,
+};
 
 const sliderInfo = [
   {
-    type: 'Emirates <br> Global Aluminium',
-    title: 'Women|in Heavy|Industry',
-    img: 'images/slider-image-1.png',
-    hashtag: hashtags.production,
-    logo: false,
-    url: 'projects.html'
+    type: `<p>Air Samarkand</p>
+`,
+    title: `New Airline | of Uzbekistan`,
+    img: `https://line-artworks.com/wp-content/uploads/2025/01/as_01.jpg`,
+    hashtag: `Aviation`,
+    logo: ``,
+    url: `https://line-artworks.com/project/new-airlineof-uzbekistan/`,
   },
   {
-    type: 'Air Samarkand',
-    title: 'New Airline|of Uzbekistan',
-    img: 'images/slider-image-2.png',
-    hashtag: hashtags.aviation,
-    logo: false,
-    url: 'projects.html'
+    type: `<p>Amwaj</p>
+`,
+    title: `Urban Focus | in Baghdad`,
+    img: `https://line-artworks.com/wp-content/uploads/2025/01/header.png`,
+    hashtag: `Developers`,
+    logo: ``,
+    url: `https://line-artworks.com/project/amwaj-advertising-photography/`,
   },
   {
-    type: 'AGC Glass',
-    title: 'Industrial|photoshop|for Agc Glass',
-    img: 'images/slider-image-3.png',
-    hashtag: hashtags.construction,
-    logo: false,
-    url: 'projects.html'
+    type: `<p>EuroChem Group AG</p>
+`,
+    title: `Underground | Heroes`,
+    img: `https://line-artworks.com/wp-content/uploads/2025/01/ec_01.jpg`,
+    hashtag: `Industrial`,
+    logo: `https://line-artworks.com/wp-content/uploads/2025/01/top-nomination.png`,
+    url: `https://line-artworks.com/project/image-photoshoot-eurochem/`,
   },
   {
-    type: 'EuroChem Group AG',
-    title: 'Image|photoshoot ',
-    img: 'images/slider-image-4.png',
-    hashtag: hashtags.construction,
-    logo: 'images/top-nomination.png',
-    url: 'projects.html'
+    type: `<p>AGC Glass</p>
+`,
+    title: `Industrial | Clarity`,
+    img: `https://line-artworks.com/wp-content/uploads/2025/01/agc_03.jpg`,
+    hashtag: `Industrial`,
+    logo: ``,
+    url: `https://line-artworks.com/project/industrial-agc-glass/`,
   },
   {
-    type: 'EMCO',
-    title: 'Industrial|Photography|at Emco',
-    img: 'images/slider-image-5.png',
-    hashtag: hashtags.construction,
-    logo: false,
-    url: 'projects.html'
+    type: `<p>Emirates Global Aluminium</p>
+`,
+    title: `Women in Heavy | Industry`,
+    img: `https://line-artworks.com/wp-content/uploads/2025/01/ega_01.jpg`,
+    hashtag: `Production`,
+    logo: ``,
+    url: `https://line-artworks.com/project/women-in-heavy-industry/`,
   },
 ];
+
+
 
 
 
@@ -585,7 +592,7 @@ if (document.body.dataset.page === 'home'){
         sliderActiveIndex += 1;
 
 
-        if (sliderActiveIndex === sliderInfo.length - 1) {
+        if (sliderActiveIndex === sliderInfo.length) {
           sliderActiveIndex = 0;
         }
       }
