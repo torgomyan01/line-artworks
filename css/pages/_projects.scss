@@ -350,8 +350,9 @@ body[data-page="projects"]{
 
       @media (max-width: 650px){
         opacity: 1;
-        width: 100vw;
+        width: 90vw;
         left: 0;
+        margin-left: -5vw;
         transform: translateX(calc(-100% + 114px)) translateY(60px);
         img{
           width: 100% !important;
