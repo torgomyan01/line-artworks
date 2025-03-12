@@ -240,6 +240,9 @@ body[data-page="projects"]{
     cursor: pointer;
     position: relative;
 
+
+
+
     i{
       margin-right: 1.25rem;
       font-size: 1.375rem;
@@ -267,6 +270,20 @@ body[data-page="projects"]{
       transform: translateY(-20%);
       opacity: 0;
       transition: 0.3s;
+
+      &.prev-true{
+        @media (max-width: 650px){
+          opacity: 1;
+          top: 90px;
+          width: 90vw;
+          left: -12px;
+
+          img{
+            width: 100%;
+          }
+        }
+      }
+
 
 
       img{

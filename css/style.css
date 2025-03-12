@@ -2671,6 +2671,17 @@ body[data-page=projects] .nav .container {
   opacity: 0;
   transition: 0.3s;
 }
+@media (max-width: 650px) {
+  .process-slider-prev-info.prev-true {
+    opacity: 1;
+    top: 90px;
+    width: 90vw;
+    left: -12px;
+  }
+  .process-slider-prev-info.prev-true img {
+    width: 100%;
+  }
+}
 .process-slider-prev-info img {
   width: 22.5rem;
   height: 10.375rem;
