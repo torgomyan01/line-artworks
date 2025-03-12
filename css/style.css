@@ -2850,7 +2850,7 @@ body[data-page=projects] .nav .container {
 }
 @media (max-width: 768px) {
   .wrapper-title {
-    margin-bottom: 10.5rem;
+    margin-bottom: 2.5rem;
   }
 }
 .wrapper-title span {
@@ -2897,6 +2897,7 @@ body[data-page=projects] .nav .container {
     width: calc(100% - 32px);
     position: relative;
     left: 32px;
+    margin-bottom: 2rem;
   }
 }
 @media (max-width: 768px) {
