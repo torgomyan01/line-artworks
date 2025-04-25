@@ -34,17 +34,16 @@ const hashtags = {
 
 const sliderInfo = [
   {
-    type: `<p>Air Samarkand</p>
-`,
+    type: `<p>Air Samarkand</p>`,
     title: `New Airline | of Uzbekistan`,
+    video: 'video/cover.mp4',
     img: `https://line-artworks.com/wp-content/uploads/2025/01/as_01.jpg`,
     hashtag: `Aviation`,
     logo: ``,
     url: `https://line-artworks.com/project/new-airlineof-uzbekistan/`,
   },
   {
-    type: `<p>Amwaj</p>
-`,
+    type: `<p>Amwaj</p>`,
     title: `Urban Focus | in Baghdad`,
     img: `https://line-artworks.com/wp-content/uploads/2025/01/header.png`,
     hashtag: `Developers`,
@@ -52,8 +51,7 @@ const sliderInfo = [
     url: `https://line-artworks.com/project/amwaj-advertising-photography/`,
   },
   {
-    type: `<p>EuroChem Group AG</p>
-`,
+    type: `<p>EuroChem Group AG</p>`,
     title: `Underground | Heroes`,
     img: `https://line-artworks.com/wp-content/uploads/2025/01/ec_01.jpg`,
     hashtag: `Industrial`,
@@ -61,8 +59,7 @@ const sliderInfo = [
     url: `https://line-artworks.com/project/image-photoshoot-eurochem/`,
   },
   {
-    type: `<p>AGC Glass</p>
-`,
+    type: `<p>AGC Glass</p>`,
     title: `Industrial | Clarity`,
     img: `https://line-artworks.com/wp-content/uploads/2025/01/agc_03.jpg`,
     hashtag: `Industrial`,
@@ -70,8 +67,7 @@ const sliderInfo = [
     url: `https://line-artworks.com/project/industrial-agc-glass/`,
   },
   {
-    type: `<p>Emirates Global Aluminium</p>
-`,
+    type: `<p>Emirates Global Aluminium</p>`,
     title: `Women in Heavy | Industry`,
     img: `https://line-artworks.com/wp-content/uploads/2025/01/ega_01.jpg`,
     hashtag: `Production`,
@@ -79,8 +75,6 @@ const sliderInfo = [
     url: `https://line-artworks.com/project/women-in-heavy-industry/`,
   },
 ];
-
-
 
 
 
@@ -657,6 +651,7 @@ if (document.body.dataset.page === 'home'){
 
   let successClickOpenPage = false;
   function startNextAnimation(status) {
+
     const getActiveInfo = sliderInfo[sliderActiveIndex];
     const randomId = `torgomyan01_${Math.floor(Math.random() * 1000)}`;
 
@@ -676,11 +671,23 @@ if (document.body.dataset.page === 'home'){
 
     sliderContentButtonsPrev?.setAttribute('data-active', randomId);
 
-
-
     animationContent.insertAdjacentHTML('beforeend', `
-      <div class="slider-content-max" id="${randomId}" style="top: ${status ? '100vh' : 'calc(-100vh - 130px)'}">
-        <img src="${getActiveInfo.img}" class="slider-content-img slider-content-max-img" onclick="openPage('${getActiveInfo.url}')" alt="slider" width="1560" height="884">
+      <div class="slider-content-max ${getActiveInfo.video ? 'video-have' : ''}" id="${randomId}" style="top: ${status ? '100vh' : 'calc(-100vh - 130px)'}">
+      
+        ${getActiveInfo.video ? `
+          <video width="100%" height="100%" autoplay muted loop class="slider-content-img slider-content-max-img" id="video-block">
+            <source src="${getActiveInfo.video}" type="video/mp4">
+          </video>
+          
+          <div class="video-propagation">
+            <i class="icon-pause"></i>
+          </div>
+          
+          <button class="show-projects">Show projects</button>
+          
+        ` : `
+          <img src="${getActiveInfo.img}" class="slider-content-img slider-content-max-img" onclick="openPage('${getActiveInfo.url}')" alt="slider" width="1560" height="884">
+        `}
          <h2 class="slider-content-max-title" onclick="openPage('${getActiveInfo.url}')">
            <b class="type">${getActiveInfo.type}</b>
            ${title}
@@ -733,11 +740,90 @@ if (document.body.dataset.page === 'home'){
     sliderContentMax.style.left = `-${sliderContentMaxOffset.left}px`;
     sliderContentMax.style.width = `${window.innerWidth}px`;
     sliderContentMax.style.height = `${window.innerHeight}px`;
-
+    //
     setTimeout(() => {
       sliderContentMax.style.top = `-7.625rem`;
 
-      setTimeout(() => {
+      const getActiveInfo = sliderInfo[sliderActiveIndex];
+
+      console.log(getActiveInfo.video)
+
+      if (getActiveInfo.video) {
+        const getVideo = $el('#video-block');
+        const videoPropagation = $el('.video-propagation');
+        const videoHave = $el('.video-have');
+        const showProjects = $el('.show-projects');
+
+        const footerHashtags = $el('.footer-hashtags');
+        const footerVideoStatus = $el('.footer-video-status');
+
+        footerVideoStatus.innerText = 'SOUND ON';
+
+        footerHashtags.style.display = 'none';
+        footerVideoStatus.style.display = 'block';
+
+        showProjects.style.display = 'none';
+
+        showProjects.addEventListener('click', function (){
+          showProjects.style.display = 'none';
+          percent = 20;
+          NextProcess();
+
+          footerHashtags.style.display = 'block';
+          footerVideoStatus.style.display = 'none';
+
+          setTimeout(() => {
+            int = startAutoLoadingSlider();
+          }, 2000)
+
+        })
+
+        footerVideoStatus.addEventListener('click', function(){
+          if(getVideo.muted){
+            getVideo.muted = false;
+            footerVideoStatus.innerText = 'SOUND OFF';
+          } else {
+            getVideo.muted = true;
+            footerVideoStatus.innerText = 'SOUND ON';
+          }
+        })
+
+        videoPropagation.addEventListener('click', function () {
+          if (getVideo.paused) {
+            getVideo.play();
+            videoPropagation.innerHTML = `<i class="icon-pause"></i>`;
+            showProjects.style.display = 'none';
+          } else {
+            getVideo.pause();
+            videoPropagation.innerHTML = `<i class="icon-play"></i>`;
+            showProjects.style.display = 'block';
+          }
+        });
+
+        let pauseView;
+
+        videoHave.addEventListener('mousemove', function () {
+          videoPropagation.style.opacity = '1';
+
+          clearTimeout(pauseView);
+
+          pauseView = setTimeout(() => {
+            videoPropagation.style.opacity = '0';
+          }, 2000);
+        });
+
+        // Օրինակ՝ եթե ուզում ես 3 վայրկյանից հետո pause անել
+        // setTimeout(() => {
+        //   getVideo.pause();
+        // }, 3000);
+
+        // Եթե ուզում ես հեռացնել interval ինչ-որ տեղից
+        clearInterval(int); // համոզվիր որ `int` արժեքը սահմանված է
+      } else {
+        setTimeout(() =>  NextProcess(), startedAnimationStatus ? 3500 : 1500)
+      }
+
+      function NextProcess(){
         sliderContentMax.style.left = `0`;
         sliderContentMax.style.top = `0`;
         sliderContentMax.style.width = `calc(100% - 12.5rem)`;
@@ -750,7 +836,10 @@ if (document.body.dataset.page === 'home'){
         setTimeout(() => {
           successClickOpenPage = true;
         }, 800)
-      }, startedAnimationStatus ? 3500 : 1500)
+      }
+
+
+
 
       sliderContentMax.style.transition = `0.8s`;
     }, 500)
