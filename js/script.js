@@ -309,17 +309,31 @@ if (document.body.dataset.page === 'home'){
   `)
   });
 
-  sliderInfo.forEach((item) => {
+  sliderInfo.forEach((item, index) => {
     const title = item.title.split('|').map((titleItem) => `<span>${titleItem}</span> <br />`).join('')
+
+    const videoID = `video__${index}`;
 
     _mobileSliderBody?.insertAdjacentHTML('beforeend', `
          <div class="mobile-slider-item">
-            <a href="${item.url}">
-              <div class="mobile-slider-item-body">
-                <img src="${item.img}" alt="mobile-header-image" class="mobile-slider-item-body-image">
-                ${item.logo ? `<img class="mobile-slider-item-body-logo" src="${item.logo}" alt="logo">` : ''}
-              </div>
-            </a>
+            <div class="mobile-slider-item-body">
+              ${
+                  item.video ? `
+                    <div class="mobile-video-block" id="${videoID}">
+                      <video width="100%" height="100%" autoplay muted loop class="slider-content-img slider-content-max-img" id="video-block-mobile">
+                          <source src="${item.video}" type="video/mp4">
+                      </video>
+                        
+                      <div class="video-propagation-mobile">
+                        <i class="icon-pause"></i>
+                      </div>
+                    </div>
+                  
+                  ` : `<img src="${item.img}" alt="mobile-header-image" class="mobile-slider-item-body-image">`
+                }
+             
+              ${item.logo ? `<img class="mobile-slider-item-body-logo" src="${item.logo}" alt="logo">` : ''}
+            </div>
             <div class="mobile-slider-item-content">
               <h4>${item.type}</h4>
               <a href="${item.url}">
@@ -328,8 +342,68 @@ if (document.body.dataset.page === 'home'){
             </div>
          </div>
       `)
+
+    if(item.video){
+      const videoPropagationMobile = $el(`#${videoID}`);
+      const video = $el(`#${videoID}`).querySelector('video');
+      const playIcon = videoPropagationMobile.querySelector('.video-propagation-mobile');
+
+      const mobileSliderVideoVolume = $el('.mobile-slider-video-volume');
+
+      playIcon.addEventListener('click', (e) => {
+        if (video.paused) {
+          showProjectsMobile.style.opacity = '0';
+          video.play();
+          playIcon.innerHTML = `<i class="icon-pause"></i>`;
+        } else {
+          showProjectsMobile.style.opacity = '1';
+          video.pause();
+          playIcon.innerHTML = `<i class="icon-play"></i>`;
+        }
+      })
+
+
+      mobileSliderVideoVolume.addEventListener('click', function (){
+
+        const videoBlock = $el(`#video__${activeMobileSlider} video`);
+
+        if(videoBlock.muted){
+          videoBlock.muted = false;
+          mobileSliderVideoVolume.innerText = 'SOUND OFF';
+        } else {
+          videoBlock.muted = true;
+          mobileSliderVideoVolume.innerText = 'SOUND ON';
+        }
+      })
+
+      const showProjectsMobile = $el('.show-projects-mobile');
+
+      showProjectsMobile.addEventListener('click', function (){
+        percentMobile = 0;
+        activeMobileSlider += 1;
+
+        sliderX = -(window.innerWidth + _gap) * activeMobileSlider;
+
+        changeActiveHashtagsMobile();
+
+        AnimationSliderMobile();
+
+        intMobile = startMobileAutoLoadingSlider();
+
+
+      })
+
+    }
+
+
   });
+
+
+
+
 //
+
+
 
 //
   const sliderContentButtonsPlay = $el('.slider-content-buttons-play');
@@ -746,8 +820,6 @@ if (document.body.dataset.page === 'home'){
 
       const getActiveInfo = sliderInfo[sliderActiveIndex];
 
-      console.log(getActiveInfo.video)
-
       if (getActiveInfo.video) {
         const getVideo = $el('#video-block');
         const videoPropagation = $el('.video-propagation');
@@ -1040,8 +1112,51 @@ if (document.body.dataset.page === 'home'){
     intMobile = startMobileAutoLoadingSlider();
   }
 
+  function CheckActiveSliderMobile(){
+    const activeItem = sliderInfo[activeMobileSlider];
+
+    const mobileSliderItemContent = $('.mobile-slider-item-content');
+    const mobileSliderVideoVolume = $el('.mobile-slider-video-volume');
+    const showProjectsMobileParent = $el('.show-projects-mobile-parent');
+    const videoPropagationMobile = $el('.video-propagation-mobile');
+
+    const getVideo = $el(`#video__${activeMobileSlider} video`)
+
+
+    if(activeItem.video){
+      mobileSliderHashtags.style.display = 'none';
+      mobileButtons.style.display = 'none';
+      mobileSliderVideoVolume.style.display = 'flex';
+      showProjectsMobileParent.style.display = 'flex';
+
+      clearInterval(intMobile)
+
+      mobileSliderItemContent.forEach((item) => {
+        item.style.display = 'none';
+      })
+
+      getVideo.play()
+
+      videoPropagationMobile.innerHTML = '<i class="icon-pause"></i>';
+
+
+    } else {
+      mobileSliderHashtags.style.display = 'block';
+      mobileButtons.style.display = 'flex';
+      mobileSliderVideoVolume.style.display = 'none';
+      showProjectsMobileParent.style.display = 'none';
+
+      mobileSliderItemContent.forEach((item) => {
+        item.style.display = 'block';
+      })
+    }
+
+  }
+
   function startMobileAutoLoadingSlider() {
     return setInterval(() => {
+
+      CheckActiveSliderMobile()
       percentMobile += 1;
       progressBarMobile.setAttribute('style', `--percentMobile: ${percentMobile}%`);
 
@@ -1063,6 +1178,7 @@ if (document.body.dataset.page === 'home'){
   }
 
 
+  const mobileButtons = $el('.mobile-buttons');
   const mobileButtonsNext = $el('.mobile-buttons-next');
   const mobileButtonsPrev = $el('.mobile-buttons-prev');
 
@@ -1072,6 +1188,9 @@ if (document.body.dataset.page === 'home'){
     clearInterval(intMobile)
 
     nextMobileSlider();
+
+    CheckActiveSliderMobile()
+
   })
 
   mobileButtonsPrev?.addEventListener('click', function (){
@@ -1079,6 +1198,8 @@ if (document.body.dataset.page === 'home'){
     clearInterval(intMobile)
 
     prevMobileSlider();
+
+    CheckActiveSliderMobile()
   })
 
 }
