@@ -986,17 +986,26 @@ if (document.body.dataset.page === 'home'){
 
 
   mobileSlider?.addEventListener('touchstart', (event) => {
-    const touch = event.touches[0];
-    startX = touch.clientX;
-    startY = touch.clientY;
+    const getActiveInfo = sliderInfo[activeMobileSlider];
+
+    if(!getActiveInfo.video){
+      const touch = event.touches[0];
+      startX = touch.clientX;
+      startY = touch.clientY;
+    }
+
   });
 
   mobileSlider?.addEventListener('touchend', (event) => {
-    const touch = event.changedTouches[0];
-    endX = touch.clientX;
-    endY = touch.clientY;
+    const getActiveInfo = sliderInfo[activeMobileSlider];
 
-    handleSwipe();
+    if(!getActiveInfo.video){
+      const touch = event.changedTouches[0];
+      endX = touch.clientX;
+      endY = touch.clientY;
+
+      handleSwipe();
+    }
   });
 
   function handleSwipe() {
