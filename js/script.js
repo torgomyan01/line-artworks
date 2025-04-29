@@ -63,7 +63,7 @@ const sliderInfo = [
     title: `Test Title | of Uzbekistan`,
     video: 'video/cover.mp4',
     img: `https://line-artworks.com/wp-content/uploads/2025/01/as_01.jpg`,
-    hashtag: `Aviation`,
+    hashtag: `Test`,
     logo: ``,
     url: `https://line-artworks.com/project/new-airlineof-uzbekistan/`,
   },
@@ -1146,6 +1146,7 @@ if (document.body.dataset.page === 'home'){
     const getVideo = $el(`#video__${activeMobileSlider} video`);
     const mobile = $el('.mobile');
 
+    showProjectsMobileParent.querySelector('button').style.opacity = 0;
 
     if(activeItem.video){
       mobile.style.marginTop = '100px';
