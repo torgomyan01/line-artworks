@@ -426,6 +426,8 @@ body{
 }
 
 .mobile{
+  transition: 1s;
+
   .show-projects-mobile-parent{
     display: flex;
     justify-content: center;
@@ -448,9 +450,9 @@ body{
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
-    margin-top: -30px;
     position: relative;
-    top: -20px;
+    margin-bottom: 20px;
+    margin-top: 16px;
   }
 }
 

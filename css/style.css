@@ -1292,6 +1292,9 @@ body.active-slider .slider-content-info {
   background: #0bbd4a;
 }
 
+.mobile {
+  transition: 1s;
+}
 .mobile .show-projects-mobile-parent {
   display: flex;
   justify-content: center;
@@ -1313,9 +1316,9 @@ body.active-slider .slider-content-info {
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
-  margin-top: -30px;
   position: relative;
-  top: -20px;
+  margin-bottom: 20px;
+  margin-top: 16px;
 }
 
 .mobile-video-block {

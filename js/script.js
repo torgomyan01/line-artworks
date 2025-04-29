@@ -59,6 +59,15 @@ const sliderInfo = [
     url: `https://line-artworks.com/project/image-photoshoot-eurochem/`,
   },
   {
+    type: `<p>Air Samarkand</p>`,
+    title: `Test Title | of Uzbekistan`,
+    video: 'video/cover.mp4',
+    img: `https://line-artworks.com/wp-content/uploads/2025/01/as_01.jpg`,
+    hashtag: `Aviation`,
+    logo: ``,
+    url: `https://line-artworks.com/project/new-airlineof-uzbekistan/`,
+  },
+  {
     type: `<p>AGC Glass</p>`,
     title: `Industrial | Clarity`,
     img: `https://line-artworks.com/wp-content/uploads/2025/01/agc_03.jpg`,
@@ -379,8 +388,9 @@ if (document.body.dataset.page === 'home'){
       const showProjectsMobile = $el('.show-projects-mobile');
 
       showProjectsMobile.addEventListener('click', function (){
-        percentMobile = 0;
-        activeMobileSlider += 1;
+        percentMobile = 90;
+
+        // activeMobileSlider += 1;
 
         sliderX = -(window.innerWidth + _gap) * activeMobileSlider;
 
@@ -1133,10 +1143,13 @@ if (document.body.dataset.page === 'home'){
     const showProjectsMobileParent = $el('.show-projects-mobile-parent');
     const videoPropagationMobile = $el('.video-propagation-mobile');
 
-    const getVideo = $el(`#video__${activeMobileSlider} video`)
+    const getVideo = $el(`#video__${activeMobileSlider} video`);
+    const mobile = $el('.mobile');
 
 
     if(activeItem.video){
+      mobile.style.marginTop = '100px';
+
       mobileSliderHashtags.style.display = 'none';
       mobileButtons.style.display = 'none';
       mobileSliderVideoVolume.style.display = 'flex';
@@ -1152,7 +1165,6 @@ if (document.body.dataset.page === 'home'){
 
       videoPropagationMobile.innerHTML = '<i class="icon-pause"></i>';
 
-
     } else {
       mobileSliderHashtags.style.display = 'block';
       mobileButtons.style.display = 'flex';
@@ -1162,6 +1174,7 @@ if (document.body.dataset.page === 'home'){
       mobileSliderItemContent.forEach((item) => {
         item.style.display = 'block';
       })
+      mobile.style.marginTop = '0';
     }
 
   }
