@@ -838,15 +838,19 @@ if (document.body.dataset.page === 'home'){
 
         showProjects.addEventListener('click', function (){
           showProjects.style.display = 'none';
-          percent = 20;
+          percent = 95;
           NextProcess();
+
+          // sliderActiveIndex += 1;
+
+          // startNextAnimation(true)
+          //
+          // nextAnimation(true)
 
           footerHashtags.style.display = 'block';
           footerVideoStatus.style.display = 'none';
 
-          setTimeout(() => {
-            int = startAutoLoadingSlider();
-          }, 2000)
+          int = startAutoLoadingSlider();
 
         })
 
