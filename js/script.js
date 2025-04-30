@@ -367,7 +367,6 @@ if (document.body.dataset.page === 'home'){
 
         const videoBlock = $el(`#video__${activeMobileSlider} video`);
 
-        console.log(videoBlock)
         if(videoBlock.muted){
           videoBlock.muted = false;
           mobileSliderVideoVolume.innerText = 'SOUND OFF';
@@ -380,7 +379,7 @@ if (document.body.dataset.page === 'home'){
       const showProjectsMobile = $el('.show-projects-mobile');
 
       showProjectsMobile.addEventListener('click', function (){
-        percentMobile = 90;
+        percentMobile = 99;
 
         // activeMobileSlider += 1;
 
@@ -1138,7 +1137,7 @@ if (document.body.dataset.page === 'home'){
     const getVideo = $el(`#video__${activeMobileSlider} video`);
     const mobile = $el('.mobile');
 
-    showProjectsMobileParent.querySelector('button').style.opacity = 0;
+    showProjectsMobileParent.querySelector('button').style.opacity = '0';
 
     if(activeItem.video){
       mobile.style.marginTop = '100px';
@@ -1175,7 +1174,6 @@ if (document.body.dataset.page === 'home'){
   function startMobileAutoLoadingSlider() {
     return setInterval(() => {
 
-      CheckActiveSliderMobile()
       percentMobile += 1;
       progressBarMobile.setAttribute('style', `--percentMobile: ${percentMobile}%`);
 
@@ -1193,6 +1191,8 @@ if (document.body.dataset.page === 'home'){
 
         AnimationSliderMobile();
       }
+
+      CheckActiveSliderMobile()
     }, 100)
   }
 
