@@ -59,15 +59,6 @@ const sliderInfo = [
     url: `https://line-artworks.com/project/image-photoshoot-eurochem/`,
   },
   {
-    type: `<p>Air Samarkand</p>`,
-    title: `Test Title | of Uzbekistan`,
-    video: 'video/cover.mp4',
-    img: `https://line-artworks.com/wp-content/uploads/2025/01/as_01.jpg`,
-    hashtag: `Test`,
-    logo: ``,
-    url: `https://line-artworks.com/project/new-airlineof-uzbekistan/`,
-  },
-  {
     type: `<p>AGC Glass</p>`,
     title: `Industrial | Clarity`,
     img: `https://line-artworks.com/wp-content/uploads/2025/01/agc_03.jpg`,
@@ -376,6 +367,7 @@ if (document.body.dataset.page === 'home'){
 
         const videoBlock = $el(`#video__${activeMobileSlider} video`);
 
+        console.log(videoBlock)
         if(videoBlock.muted){
           videoBlock.muted = false;
           mobileSliderVideoVolume.innerText = 'SOUND OFF';
