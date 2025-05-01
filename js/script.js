@@ -1137,8 +1137,6 @@ if (document.body.dataset.page === 'home'){
     if(activeI !== activeMobileSlider){
       activeI = activeMobileSlider
 
-      console.log(activeItem.video, activeMobileSlider)
-
       const mobileSliderItemContent = $('.mobile-slider-item-content');
       const mobileSliderVideoVolume = $el('.mobile-slider-video-volume');
       const showProjectsMobileParent = $el('.show-projects-mobile-parent');
@@ -1147,10 +1145,12 @@ if (document.body.dataset.page === 'home'){
       const getVideo = $el(`#video__${activeMobileSlider} video`);
       const mobile = $el('.mobile');
 
+
       showProjectsMobileParent.querySelector('button').style.opacity = '0';
 
       if(activeItem.video){
-        mobile.style.marginTop = '100px';
+        const mobileHeight = (window.innerHeight - mobile.getBoundingClientRect().height) / 2;
+        mobile.style.marginTop = `${mobileHeight}px`;
 
         mobileSliderHashtags.style.display = 'none';
         mobileButtons.style.display = 'none';
