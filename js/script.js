@@ -385,9 +385,9 @@ if (document.body.dataset.page === 'home'){
 
         sliderX = -(window.innerWidth + _gap) * activeMobileSlider;
 
-        // changeActiveHashtagsMobile();
-        //
-        // AnimationSliderMobile();
+        changeActiveHashtagsMobile();
+
+        AnimationSliderMobile();
 
         intMobile = startMobileAutoLoadingSlider();
 
@@ -1122,9 +1122,9 @@ if (document.body.dataset.page === 'home'){
     intMobile = startMobileAutoLoadingSlider();
   }
 
-  setInterval(() => {
-    CheckActiveSliderMobile()
-  }, 500)
+  // setInterval(() => {
+  //   CheckActiveSliderMobile()
+  // }, 500)
 
   let activeI = -1;
 
@@ -1206,8 +1206,9 @@ if (document.body.dataset.page === 'home'){
 
         AnimationSliderMobile();
 
-
       }
+      CheckActiveSliderMobile()
+
     }, 100)
   }
 
