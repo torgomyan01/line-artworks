@@ -1124,7 +1124,7 @@ if (document.body.dataset.page === 'home'){
 
   // setInterval(() => {
   //   CheckActiveSliderMobile()
-  // }, 500)
+  // }, 200)
 
   let activeI = -1;
 
@@ -1148,9 +1148,10 @@ if (document.body.dataset.page === 'home'){
 
       showProjectsMobileParent.querySelector('button').style.opacity = '0';
 
+      console.log(activeItem.video)
+
       if(activeItem.video){
-        const mobileHeight = (window.innerHeight - mobile.getBoundingClientRect().height) / 2;
-        mobile.style.marginTop = `${mobileHeight}px`;
+        mobile.style.marginTop = `10dvh`;
 
         mobileSliderHashtags.style.display = 'none';
         mobileButtons.style.display = 'none';
@@ -1207,8 +1208,8 @@ if (document.body.dataset.page === 'home'){
         AnimationSliderMobile();
 
       }
-      CheckActiveSliderMobile()
 
+      CheckActiveSliderMobile()
     }, 100)
   }
 
@@ -1224,6 +1225,8 @@ if (document.body.dataset.page === 'home'){
 
     nextMobileSlider();
 
+    CheckActiveSliderMobile()
+
   })
 
   mobileButtonsPrev?.addEventListener('click', function (){
@@ -1232,6 +1235,9 @@ if (document.body.dataset.page === 'home'){
     clearInterval(intMobile)
 
     prevMobileSlider();
+
+    CheckActiveSliderMobile()
+
   })
 
 }
