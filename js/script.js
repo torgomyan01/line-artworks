@@ -1189,7 +1189,6 @@ if (document.body.dataset.page === 'home'){
 
       percentMobile += 1;
 
-      console.log(percentMobile)
       progressBarMobile.setAttribute('style', `--percentMobile: ${percentMobile}%`);
 
       if (percentMobile === 100) {
