@@ -34,8 +34,8 @@ const hashtags = {
 
 const sliderInfo = [
   {
-    type: `<p>Air Samarkand</p>`,
-    title: `New Airline | of Uzbekistan`,
+    type: "",
+    title: "",
     video: 'video/cover.mp4',
     img: `https://line-artworks.com/wp-content/uploads/2025/01/as_01.jpg`,
     hashtag: `Aviation`,
