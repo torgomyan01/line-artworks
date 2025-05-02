@@ -1326,6 +1326,10 @@ body.active-slider .slider-content-info {
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100%;
+}
+.mobile-video-block video {
+  object-fit: cover;
 }
 .mobile-video-block .video-propagation-mobile {
   width: 56px;

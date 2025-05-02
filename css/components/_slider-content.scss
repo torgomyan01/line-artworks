@@ -461,6 +461,12 @@ body{
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100%;
+
+  video{
+    object-fit: cover;
+  }
+
   .video-propagation-mobile{
     width: 56px;
     height: 56px;
