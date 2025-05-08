@@ -320,15 +320,14 @@ if (document.body.dataset.page === 'home'){
               ${
                   item.video ? `
                     <div class="mobile-video-block" id="${videoID}">
-                      <video width="100%" height="100%" autoplay muted loop class="slider-content-img slider-content-max-img" id="video-block-mobile">
+                      <video width="100%" height="100%" muted loop class="slider-content-img slider-content-max-img" id="video-block-mobile">
                           <source src="${item.video}" type="video/mp4">
                       </video>
                         
-                      <div class="video-propagation-mobile">
+                      <div class="video-propagation-mobile" style="opacity: 0">
                         <i class="icon-pause"></i>
                       </div>
                     </div>
-                  
                   ` : `<img src="${item.img}" alt="mobile-header-image" class="mobile-slider-item-body-image">`
                 }
              
@@ -350,17 +349,30 @@ if (document.body.dataset.page === 'home'){
 
       const mobileSliderVideoVolume = $el('.mobile-slider-video-volume');
 
-      playIcon.addEventListener('click', (e) => {
+      setTimeout(() => {
+        // console.log('play 2')
+        video.play();
+      }, 10000)
+
+
+      video.addEventListener('click', PlayPause)
+
+      playIcon.addEventListener('click', PlayPause)
+
+      function PlayPause(){
+        console.log(video.paused)
         if (video.paused) {
           showProjectsMobile.style.opacity = '0';
           video.play();
+          playIcon.style.opacity = '0';
           playIcon.innerHTML = `<i class="icon-pause"></i>`;
         } else {
           showProjectsMobile.style.opacity = '1';
           video.pause();
           playIcon.innerHTML = `<i class="icon-play"></i>`;
+          playIcon.style.opacity = '1';
         }
-      })
+      }
 
 
       mobileSliderVideoVolume.addEventListener('click', function (){
@@ -1135,7 +1147,7 @@ if (document.body.dataset.page === 'home'){
     }
 
     if(activeI !== activeMobileSlider){
-      activeI = activeMobileSlider
+      activeI = activeMobileSlider;
 
       const mobileSliderItemContent = $('.mobile-slider-item-content');
       const mobileSliderVideoVolume = $el('.mobile-slider-video-volume');
@@ -1162,9 +1174,11 @@ if (document.body.dataset.page === 'home'){
           item.style.display = 'none';
         })
 
+        getVideo.currentTime = 0;
+
         setTimeout(() => {
-          getVideo.play()
-        }, 100)
+          getVideo.play();
+        }, 2000)
 
         videoPropagationMobile.innerHTML = '<i class="icon-pause"></i>';
 
