@@ -761,7 +761,7 @@ if (document.body.dataset.page === 'home'){
       <div class="slider-content-max ${getActiveInfo.video ? 'video-have' : ''}" id="${randomId}" style="top: ${status ? '100vh' : 'calc(-100vh - 130px)'}">
       
         ${getActiveInfo.video ? `
-          <video width="100%" height="100%" autoplay muted loop class="slider-content-img slider-content-max-img" id="video-block">
+          <video width="100%" height="100%" muted loop class="slider-content-img slider-content-max-img" id="video-block">
             <source src="${getActiveInfo.video}" type="video/mp4">
           </video>
           
@@ -847,6 +847,12 @@ if (document.body.dataset.page === 'home'){
         footerVideoStatus.style.display = 'block';
 
         showProjects.style.display = 'none';
+
+        getVideo.currentTime = 0;
+        setTimeout(() => {
+          getVideo.play();
+        }, 2200)
+
 
         showProjects.addEventListener('click', function (){
           showProjects.style.display = 'none';
@@ -1160,7 +1166,6 @@ if (document.body.dataset.page === 'home'){
 
       showProjectsMobileParent.querySelector('button').style.opacity = '0';
 
-      console.log(activeItem.video)
 
       if(activeItem.video){
         mobile.style.marginTop = `10dvh`;
