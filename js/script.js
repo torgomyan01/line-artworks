@@ -320,7 +320,7 @@ if (document.body.dataset.page === 'home'){
               ${
                   item.video ? `
                     <div class="mobile-video-block" id="${videoID}">
-                      <video width="100%" height="100%" muted loop class="slider-content-img slider-content-max-img" id="video-block-mobile">
+                      <video playsinline webkit-playsinline width="100%" height="100%" muted loop class="slider-content-img slider-content-max-img" id="video-block-mobile">
                           <source src="${item.video}" type="video/mp4">
                       </video>
                         
@@ -360,7 +360,6 @@ if (document.body.dataset.page === 'home'){
       playIcon.addEventListener('click', PlayPause)
 
       function PlayPause(){
-        console.log(video.paused)
         if (video.paused) {
           showProjectsMobile.style.opacity = '0';
           video.play();
@@ -761,7 +760,7 @@ if (document.body.dataset.page === 'home'){
       <div class="slider-content-max ${getActiveInfo.video ? 'video-have' : ''}" id="${randomId}" style="top: ${status ? '100vh' : 'calc(-100vh - 130px)'}">
       
         ${getActiveInfo.video ? `
-          <video width="100%" height="100%" muted loop class="slider-content-img slider-content-max-img" id="video-block">
+          <video playsinline webkit-playsinline width="100%" height="100%" muted loop class="slider-content-img slider-content-max-img" id="video-block">
             <source src="${getActiveInfo.video}" type="video/mp4">
           </video>
           
@@ -1245,7 +1244,7 @@ if (document.body.dataset.page === 'home'){
     nextMobileSlider();
 
     CheckActiveSliderMobile()
-
+    StopAllVideo();
   })
 
   mobileButtonsPrev?.addEventListener('click', function (){
@@ -1256,8 +1255,16 @@ if (document.body.dataset.page === 'home'){
     prevMobileSlider();
 
     CheckActiveSliderMobile()
-
+    StopAllVideo();
   })
+
+  function StopAllVideo(){
+    const allVideos = $('video');
+
+    allVideos.forEach((video) => {
+      video.pause();
+    })
+  }
 
 }
 
