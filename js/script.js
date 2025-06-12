@@ -26,7 +26,6 @@ function $(name) {
 
 
 const hashtags = {
-  aviation: `Aviation`,
   developers: `Developers`,
   industrial: `Industrial`,
   production: `Production`,
@@ -117,6 +116,8 @@ navMenu?.addEventListener('click', function () {
       menu.classList.add(active);
       menu.querySelector('.menu-items').classList.add(active);
     }, 1000)
+
+      StopAllVideo()
   }
 
 })
@@ -298,15 +299,18 @@ if (document.body.dataset.page === 'home'){
   })
 
   sliderInfo.forEach((item) => {
-    const title = item.title.split('|').map((titleItem) => `<span>${titleItem}</span> <br />`).join('')
 
-    sliderContentInfoContent?.insertAdjacentHTML('beforeend', `
-    <div class="slider-content-item" data-typehashtag="${item.hashtag}">
-       <img src="${item.img}" class="slider-content-item-img" alt="slider" width="1560" height="884">
-       <h4 class="slider-content-item-type">${item.type}</h4>
-       <h2 class="slider-content-item-title">${title}</h2>
-    </div>
-  `)
+    if(!item.video){
+      const title = item.title.split('|').map((titleItem) => `<span>${titleItem}</span> <br />`).join('')
+
+      sliderContentInfoContent?.insertAdjacentHTML('beforeend', `
+      <div class="slider-content-item" data-typehashtag="${item.hashtag}">
+         <img src="${item.img}" class="slider-content-item-img" alt="slider" width="1560" height="884">
+         <h4 class="slider-content-item-type">${item.type}</h4>
+         <h2 class="slider-content-item-title">${title}</h2>
+      </div>
+    `)
+    }
   });
 
   sliderInfo.forEach((item, index) => {
@@ -343,6 +347,7 @@ if (document.body.dataset.page === 'home'){
       `)
 
     if(item.video){
+
       const videoPropagationMobile = $el(`#${videoID}`);
       const video = $el(`#${videoID}`).querySelector('video');
       const playIcon = videoPropagationMobile.querySelector('.video-propagation-mobile');
@@ -390,18 +395,60 @@ if (document.body.dataset.page === 'home'){
       const showProjectsMobile = $el('.show-projects-mobile');
 
       showProjectsMobile.addEventListener('click', function (){
-        percentMobile = 99;
-
-        // activeMobileSlider += 1;
-
+        percentMobile = 1;
+        activeMobileSlider = 0;
+        //
         sliderX = -(window.innerWidth + _gap) * activeMobileSlider;
-
+        //
         changeActiveHashtagsMobile();
-
+        //
         AnimationSliderMobile();
-
+        //
         intMobile = startMobileAutoLoadingSlider();
 
+        sliderInfo.shift();
+        setTimeout(() => {
+          const mobileSliderBody = $el('.mobile-slider-body')
+          const mobileSliderBodyWidth = $el('.mobile-slider-body').getBoundingClientRect().width;
+
+          const getVideo = $el('#video__0').parentElement.parentElement;
+          const elemWidth = getVideo.getBoundingClientRect().width;
+
+          console.log(mobileSliderBodyWidth, elemWidth);
+
+          mobileSliderBody.style.width = `${mobileSliderBodyWidth - elemWidth - _gap}px`
+
+          getVideo.style.transition = '1s';
+          getVideo.style.overflow = 'hidden';
+          getVideo.style.width = '0';
+          getVideo.style.marginRight = `-${_gap}px`;
+          getVideo.style.minWidth = '0';
+
+          const mobileSliderItemContent = $('.mobile-slider-item-content');
+
+          const mobile = $el('.mobile');
+
+          const mobileSliderVideoVolume = $el('.mobile-slider-video-volume');
+          const showProjectsMobileParent = $el('.show-projects-mobile-parent');
+
+          mobile.style.marginTop = '0';
+
+          setTimeout(() => {
+            getVideo.outerHTML = '';
+          }, 2000)
+
+
+          mobileSliderHashtags.style.display = 'block';
+          mobileButtons.style.display = 'flex';
+          mobileSliderVideoVolume.style.display = 'none';
+          showProjectsMobileParent.style.display = 'none';
+
+          mobileSliderItemContent.forEach((item) => {
+            item.style.display = 'block';
+          })
+
+
+        }, 1000)
       })
 
     }
@@ -869,6 +916,8 @@ if (document.body.dataset.page === 'home'){
 
           int = startAutoLoadingSlider();
 
+          sliderInfo.shift();
+
         })
 
         footerVideoStatus.addEventListener('click', function(){
@@ -982,9 +1031,9 @@ if (document.body.dataset.page === 'home'){
     const mobileSliderItem = _sliderItems;
 
     if(mobileSliderBody){
-      SBWidth = (window.innerWidth * mobileSliderItem.length) + ((mobileSliderItem.length - 1) * 17) - window.innerWidth
+      SBWidth = (window.innerWidth * mobileSliderItem.length - 1) + ((mobileSliderItem.length - 2) * 17) - window.innerWidth
 
-      mobileSliderBody.style.width = `${SBWidth}px`;
+      mobileSliderBody.style.width = `${SBWidth - window.innerWidth}px`;
     }
   }
 
