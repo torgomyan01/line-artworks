@@ -902,10 +902,10 @@ if (document.body.dataset.page === 'home'){
 
         showProjects.addEventListener('click', function (){
           showProjects.style.display = 'none';
-          percent = 95;
+          percent = 97;
           NextProcess();
 
-          // sliderActiveIndex += 1;
+          sliderActiveIndex = -1;
 
           // startNextAnimation(true)
           //
